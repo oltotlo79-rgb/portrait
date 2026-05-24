@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  motion,
-  useMotionValue,
-  useScroll,
-  useTransform,
-  useVelocity,
-  useSpring,
-  useAnimationFrame,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 const ITEMS = [
   "NO EXCUSES",
@@ -18,60 +10,46 @@ const ITEMS = [
   "BUILT IN TOKYO",
 ];
 
-// マーキー: ITEMS を COPIES 回複製し、translateX を 0% → -100/COPIES% でループさせる。
-// COPIES 個のセットが完全に重なる位置でリセットされるため継ぎ目が見えない。
-const COPIES = 4;
-const LOOP_PERCENT = 100 / COPIES; // = 25%
-
-// 連続的に [0, modulus) へ正規化する modulo（負数も自然に巻き戻る）
-function wrap(value: number, modulus: number) {
-  return ((value % modulus) + modulus) % modulus;
-}
-
+/**
+ * Canonical な無限マーキー実装。
+ *
+ * 仕組み:
+ *  - flex 親に同じセット（ITEMS）を 2 つ並べる
+ *  - 親を x: 0% → -50% にループアニメーション
+ *  - -50% は「セット1個分まるごと左へ」と同じ。到達瞬間に 0% へ戻っても
+ *    視覚的には完全に同じ位置にセットが並んでいるため継ぎ目が見えない
+ *  - スクロール反応や速度モジュレーションは行わない（複雑性を排してまず確実な動作を優先）
+ */
 export function ScrollVelocityBanner({
-  baseSpeed = 0.6,
+  durationSeconds = 28,
 }: {
-  baseSpeed?: number;
+  durationSeconds?: number;
 }) {
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400,
-  });
-  // スクロール速度を 0..3 倍に丸める（負方向もスピードとして扱う）
-  const velocityFactor = useTransform(
-    smoothVelocity,
-    [-1500, 0, 1500],
-    [3, 0, 3],
-    { clamp: false },
-  );
-
-  // 方向反転はしない（常に左流れ）。スクロール速度は速度倍率として加算するだけ。
-  useAnimationFrame((_t, delta) => {
-    const v = Math.max(0, velocityFactor.get());
-    const moveBy = baseSpeed * (delta / 16) * (1 + v);
-    baseX.set(baseX.get() + moveBy);
-  });
-
-  // baseX を [0, 25) にラップして負方向の translate に変換 → 常に左へ流れる
-  const x = useTransform(baseX, (v) => `${-wrap(v, LOOP_PERCENT)}%`);
-
   return (
     <section
       aria-hidden
       className="relative overflow-hidden border-y border-[#FFE600]/30 bg-[#0A0A0A] py-10"
     >
       <motion.div
-        style={{ x }}
-        className="flex whitespace-nowrap font-[family-name:var(--font-bebas)] text-[clamp(3rem,8vw,7rem)] tracking-[0.05em] text-[#FFE600]"
+        className="flex w-max whitespace-nowrap font-[family-name:var(--font-bebas)] text-[clamp(3rem,8vw,7rem)] tracking-[0.05em] text-[#FFE600]"
+        animate={{ x: ["0%", "-50%"] }}
+        transition={{
+          duration: durationSeconds,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        }}
       >
-        {Array.from({ length: COPIES })
-          .flatMap(() => ITEMS)
-          .map((t, i) => (
-            <Token key={i} label={t} />
+        <div className="flex shrink-0">
+          {ITEMS.map((t, i) => (
+            <Token key={`a-${i}`} label={t} />
           ))}
+        </div>
+        <div className="flex shrink-0" aria-hidden>
+          {ITEMS.map((t, i) => (
+            <Token key={`b-${i}`} label={t} />
+          ))}
+        </div>
       </motion.div>
     </section>
   );
