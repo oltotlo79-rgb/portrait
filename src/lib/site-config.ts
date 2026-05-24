@@ -1,0 +1,163 @@
+export type SiteStatus = "live" | "wip";
+
+export type SiteConfig = {
+  slug: string;
+  name: string;
+  industryEn: string;
+  industryJa: string;
+  catch: string;
+  primary: string;
+  accent: string;
+  thumb: string;
+  status: SiteStatus;
+};
+
+export const IMPLEMENTED_SITES = new Set([
+  "travel",
+  "restaurant",
+  "fitness",
+  "minpaku",
+  "salon",
+  "kids",
+  "dental",
+  "tax",
+  "chiro",
+  "construction",
+  "pet",
+  "organic",
+]);
+
+export const sites: SiteConfig[] = [
+  {
+    slug: "minpaku",
+    name: "やまどり庵",
+    industryEn: "Minpaku",
+    industryJa: "民泊",
+    catch: "京都西陣、1日1組の町家ステイ",
+    primary: "#3F4A3C",
+    accent: "#C9A063",
+    thumb: "/images/portfolio/thumb-minpaku.webp",
+    status: "live",
+  },
+  {
+    slug: "travel",
+    name: "HORIZON Travel",
+    industryEn: "Travel",
+    industryJa: "旅行斡旋",
+    catch: "大人のためのオーダーメイド旅行",
+    primary: "#0F4C81",
+    accent: "#F4B400",
+    thumb: "/images/portfolio/thumb-travel.webp",
+    status: "live",
+  },
+  {
+    slug: "restaurant",
+    name: "割烹 黒文字",
+    industryEn: "Restaurant",
+    industryJa: "和食割烹",
+    catch: "神楽坂のカウンター割烹",
+    primary: "#0F0F0F",
+    accent: "#B59154",
+    thumb: "/images/portfolio/thumb-restaurant.webp",
+    status: "live",
+  },
+  {
+    slug: "kids",
+    name: "ぽけっとラボ",
+    industryEn: "Kids Class",
+    industryJa: "親子教室",
+    catch: "3〜8歳と親の創作・実験教室",
+    primary: "#FF8FA3",
+    accent: "#FFD166",
+    thumb: "/images/portfolio/thumb-kids.webp",
+    status: "live",
+  },
+  {
+    slug: "salon",
+    name: "LUNA hair & atelier",
+    industryEn: "Salon",
+    industryJa: "美容サロン",
+    catch: "完全予約制ヘアサロン",
+    primary: "#E8DCD0",
+    accent: "#B8896A",
+    thumb: "/images/portfolio/thumb-salon.webp",
+    status: "live",
+  },
+  {
+    slug: "chiro",
+    name: "ことう整体院",
+    industryEn: "Chiropractic",
+    industryJa: "整体・治療院",
+    catch: "痛みの原因を整える",
+    primary: "#2E5266",
+    accent: "#A9C4C4",
+    thumb: "/images/portfolio/thumb-chiro.webp",
+    status: "live",
+  },
+  {
+    slug: "tax",
+    name: "松永税理士事務所",
+    industryEn: "Tax",
+    industryJa: "税理士",
+    catch: "経営者の右腕税理士",
+    primary: "#0E2A47",
+    accent: "#B4924C",
+    thumb: "/images/portfolio/thumb-tax.webp",
+    status: "live",
+  },
+  {
+    slug: "construction",
+    name: "木下工務店",
+    industryEn: "Construction",
+    industryJa: "工務店",
+    catch: "100年もつ家を、手で建てる",
+    primary: "#2C2A28",
+    accent: "#C45D2E",
+    thumb: "/images/portfolio/thumb-construction.webp",
+    status: "live",
+  },
+  {
+    slug: "dental",
+    name: "白水歯科クリニック",
+    industryEn: "Dental",
+    industryJa: "歯科",
+    catch: "痛みの少ない予防型歯科",
+    primary: "#5BB7B7",
+    accent: "#FFC9B3",
+    thumb: "/images/portfolio/thumb-dental.webp",
+    status: "live",
+  },
+  {
+    slug: "pet",
+    name: "もこもこ Pet Salon",
+    industryEn: "Pet",
+    industryJa: "ペットサロン",
+    catch: "完全個別対応のトリミング",
+    primary: "#A37864",
+    accent: "#FFC97A",
+    thumb: "/images/portfolio/thumb-pet.webp",
+    status: "live",
+  },
+  {
+    slug: "organic",
+    name: "KIYORA Farm",
+    industryEn: "Organic EC",
+    industryJa: "オーガニックEC",
+    catch: "信州の有機野菜とハーブ",
+    primary: "#3F5B36",
+    accent: "#D8C29D",
+    thumb: "/images/portfolio/thumb-organic.webp",
+    status: "live",
+  },
+  {
+    slug: "fitness",
+    name: "IGNITE 24/7",
+    industryEn: "Fitness",
+    industryJa: "フィットネス",
+    catch: "燃え尽きたら、また点ければいい",
+    primary: "#0A0A0A",
+    accent: "#FFE600",
+    thumb: "/images/portfolio/thumb-fitness.webp",
+    status: "live",
+  },
+];
