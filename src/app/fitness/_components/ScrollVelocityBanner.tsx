@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import {
   motion,
   useMotionValue,
@@ -19,12 +18,21 @@ const ITEMS = [
   "BUILT IN TOKYO",
 ];
 
-// マーキー: ITEMS を COPIES 回複製し、wrap は -100/COPIES% で1セット分ぴったり巻き戻す
-// → セット同士が完全に重なる位置でリセットされるので継ぎ目が見えない
+// マーキー: ITEMS を COPIES 回複製し、translateX を 0% → -100/COPIES% でループさせる。
+// COPIES 個のセットが完全に重なる位置でリセットされるため継ぎ目が見えない。
 const COPIES = 4;
-const WRAP_PERCENT = -100 / COPIES; // = -25%
+const LOOP_PERCENT = 100 / COPIES; // = 25%
 
-export function ScrollVelocityBanner({ baseSpeed = 0.5 }: { baseSpeed?: number }) {
+// 連続的に [0, modulus) へ正規化する modulo（負数も自然に巻き戻る）
+function wrap(value: number, modulus: number) {
+  return ((value % modulus) + modulus) % modulus;
+}
+
+export function ScrollVelocityBanner({
+  baseSpeed = 0.6,
+}: {
+  baseSpeed?: number;
+}) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -32,24 +40,23 @@ export function ScrollVelocityBanner({ baseSpeed = 0.5 }: { baseSpeed?: number }
     damping: 50,
     stiffness: 400,
   });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 4], {
-    clamp: false,
-  });
+  // スクロール速度を 0..3 倍に丸める（負方向もスピードとして扱う）
+  const velocityFactor = useTransform(
+    smoothVelocity,
+    [-1500, 0, 1500],
+    [3, 0, 3],
+    { clamp: false },
+  );
 
-  const directionRef = useRef(1);
-
+  // 方向反転はしない（常に左流れ）。スクロール速度は速度倍率として加算するだけ。
   useAnimationFrame((_t, delta) => {
-    let moveBy = directionRef.current * baseSpeed * (delta / 16);
-    const v = velocityFactor.get();
-    // しきい値 0.05 を超えてから方向反転（ぐらつき防止）
-    if (v < -0.05) directionRef.current = -1;
-    else if (v > 0.05) directionRef.current = 1;
-    // velocityで速度を増幅（方向は directionRef に従う）
-    moveBy += directionRef.current * Math.abs(moveBy) * Math.abs(v);
+    const v = Math.max(0, velocityFactor.get());
+    const moveBy = baseSpeed * (delta / 16) * (1 + v);
     baseX.set(baseX.get() + moveBy);
   });
 
-  const x = useTransform(baseX, (v) => `${wrap(0, WRAP_PERCENT, v)}%`);
+  // baseX を [0, 25) にラップして負方向の translate に変換 → 常に左へ流れる
+  const x = useTransform(baseX, (v) => `${-wrap(v, LOOP_PERCENT)}%`);
 
   return (
     <section
@@ -82,9 +89,4 @@ function Dot() {
   return (
     <span className="inline-block size-3 rounded-full bg-[#FF2D55]" aria-hidden />
   );
-}
-
-function wrap(min: number, max: number, v: number) {
-  const range = max - min;
-  return ((((v - min) % range) + range) % range) + min;
 }
