@@ -34,10 +34,11 @@ export default function PortfolioIndexPage() {
           <FadeIn delay={0.6} className="mt-10 max-w-xl">
             <p className="text-body text-[#cfcfc8]">
               業種ごとの世界観で、選ばれるホームページを。
-              リッチなアニメーションと業種特化のデザインで仕上げた12本のサンプルサイト。
+              ご依頼の検討にあたって、12業種それぞれの
+              デザイン傾向・動き・トーンをご確認いただけます。
             </p>
             <p className="mt-4 text-xs uppercase tracking-[0.3em] text-[#8a8a82]">
-              12 sample sites — scroll to explore ↓
+              12 Industries · Design Reference ↓
             </p>
           </FadeIn>
         </div>
@@ -46,10 +47,34 @@ export default function PortfolioIndexPage() {
       <section className="relative px-6 pb-32 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-6xl">
           <SectionLabel number="02" className="opacity-70">
-            Works
+            Reference
           </SectionLabel>
 
-          <ul className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
+            <div>
+              <h2 className="h-section font-[family-name:var(--font-manrope)] font-light">
+                業種別
+                <br />
+                デザイン
+                <br />
+                リファレンス
+              </h2>
+            </div>
+            <div className="flex items-end">
+              <FadeIn>
+                <p className="text-body max-w-xl text-[#cfcfc8]">
+                  どの業種にどんな世界観が合うか、配色・タイポグラフィ・モーションの強度はどう変えるか
+                  — ご依頼前のすり合わせ資料として、業種ごとに作り分けた12のリファレンスです。
+                  サムネをクリックすると個別ページが開きます。
+                </p>
+                <p className="mt-4 text-[10px] uppercase tracking-[0.3em] text-[#8a8a82]">
+                  ※ 表示中の屋号・連絡先・実績数はすべて架空のサンプルです
+                </p>
+              </FadeIn>
+            </div>
+          </div>
+
+          <ul className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {sites.map((site, i) => (
               <li key={site.slug}>
                 <FadeIn delay={i * 0.06}>
