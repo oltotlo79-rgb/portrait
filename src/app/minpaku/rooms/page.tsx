@@ -43,7 +43,8 @@ export default function RoomsPage() {
           <div className="mx-auto w-full max-w-6xl">
             <SectionLabel className="text-[#C9A063]">Rooms</SectionLabel>
             <h1 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-[clamp(2.5rem,6vw,5rem)] tracking-[0.1em]">
-              二室、それぞれに。
+              <span className="inline-block">二室、</span>
+              <span className="inline-block">それぞれに。</span>
             </h1>
           </div>
         </div>

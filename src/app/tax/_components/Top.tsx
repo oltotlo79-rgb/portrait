@@ -107,7 +107,8 @@ export function TaxTop() {
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">By the Numbers</p>
           <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47] sm:text-5xl">
-            数字で見る、ご支援の実績。
+            <span className="inline-block">数字で見る、</span>
+            <span className="inline-block">ご支援の実績。</span>
           </h2>
           <ul className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {KPIS.map((k, i) => (

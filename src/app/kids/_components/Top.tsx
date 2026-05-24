@@ -89,7 +89,8 @@ export function KidsTop() {
         <div className="mx-auto max-w-6xl">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">Programs</p>
           <h2 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold text-[#3D2B1F] sm:text-5xl">
-            4つのテーマで、毎週ちがう体験。
+            <span className="inline-block">4つのテーマで、</span>
+            <span className="inline-block">毎週ちがう体験。</span>
           </h2>
           <ul className="mt-16 grid gap-6 sm:grid-cols-2">
             {PROGRAMS.map((p, i) => (
@@ -122,7 +123,9 @@ export function KidsTop() {
         <div className="mx-auto max-w-6xl">
           <p className="text-xs font-bold uppercase tracking-[0.3em]">3つのやくそく</p>
           <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold sm:text-5xl">
-            親も、安心して、一緒に。
+            <span className="inline-block">親も、</span>
+            <span className="inline-block">安心して、</span>
+            <span className="inline-block">一緒に。</span>
           </h2>
           <ul className="mt-16 grid gap-8 sm:grid-cols-3">
             {[
@@ -183,7 +186,8 @@ export function KidsTop() {
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">Access</p>
             <h2 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold text-[#3D2B1F] sm:text-5xl">
-              自由が丘の、ラボ棟2F。
+              <span className="inline-block">自由が丘の、</span>
+              <span className="inline-block">ラボ棟2F。</span>
             </h2>
             <p className="mt-8 text-sm leading-loose text-[#3D2B1F]/80">
               自由が丘駅から徒歩6分。商店街の真ん中、文具店の上です。

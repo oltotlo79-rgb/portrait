@@ -31,7 +31,7 @@ export function PetTop() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-[#FFF7EE] pb-24 pt-32 sm:pt-44">
+      <section className="relative overflow-hidden bg-[#FFF7EE] pb-24 pt-32 sm:pt-40">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -40,51 +40,57 @@ export function PetTop() {
           style={{ background: "radial-gradient(circle, #FFC97A 0%, transparent 70%)" }}
           aria-hidden
         />
-        <motion.div
-          initial={{ opacity: 0, x: 60, scale: 0.9 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="pointer-events-none absolute right-4 top-1/2 hidden -translate-y-1/2 sm:block"
-        >
-          <div className="relative size-72 overflow-hidden rounded-full border-4 border-white shadow-2xl lg:size-96">
-            <Image
-              src="/images/pet/01-hero-dog.webp"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 1024px) 384px, 288px"
-              className="object-cover"
-            />
-          </div>
-        </motion.div>
 
         <div className="relative mx-auto max-w-6xl px-6 sm:px-12 lg:px-20">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#A37864]">
-            Pet Salon · Kawasaki, Kosugi
-          </p>
-          <h1 className="mt-6 font-[family-name:var(--font-zen-maru)] text-[clamp(2.5rem,7vw,5.5rem)] font-bold leading-[1.05] text-[#3B2A1C]">
-            <RevealText text="うちの子だけの時間を、" splitBy="word" />
-            <span className="block text-[#A37864]">
-              <RevealText text="いちばん大切に。" splitBy="word" delay={0.2} />
-            </span>
-          </h1>
-          <FadeIn delay={0.5}>
-            <p className="mt-10 max-w-lg text-base leading-loose text-[#3B2A1C]/80">
-              一頭ずつ、完全個別対応のトリミング。
-              他のワンちゃん・ネコちゃんと顔を合わせないので、
-              怖がりな子・シニアの子・初めての子犬も安心です。
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.7}>
-            <div className="mt-12 flex flex-wrap items-center gap-4">
-              <Link href="/pet/contact" className="rounded-full bg-[#A37864] px-8 py-4 text-sm font-bold text-white transition-transform hover:scale-[1.05]">
-                予約する 🐾
-              </Link>
-              <Link href="/pet/menu" className="rounded-full border-2 border-[#3B2A1C] px-8 py-4 text-sm font-bold text-[#3B2A1C] transition-colors hover:bg-[#3B2A1C] hover:text-white">
-                メニュー・料金
-              </Link>
+          <div className="grid items-center gap-10 sm:grid-cols-[1fr_auto] sm:gap-10 lg:gap-16">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#A37864]">
+                Pet Salon · Kawasaki, Kosugi
+              </p>
+              <h1 className="mt-6 font-[family-name:var(--font-zen-maru)] text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.1] text-[#3B2A1C]">
+                <RevealText text="うちの子だけの時間を、" splitBy="word" />
+                <span className="block text-[#A37864]">
+                  <RevealText text="いちばん大切に。" splitBy="word" delay={0.2} />
+                </span>
+              </h1>
+              <FadeIn delay={0.5}>
+                <p className="mt-8 max-w-lg text-base leading-loose text-[#3B2A1C]/80">
+                  一頭ずつ、完全個別対応のトリミング。
+                  他のワンちゃん・ネコちゃんと顔を合わせないので、
+                  怖がりな子・シニアの子・初めての子犬も安心です。
+                </p>
+              </FadeIn>
+              <FadeIn delay={0.7}>
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <Link href="/pet/contact" className="rounded-full bg-[#A37864] px-8 py-4 text-sm font-bold text-white transition-transform hover:scale-[1.05]">
+                    予約する 🐾
+                  </Link>
+                  <Link href="/pet/menu" className="rounded-full border-2 border-[#3B2A1C] px-8 py-4 text-sm font-bold text-[#3B2A1C] transition-colors hover:bg-[#3B2A1C] hover:text-white">
+                    メニュー・料金
+                  </Link>
+                </div>
+              </FadeIn>
             </div>
-          </FadeIn>
+
+            {/* Photo: hidden on mobile (太字テキストを優先), visible sm+ as grid cell */}
+            <motion.div
+              initial={{ opacity: 0, x: 60, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="pointer-events-none hidden justify-self-end sm:block"
+            >
+              <div className="relative size-56 overflow-hidden rounded-full border-4 border-white shadow-2xl md:size-64 lg:size-80 xl:size-96">
+                <Image
+                  src="/images/pet/01-hero-dog.webp"
+                  alt=""
+                  fill
+                  priority
+                  sizes="(min-width: 1280px) 384px, (min-width: 1024px) 320px, (min-width: 768px) 256px, 224px"
+                  className="object-cover"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -93,7 +99,8 @@ export function PetTop() {
         <div className="mx-auto max-w-6xl">
           <p className="text-xs font-bold uppercase tracking-[0.3em]">3つのお約束</p>
           <h2 className="mt-4 max-w-2xl font-[family-name:var(--font-zen-maru)] text-4xl font-bold sm:text-5xl">
-            一頭一頭、寄り添うサロンです。
+            <span className="inline-block">一頭一頭、</span>
+            <span className="inline-block">寄り添うサロンです。</span>
           </h2>
           <ul className="mt-16 grid gap-6 sm:grid-cols-3">
             {[

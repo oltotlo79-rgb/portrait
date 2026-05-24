@@ -216,7 +216,8 @@ export function MinpakuAccess() {
             アクセス
           </SectionLabel>
           <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] text-[#1A1A1A] sm:text-5xl">
-            西陣の、奥の路地へ。
+            <span className="inline-block">西陣の、</span>
+            <span className="inline-block">奥の路地へ。</span>
           </h2>
           <dl className="mt-12 space-y-6 text-sm">
             <Row label="所在地" value="京都市上京区（詳細はご予約後にお伝えします）" />

@@ -19,13 +19,18 @@ const ITEMS = [
   "BUILT IN TOKYO",
 ];
 
+// マーキー: ITEMS を COPIES 回複製し、wrap は -100/COPIES% で1セット分ぴったり巻き戻す
+// → セット同士が完全に重なる位置でリセットされるので継ぎ目が見えない
+const COPIES = 4;
+const WRAP_PERCENT = -100 / COPIES; // = -25%
+
 export function ScrollVelocityBanner({ baseSpeed = 0.5 }: { baseSpeed?: number }) {
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 40,
-    stiffness: 300,
+    damping: 50,
+    stiffness: 400,
   });
   const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 4], {
     clamp: false,
@@ -35,13 +40,16 @@ export function ScrollVelocityBanner({ baseSpeed = 0.5 }: { baseSpeed?: number }
 
   useAnimationFrame((_t, delta) => {
     let moveBy = directionRef.current * baseSpeed * (delta / 16);
-    if (velocityFactor.get() < 0) directionRef.current = -1;
-    else if (velocityFactor.get() > 0) directionRef.current = 1;
-    moveBy += directionRef.current * moveBy * velocityFactor.get();
+    const v = velocityFactor.get();
+    // しきい値 0.05 を超えてから方向反転（ぐらつき防止）
+    if (v < -0.05) directionRef.current = -1;
+    else if (v > 0.05) directionRef.current = 1;
+    // velocityで速度を増幅（方向は directionRef に従う）
+    moveBy += directionRef.current * Math.abs(moveBy) * Math.abs(v);
     baseX.set(baseX.get() + moveBy);
   });
 
-  const x = useTransform(baseX, (v) => `${wrap(0, -25, v)}%`);
+  const x = useTransform(baseX, (v) => `${wrap(0, WRAP_PERCENT, v)}%`);
 
   return (
     <section
@@ -52,7 +60,7 @@ export function ScrollVelocityBanner({ baseSpeed = 0.5 }: { baseSpeed?: number }
         style={{ x }}
         className="flex whitespace-nowrap font-[family-name:var(--font-bebas)] text-[clamp(3rem,8vw,7rem)] tracking-[0.05em] text-[#FFE600]"
       >
-        {Array.from({ length: 6 })
+        {Array.from({ length: COPIES })
           .flatMap(() => ITEMS)
           .map((t, i) => (
             <Token key={i} label={t} />

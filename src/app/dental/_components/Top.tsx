@@ -78,7 +78,8 @@ export function DentalTop() {
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.4em] text-[#5BB7B7]">3つの安心</p>
           <h2 className="mt-4 font-[family-name:var(--font-zen-kaku)] text-4xl font-bold text-[#1F2933] sm:text-5xl">
-            やわらかい、医療を。
+            <span className="inline-block">やわらかい、</span>
+            <span className="inline-block">医療を。</span>
           </h2>
           <ul className="mt-16 grid gap-6 sm:grid-cols-3">
             {[
