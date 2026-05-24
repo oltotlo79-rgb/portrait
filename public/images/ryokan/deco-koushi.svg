@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Wood lattice decoration">
+  <defs>
+    <pattern id="koushi" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M0 0h48v48H0z" fill="none"/>
+      <path d="M12 0v48M36 0v48M0 12h48M0 36h48" stroke="#6f4f2a" stroke-width="3" opacity=".55"/>
+      <path d="M0 0h48v48H0z" fill="none" stroke="#b78b45" stroke-width="1" opacity=".28"/>
+    </pattern>
+  </defs>
+  <rect width="240" height="240" fill="url(#koushi)"/>
+  <rect x="1.5" y="1.5" width="237" height="237" fill="none" stroke="#6f4f2a" stroke-width="3" opacity=".45"/>
+</svg>

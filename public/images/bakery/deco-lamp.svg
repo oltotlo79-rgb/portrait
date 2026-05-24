@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Bakery lamp decoration">
+  <path d="M90 10v54" fill="none" stroke="#3c2b22" stroke-width="6" stroke-linecap="round"/>
+  <path d="M52 70h76l-18 44H70L52 70z" fill="#e8b45d" stroke="#3c2b22" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M67 126h46" fill="none" stroke="#3c2b22" stroke-width="5" stroke-linecap="round"/>
+  <path d="M55 129c8 24 22 37 35 37s27-13 35-37" fill="#fff0c9" opacity=".55"/>
+  <path d="M72 83h36" stroke="#fff0c9" stroke-width="4" stroke-linecap="round" opacity=".5"/>
+</svg>

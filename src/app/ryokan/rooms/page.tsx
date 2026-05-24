@@ -16,7 +16,7 @@ const ROOMS = [
     en: "Tsukuyomi",
     body: "別棟・八畳二間続きに檜の露天風呂。中庭の薄を一望。",
     spec: ["二間続き 16畳", "定員 4名", "檜の露天風呂", "夕餉はお部屋食"],
-    image: "/images/ryokan/03-room-tsukuyomi.webp",
+    image: "/images/ryokan/03-room-tsukiyomi.webp",
   },
   {
     no: "弐",
@@ -32,7 +32,7 @@ const ROOMS = [
     en: "Sogetsu",
     body: "桐の本間と次の間、専用の檜風呂。お部屋食を最も気持ちよくお召し上がりいただける一室。",
     spec: ["本間 10畳 + 次の間 6畳", "定員 4名", "檜の内風呂", "夕餉はお部屋食"],
-    image: "/images/ryokan/05-room-sogetsu.webp",
+    image: "/images/ryokan/05-room-sougetsu.webp",
   },
 ];
 

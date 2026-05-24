@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Full moon decoration">
+  <defs>
+    <radialGradient id="moon" cx="45%" cy="38%" r="62%">
+      <stop offset="0" stop-color="#fff8dd"/>
+      <stop offset="0.58" stop-color="#ead8a0"/>
+      <stop offset="1" stop-color="#b89445"/>
+    </radialGradient>
+  </defs>
+  <circle cx="80" cy="80" r="54" fill="url(#moon)" opacity=".94"/>
+  <path d="M48 64c15-10 47-13 70 6M42 88c22 12 55 13 76 0M55 112c16 8 38 8 54-1" fill="none" stroke="#7f6430" stroke-width="3" stroke-linecap="round" opacity=".34"/>
+  <circle cx="58" cy="53" r="4" fill="#7f6430" opacity=".16"/>
+  <circle cx="101" cy="64" r="6" fill="#7f6430" opacity=".12"/>
+  <circle cx="74" cy="101" r="5" fill="#7f6430" opacity=".14"/>
+</svg>

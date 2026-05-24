@@ -19,21 +19,21 @@ const CLASSES = [
     ja: "パワーヨガ",
     time: "12:15 / 18:30",
     body: "アシュタンガの流れ。心拍を上げ、筋肉を目覚めさせる60分。",
-    image: "/images/yoga/03-class-power.webp",
+    image: "/images/yoga/03-pose-tree.webp",
   },
   {
     en: "Pilates Reformer",
     ja: "ピラティス",
     time: "11:00 / 19:00",
     body: "リフォーマー使用、コアと姿勢の再構築。少人数 4 名まで。",
-    image: "/images/yoga/04-class-pilates.webp",
+    image: "/images/yoga/04-pilates-reformer.webp",
   },
   {
     en: "Restorative",
     ja: "リストラティブ",
     time: "20:15",
     body: "ボルスターで体を支え、ゆっくりと内側を緩める夜のクラス。",
-    image: "/images/yoga/05-class-restorative.webp",
+    image: "/images/yoga/05-restorative.webp",
   },
 ];
 
@@ -41,17 +41,17 @@ const TEACHERS = [
   {
     name: "Hana",
     role: "Founder · E-RYT500",
-    image: "/images/yoga/06-teacher-01.webp",
+    image: "/images/yoga/06-teacher-hana.webp",
   },
   {
     name: "Mio",
     role: "Pilates Master Trainer",
-    image: "/images/yoga/07-teacher-02.webp",
+    image: "/images/yoga/07-teacher-mio.webp",
   },
   {
     name: "Ren",
     role: "Yin & Restorative",
-    image: "/images/yoga/08-teacher-03.webp",
+    image: "/images/yoga/08-teacher-ren.webp",
   },
 ];
 
@@ -61,7 +61,7 @@ export function YogaTop() {
       {/* Hero — dawn-to-day gradient + breathing circle */}
       <section className="relative h-screen min-h-[720px] overflow-hidden bg-[#F4F0E8]">
         <Image
-          src="/images/yoga/01-hero-dawn.webp"
+          src="/images/yoga/01-hero-window.webp"
           alt=""
           fill
           priority
@@ -212,7 +212,7 @@ export function YogaTop() {
             className="relative aspect-[4/5] overflow-hidden rounded-2xl"
           >
             <Image
-              src="/images/yoga/09-studio.webp"
+              src="/images/yoga/09-studio-empty.webp"
               alt="スタジオ内観"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="Neon grid decoration">
+  <rect width="240" height="240" fill="#0a0e1a"/>
+  <g stroke="#00e5ff" stroke-width="1.5" opacity=".34">
+    <path d="M30 0v240M70 0v240M110 0v240M150 0v240M190 0v240M230 0v240"/>
+    <path d="M0 30h240M0 70h240M0 110h240M0 150h240M0 190h240M0 230h240"/>
+  </g>
+  <path d="M0 120h240M120 0v240" stroke="#ffb100" stroke-width="2" opacity=".28"/>
+</svg>

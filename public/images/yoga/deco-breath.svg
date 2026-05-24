@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" role="img" aria-label="Breath wave decoration">
+  <g fill="none" stroke="#6b7f6f" stroke-linecap="round">
+    <path d="M16 62c22-38 50-38 72 0s50 38 72 0 42-38 64 0" stroke-width="7" opacity=".88"/>
+    <path d="M16 38c22-26 50-26 72 0s50 26 72 0 42-26 64 0" stroke-width="4" opacity=".36"/>
+    <path d="M16 86c22-26 50-26 72 0s50 26 72 0 42-26 64 0" stroke-width="4" opacity=".36"/>
+  </g>
+</svg>

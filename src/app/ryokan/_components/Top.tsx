@@ -12,7 +12,7 @@ const ROOMS = [
     name: "月読の間",
     en: "Tsukuyomi",
     body: "別棟・八畳二間続きに檜の露天風呂。長月から望める中庭の薄を一目に。",
-    image: "/images/ryokan/03-room-tsukuyomi.webp",
+    image: "/images/ryokan/03-room-tsukiyomi.webp",
   },
   {
     no: "拾壱",
@@ -26,7 +26,7 @@ const ROOMS = [
     name: "蒼月の間",
     en: "Sogetsu",
     body: "桐の本間と次の間、専用の檜風呂。お部屋食を最も気持ちよくお召し上がりいただける一室。",
-    image: "/images/ryokan/05-room-sogetsu.webp",
+    image: "/images/ryokan/05-room-sougetsu.webp",
   },
 ];
 
@@ -310,7 +310,7 @@ export function RyokanTop() {
               className="relative aspect-[4/5] overflow-hidden rounded-sm"
             >
               <Image
-                src="/images/ryokan/07-kaiseki.webp"
+                src="/images/ryokan/07-kaiseki-hassun.webp"
                 alt="月替わりの会席"
                 fill
                 sizes="(min-width: 1024px) 45vw, 100vw"
@@ -351,7 +351,7 @@ export function RyokanTop() {
             className="relative aspect-[4/5] overflow-hidden rounded-sm"
           >
             <Image
-              src="/images/ryokan/09-okami.webp"
+              src="/images/ryokan/09-okami-misao.webp"
               alt="女将ポートレート"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"

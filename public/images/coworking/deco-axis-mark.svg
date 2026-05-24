@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" role="img" aria-label="Axis mark decoration">
+  <rect x="38" y="38" width="104" height="104" rx="18" fill="#101522" stroke="#00e5ff" stroke-width="5"/>
+  <path d="M90 26v128M26 90h128" fill="none" stroke="#00e5ff" stroke-width="7" stroke-linecap="round"/>
+  <path d="M49 49l82 82M131 49l-82 82" fill="none" stroke="#ffb100" stroke-width="5" stroke-linecap="round" opacity=".78"/>
+  <circle cx="90" cy="90" r="12" fill="#f4f6fa"/>
+</svg>

@@ -12,28 +12,28 @@ const LINEUP = [
     en: "Croissant",
     body: "発酵バターを27層に折り込み、二日かけて焼成。",
     price: "¥380",
-    image: "/images/bakery/02-croissant.webp",
+    image: "/images/bakery/03-croissant.webp",
   },
   {
     name: "カンパーニュ",
     en: "Pain de Campagne",
     body: "自家培養のルヴァン種で長時間発酵。皮はパリッと、中はもっちり。",
     price: "¥780（1/2）",
-    image: "/images/bakery/03-campagne.webp",
+    image: "/images/bakery/04-campagne.webp",
   },
   {
     name: "あんバター",
     en: "Anbatā",
     body: "自家炊きの小倉あんと、北海道発酵バター。塩バンに挟みます。",
     price: "¥420",
-    image: "/images/bakery/04-anbatter.webp",
+    image: "/images/bakery/05-anbutter.webp",
   },
   {
     name: "季節のデニッシュ",
     en: "Seasonal Danish",
     body: "5月はいちじく。6月は桃と紅茶のクレーム。",
     price: "¥520",
-    image: "/images/bakery/05-danish.webp",
+    image: "/images/bakery/06-danish.webp",
   },
 ];
 
@@ -53,7 +53,7 @@ export function BakeryTop() {
       {/* Hero — 朝の光がオーブンから差し込むイメージ */}
       <section className="relative h-screen min-h-[680px] overflow-hidden bg-[#FBF6ED]">
         <Image
-          src="/images/bakery/01-hero-morning.webp"
+          src="/images/bakery/01-hero-shopfront.webp"
           alt=""
           fill
           priority
@@ -249,7 +249,7 @@ export function BakeryTop() {
             className="relative aspect-[4/5] overflow-hidden rounded-2xl"
           >
             <Image
-              src="/images/bakery/06-baker.webp"
+              src="/images/bakery/09-baker-portrait.webp"
               alt="店主の手元"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"

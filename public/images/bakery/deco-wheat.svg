@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 220" role="img" aria-label="Wheat decoration">
+  <g fill="none" stroke="#9a6428" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M82 206C75 155 76 91 91 24"/>
+    <path d="M71 78c-25-6-39-20-43-41 24 4 39 18 43 41z" fill="#d8a35d" opacity=".78"/>
+    <path d="M91 65c22-10 36-28 39-51-23 7-36 25-39 51z" fill="#e4b66f" opacity=".82"/>
+    <path d="M72 111c-24-4-41-17-49-38 25 2 42 15 49 38z" fill="#d8a35d" opacity=".78"/>
+    <path d="M89 99c24-7 40-22 47-45-25 4-41 20-47 45z" fill="#e4b66f" opacity=".82"/>
+    <path d="M75 145c-25-2-44-13-55-33 26 0 45 11 55 33z" fill="#d8a35d" opacity=".78"/>
+    <path d="M88 133c25-5 43-18 53-40-26 2-44 15-53 40z" fill="#e4b66f" opacity=".82"/>
+  </g>
+</svg>
