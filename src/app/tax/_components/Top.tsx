@@ -227,7 +227,8 @@ export function TaxTop() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">Consultation</p>
           <h2 className="mt-6 font-[family-name:var(--font-noto-serif-jp)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-tight">
-            無料相談、初回60分。
+            <span className="inline-block">無料相談、</span>
+            <span className="inline-block">初回60分。</span>
           </h2>
           <p className="mt-8 text-sm leading-loose text-white/80">
             来所・オンライン・お電話、いずれもお選びいただけます。

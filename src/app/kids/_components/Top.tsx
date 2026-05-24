@@ -210,7 +210,8 @@ export function KidsTop() {
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FFD166]">First Lesson</p>
           <h2 className="mt-6 font-[family-name:var(--font-mplus-rounded)] text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-tight">
-            まずは、土曜の朝に。
+            <span className="inline-block">まずは、</span>
+            <span className="inline-block">土曜の朝に。</span>
           </h2>
           <p className="mt-8 text-sm leading-loose opacity-80">
             体験レッスン 1,500円（保護者1名含む）。10:00 or 13:30 から。

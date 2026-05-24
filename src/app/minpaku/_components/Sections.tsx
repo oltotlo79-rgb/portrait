@@ -44,8 +44,7 @@ export function MinpakuAbout() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 1 }}
-          className="font-[family-name:var(--font-shippori-mincho)] text-3xl leading-[2] tracking-[0.15em] text-[#3F4A3C]"
-          style={{ writingMode: "vertical-rl" }}
+          className="font-[family-name:var(--font-shippori-mincho)] text-2xl tracking-[0.1em] text-[#3F4A3C] sm:text-3xl lg:leading-[2] lg:tracking-[0.15em] lg:[writing-mode:vertical-rl]"
         >
           路地に、灯る。
         </motion.p>
@@ -78,7 +77,8 @@ export function MinpakuRooms() {
           客室
         </SectionLabel>
         <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
-          二室、それぞれに。
+          <span className="inline-block">二室、</span>
+          <span className="inline-block">それぞれに。</span>
         </h2>
         <ul className="mt-20 grid gap-10 lg:grid-cols-2 lg:gap-16">
           {ROOMS.map((r, i) => (
@@ -177,7 +177,8 @@ export function MinpakuExperience() {
           体験
         </SectionLabel>
         <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
-          滞在に、もう一筆。
+          <span className="inline-block">滞在に、</span>
+          <span className="inline-block">もう一筆。</span>
         </h2>
         <ul className="mt-16 grid gap-6 lg:grid-cols-3">
           {EXPERIENCES.map((e, i) => (

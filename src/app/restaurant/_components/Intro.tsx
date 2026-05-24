@@ -12,8 +12,7 @@ export function RestaurantIntro() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 1 }}
-          className="font-[family-name:var(--font-shippori-mincho)] text-3xl leading-[2] tracking-[0.15em] text-[#B59154]"
-          style={{ writingMode: "vertical-rl" }}
+          className="font-[family-name:var(--font-shippori-mincho)] text-xl leading-[1.7] tracking-[0.08em] text-[#B59154] sm:text-2xl lg:text-3xl lg:leading-[2] lg:tracking-[0.15em] lg:[writing-mode:vertical-rl]"
         >
           季節の、一献に、はじまる夜を。
         </motion.p>
