@@ -141,7 +141,8 @@ export function ChiroTop() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs uppercase tracking-[0.4em]">Reservation</p>
           <h2 className="mt-6 font-[family-name:var(--font-zen-maru)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-tight">
-            まずは初回 60 分から。
+            <span className="inline-block">まずは初回</span>
+            <span className="inline-block">60分から。</span>
           </h2>
           <p className="mt-8 text-sm leading-loose opacity-90">
             初回 ¥6,000（問診＋検査＋施術＋セルフケア指導）。2回目以降 ¥4,500。
