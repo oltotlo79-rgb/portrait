@@ -19,16 +19,48 @@ const KPIS = [
 ];
 
 const SERVICES = [
-  { code: "S01", t: "顧問契約", body: "月次の試算表、税務相談、年度決算まで一気通貫。クラウド会計連携。" },
-  { code: "S02", t: "税務申告", body: "法人税・所得税・消費税・相続税。" },
-  { code: "S03", t: "補助金・助成金", body: "事業再構築、ものづくり、IT導入など。書類作成と面談同席まで。" },
-  { code: "S04", t: "資金調達伴走", body: "事業計画書作成、銀行・VC折衝。資本政策のアドバイス。" },
+  {
+    code: "S01",
+    t: "顧問契約",
+    body: "月次の試算表、税務相談、年度決算まで一気通貫。クラウド会計連携。",
+    icon: "/images/tax/05-icon-advisory.svg",
+  },
+  {
+    code: "S02",
+    t: "税務申告",
+    body: "法人税・所得税・消費税・相続税。",
+    icon: "/images/tax/06-icon-tax-return.svg",
+  },
+  {
+    code: "S03",
+    t: "補助金・助成金",
+    body: "事業再構築、ものづくり、IT導入など。書類作成と面談同席まで。",
+    icon: "/images/tax/07-icon-grant.svg",
+  },
+  {
+    code: "S04",
+    t: "資金調達伴走",
+    body: "事業計画書作成、銀行・VC折衝。資本政策のアドバイス。",
+    icon: "/images/tax/08-icon-funding.svg",
+  },
 ];
 
 const BLOG = [
-  { date: "2026.04.18", title: "インボイス制度の落とし穴 — 中小企業がやるべき3つの整理" },
-  { date: "2026.03.30", title: "資金調達前にやるべき、株主構成と就業規則の整理" },
-  { code: "03", date: "2026.03.12", title: "役員報酬の決め方 — 利益と所得のバランス" },
+  {
+    date: "2026.04.18",
+    title: "インボイス制度の落とし穴 — 中小企業がやるべき3つの整理",
+    thumb: "/images/tax/10-blog-thumb-01.webp",
+  },
+  {
+    date: "2026.03.30",
+    title: "資金調達前にやるべき、株主構成と就業規則の整理",
+    thumb: "/images/tax/11-blog-thumb-02.webp",
+  },
+  {
+    date: "2026.03.12",
+    title: "役員報酬の決め方 — 利益と所得のバランス",
+    thumb: "/images/tax/12-blog-thumb-03.webp",
+  },
 ];
 
 function Counter({ value, suffix }: { value: number; suffix: string }) {
@@ -40,14 +72,19 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
     const c = animate(motionVal, value, {
       duration: 1.8,
       ease: [0.16, 1, 0.3, 1],
-      onUpdate: (v) => { if (ref.current) ref.current.textContent = Math.round(v).toLocaleString(); },
+      onUpdate: (v) => {
+        if (ref.current)
+          ref.current.textContent = Math.round(v).toLocaleString();
+      },
     });
     return () => c.stop();
   }, [inView, motionVal, value]);
   return (
     <span className="font-[family-name:var(--font-noto-serif-jp)] text-[clamp(3.5rem,9vw,7rem)] font-bold leading-none">
       <span ref={ref}>0</span>
-      <span className="ml-2 text-[0.35em] font-bold text-[#B4924C]">{suffix}</span>
+      <span className="ml-2 text-[0.35em] font-bold text-[#B4924C]">
+        {suffix}
+      </span>
     </span>
   );
 }
@@ -57,6 +94,24 @@ export function TaxTop() {
     <>
       {/* Hero */}
       <section className="relative h-[88vh] min-h-[640px] overflow-hidden bg-[#0E2A47] text-white">
+        {/* Background photo */}
+        <Image
+          src="/images/tax/01-hero-bg.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(14,42,71,0.55) 0%, rgba(14,42,71,0.85) 100%)",
+          }}
+          aria-hidden
+        />
+
         {/* Gold ruling lines */}
         <motion.div
           initial={{ scaleX: 0 }}
@@ -91,10 +146,16 @@ export function TaxTop() {
           </FadeIn>
           <FadeIn delay={0.8}>
             <div className="mt-12 flex flex-wrap items-center gap-4">
-              <Link href="/tax/contact" className="border border-[#B4924C] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#B4924C] transition-colors hover:bg-[#B4924C] hover:text-[#0E2A47]">
+              <Link
+                href="/tax/contact"
+                className="border border-[#B4924C] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#B4924C] transition-colors hover:bg-[#B4924C] hover:text-[#0E2A47]"
+              >
                 無料相談を申し込む
               </Link>
-              <Link href="/tax/services" className="text-xs uppercase tracking-[0.3em] text-white/80 hover:text-white">
+              <Link
+                href="/tax/services"
+                className="text-xs uppercase tracking-[0.3em] text-white/80 hover:text-white"
+              >
                 サービス一覧 →
               </Link>
             </div>
@@ -103,9 +164,18 @@ export function TaxTop() {
       </section>
 
       {/* KPIs */}
-      <section className="bg-[#F5F2EC] px-6 py-32 sm:px-12 lg:px-20">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">By the Numbers</p>
+      <section className="relative overflow-hidden bg-[#F5F2EC] px-6 py-32 sm:px-12 lg:px-20">
+        <Image
+          src="/images/tax/09-kpi-bg.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-10"
+        />
+        <div className="relative mx-auto max-w-6xl">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
+            By the Numbers
+          </p>
           <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47] sm:text-5xl">
             <span className="inline-block">数字で見る、</span>
             <span className="inline-block">ご支援の実績。</span>
@@ -131,7 +201,9 @@ export function TaxTop() {
       {/* Services */}
       <section className="bg-white px-6 py-32 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">Services</p>
+          <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
+            Services
+          </p>
           <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47] sm:text-5xl">
             4つのサービス領域。
           </h2>
@@ -145,9 +217,24 @@ export function TaxTop() {
                 transition={{ duration: 0.6, delay: i * 0.06 }}
                 className="group rounded border border-[#15233A]/15 p-8 transition-colors hover:border-[#B4924C] hover:bg-[#0E2A47] hover:text-white"
               >
-                <p className="text-xs uppercase tracking-[0.3em] text-[#B4924C]">{s.code}</p>
-                <h3 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-2xl font-bold">{s.t}</h3>
-                <p className="mt-4 text-sm leading-loose opacity-80 group-hover:text-white/85">{s.body}</p>
+                <div className="flex items-start justify-between">
+                  <p className="text-xs uppercase tracking-[0.3em] text-[#B4924C]">
+                    {s.code}
+                  </p>
+                  <Image
+                    src={s.icon}
+                    alt=""
+                    width={36}
+                    height={36}
+                    className="size-9 transition-opacity group-hover:opacity-80"
+                  />
+                </div>
+                <h3 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-2xl font-bold">
+                  {s.t}
+                </h3>
+                <p className="mt-4 text-sm leading-loose opacity-80 group-hover:text-white/85">
+                  {s.body}
+                </p>
               </motion.li>
             ))}
           </ul>
@@ -155,7 +242,10 @@ export function TaxTop() {
       </section>
 
       {/* Profile */}
-      <section id="profile" className="bg-[#F5F2EC] px-6 py-32 sm:px-12 lg:px-20">
+      <section
+        id="profile"
+        className="bg-[#F5F2EC] px-6 py-32 sm:px-12 lg:px-20"
+      >
         <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
@@ -173,11 +263,15 @@ export function TaxTop() {
             />
           </motion.div>
           <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">Profile</p>
+            <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
+              Profile
+            </p>
             <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47]">
               松永 達也
             </h2>
-            <p className="mt-1 text-xs uppercase tracking-[0.3em] text-[#B4924C]">Tatsuya Matsunaga · 税理士</p>
+            <p className="mt-1 text-xs uppercase tracking-[0.3em] text-[#B4924C]">
+              Tatsuya Matsunaga · 税理士
+            </p>
             <p className="mt-8 max-w-md text-sm leading-loose text-[#15233A]/80">
               大手監査法人で6年、上場企業の監査と内部統制構築を担当。
               スタートアップへの興味から独立し、2019年に当事務所を開業。
@@ -193,10 +287,62 @@ export function TaxTop() {
         </div>
       </section>
 
+      {/* Office — 事務所内観 */}
+      <section className="bg-white px-6 py-32 sm:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1 }}
+            className="relative aspect-[3/2] overflow-hidden rounded"
+          >
+            <Image
+              src="/images/tax/02-office.webp"
+              alt="事務所内観"
+              fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className="object-cover"
+            />
+          </motion.div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
+              Office
+            </p>
+            <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47]">
+              四ツ谷の、小さな事務所。
+            </h2>
+            <FadeIn delay={0.15}>
+              <p className="mt-8 max-w-md text-sm leading-loose text-[#15233A]/80">
+                四ツ谷駅から徒歩3分。木のテーブルと本棚と、オリーブの木が一本。
+                小規模だからこそ、ひとり一人のクライアントに向き合えます。
+              </p>
+            </FadeIn>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative mt-8 aspect-[3/2] overflow-hidden rounded"
+            >
+              <Image
+                src="/images/tax/03-meeting.webp"
+                alt="打ち合わせの様子"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Blog */}
-      <section id="blog" className="bg-white px-6 py-32 sm:px-12 lg:px-20">
+      <section id="blog" className="bg-[#F5F2EC] px-6 py-32 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">Column</p>
+          <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
+            Column
+          </p>
           <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47] sm:text-5xl">
             ニュースレター
           </h2>
@@ -208,9 +354,20 @@ export function TaxTop() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.6, delay: i * 0.06 }}
-                className="grid grid-cols-[auto_1fr_auto] items-baseline gap-6 py-6 transition-colors hover:bg-[#F5F2EC]"
+                className="grid grid-cols-[auto_auto_1fr_auto] items-center gap-6 py-6 transition-colors hover:bg-white"
               >
-                <span className="text-xs uppercase tracking-[0.3em] text-[#B4924C]">{b.date}</span>
+                <span className="text-xs uppercase tracking-[0.3em] text-[#B4924C]">
+                  {b.date}
+                </span>
+                <div className="relative hidden size-20 overflow-hidden rounded bg-white sm:block">
+                  <Image
+                    src={b.thumb}
+                    alt=""
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
                 <p className="font-[family-name:var(--font-noto-serif-jp)] text-base font-bold text-[#0E2A47]">
                   {b.title}
                 </p>
@@ -224,9 +381,26 @@ export function TaxTop() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0E2A47] px-6 py-32 text-white sm:px-12 lg:px-20">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">Consultation</p>
+      <section className="relative overflow-hidden bg-[#0E2A47] px-6 py-32 text-white sm:px-12 lg:px-20">
+        <Image
+          src="/images/tax/01-hero-bg.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-20"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(14,42,71,0.6) 0%, rgba(14,42,71,0.92) 100%)",
+          }}
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-3xl text-center">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
+            Consultation
+          </p>
           <h2 className="mt-6 font-[family-name:var(--font-noto-serif-jp)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-tight">
             <span className="inline-block">無料相談、</span>
             <span className="inline-block">初回60分。</span>
@@ -234,7 +408,10 @@ export function TaxTop() {
           <p className="mt-8 text-sm leading-loose text-white/80">
             来所・オンライン・お電話、いずれもお選びいただけます。
           </p>
-          <Link href="/tax/contact" className="mt-12 inline-block border border-[#B4924C] px-12 py-5 text-sm uppercase tracking-[0.3em] text-[#B4924C] transition-colors hover:bg-[#B4924C] hover:text-[#0E2A47]">
+          <Link
+            href="/tax/contact"
+            className="mt-12 inline-block border border-[#B4924C] px-12 py-5 text-sm uppercase tracking-[0.3em] text-[#B4924C] transition-colors hover:bg-[#B4924C] hover:text-[#0E2A47]"
+          >
             ご相談を申し込む
           </Link>
         </div>

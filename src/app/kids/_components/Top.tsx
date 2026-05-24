@@ -6,16 +6,75 @@ import { motion } from "framer-motion";
 import { FadeIn, RevealText } from "@/lib/animations";
 
 const PROGRAMS = [
-  { en: "Experiment", ja: "実験", body: "色水・浮力・電気のしくみ。手を動かしながら「ふしぎ」をつかむ。", color: "#FF8FA3", emoji: "⚗️" },
-  { en: "Craft", ja: "工作", body: "段ボール、紙、布。今日のテーマだけで、自分だけの作品を。", color: "#FFD166", emoji: "✂️" },
-  { en: "Picture Book", ja: "絵本ワーク", body: "絵本を読んで、考えて、絵に描く。物語をつくる時間。", color: "#7AC4A2", emoji: "📖" },
-  { en: "Season", ja: "季節のお菓子", body: "春のいちごジャム、秋の栗ようかん。台所もラボに。", color: "#E89AC7", emoji: "🍓" },
+  {
+    en: "Experiment",
+    ja: "実験",
+    body: "色水・浮力・電気のしくみ。手を動かしながら「ふしぎ」をつかむ。",
+    color: "#FF8FA3",
+    emoji: "⚗️",
+    image: "/images/kids/02-kid-experiment.webp",
+  },
+  {
+    en: "Craft",
+    ja: "工作",
+    body: "段ボール、紙、布。今日のテーマだけで、自分だけの作品を。",
+    color: "#FFD166",
+    emoji: "✂️",
+    image: "/images/kids/03-kid-craft.webp",
+  },
+  {
+    en: "Picture Book",
+    ja: "絵本ワーク",
+    body: "絵本を読んで、考えて、絵に描く。物語をつくる時間。",
+    color: "#7AC4A2",
+    emoji: "📖",
+    image: "/images/kids/04-kid-picture.webp",
+  },
+  {
+    en: "Season",
+    ja: "季節のお菓子",
+    body: "春のいちごジャム、秋の栗ようかん。台所もラボに。",
+    color: "#E89AC7",
+    emoji: "🍓",
+    image: "/images/kids/05-parent-child.webp",
+  },
 ];
 
 const VOICES = [
-  { name: "Mさん 5歳のママ", body: "週末の予定に困らなくなりました。本人が「色のじっけんやりたい」って毎週聞いてきます。" },
-  { name: "Kさん 6歳のパパ", body: "親も飽きない内容。先生方の声かけがプロで、子どもが伸びていくのが見えます。" },
-  { name: "Yさん 7歳のママ", body: "工作の作品を玄関に飾るのが楽しみ。本人が説明してくれる時間も増えました。" },
+  {
+    name: "Mさん 5歳のママ",
+    body: "週末の予定に困らなくなりました。本人が「色のじっけんやりたい」って毎週聞いてきます。",
+  },
+  {
+    name: "Kさん 6歳のパパ",
+    body: "親も飽きない内容。先生方の声かけがプロで、子どもが伸びていくのが見えます。",
+  },
+  {
+    name: "Yさん 7歳のママ",
+    body: "工作の作品を玄関に飾るのが楽しみ。本人が説明してくれる時間も増えました。",
+  },
+];
+
+const TEACHERS = [
+  {
+    name: "Sakura",
+    role: "保育士・主任",
+    body: "保育士12年。お子さまの様子を細やかに見て、声かけのプロです。",
+    image: "/images/kids/10-teacher-01.webp",
+  },
+  {
+    name: "Ryo",
+    role: "理系学生・実験担当",
+    body: "東工大院生。実験パートを企画。むずかしいことも、ワクワクに変換します。",
+    image: "/images/kids/11-teacher-02.webp",
+  },
+];
+
+const WORKS = [
+  "/images/kids/06-work-01.webp",
+  "/images/kids/07-work-02.webp",
+  "/images/kids/08-work-03.webp",
+  "/images/kids/09-work-04.webp",
 ];
 
 export function KidsTop() {
@@ -23,12 +82,21 @@ export function KidsTop() {
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-[#FFF9F0] pb-20 pt-32 sm:pt-40">
+        {/* Subtle background classroom photo */}
+        <Image
+          src="/images/kids/01-hero-classroom.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-25"
+        />
         <div
-          className="pointer-events-none absolute -top-32 -right-20 size-96 rounded-full bg-[#FFD166] blur-3xl opacity-50"
+          className="pointer-events-none absolute -top-32 -right-20 size-96 rounded-full bg-[#FFD166] opacity-50 blur-3xl"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -bottom-40 -left-20 size-96 rounded-full bg-[#7AC4A2] blur-3xl opacity-40"
+          className="pointer-events-none absolute -bottom-40 -left-20 size-96 rounded-full bg-[#7AC4A2] opacity-40 blur-3xl"
           aria-hidden
         />
 
@@ -87,7 +155,9 @@ export function KidsTop() {
       {/* Programs */}
       <section className="relative bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">Programs</p>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">
+            Programs
+          </p>
           <h2 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold text-[#3D2B1F] sm:text-5xl">
             <span className="inline-block">4つのテーマで、</span>
             <span className="inline-block">毎週ちがう体験。</span>
@@ -101,17 +171,75 @@ export function KidsTop() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
                 whileHover={{ y: -8 }}
-                className="rounded-3xl p-8 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)]"
-                style={{ background: p.color + "22", border: `2px solid ${p.color}` }}
+                className="overflow-hidden rounded-3xl shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)]"
+                style={{
+                  background: p.color + "22",
+                  border: `2px solid ${p.color}`,
+                }}
               >
-                <div className="text-5xl">{p.emoji}</div>
-                <h3 className="mt-6 font-[family-name:var(--font-mplus-rounded)] text-3xl font-extrabold text-[#3D2B1F]">
-                  {p.ja}
-                </h3>
-                <p className="text-xs font-bold uppercase tracking-[0.2em]" style={{ color: p.color }}>
-                  {p.en}
-                </p>
-                <p className="mt-6 text-sm leading-loose text-[#3D2B1F]/80">{p.body}</p>
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={p.image}
+                    alt={p.ja}
+                    fill
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8">
+                  <div className="text-3xl">{p.emoji}</div>
+                  <h3 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-3xl font-extrabold text-[#3D2B1F]">
+                    {p.ja}
+                  </h3>
+                  <p
+                    className="text-xs font-bold uppercase tracking-[0.2em]"
+                    style={{ color: p.color }}
+                  >
+                    {p.en}
+                  </p>
+                  <p className="mt-6 text-sm leading-loose text-[#3D2B1F]/80">
+                    {p.body}
+                  </p>
+                </div>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Works gallery — 子どもたちの作品 */}
+      <section className="bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">
+            Works
+          </p>
+          <h2 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold text-[#3D2B1F] sm:text-5xl">
+            <span className="inline-block">子どもたちが、</span>
+            <span className="inline-block">つくったもの。</span>
+          </h2>
+          <ul className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {WORKS.map((src, i) => (
+              <motion.li
+                key={src}
+                initial={{ opacity: 0, scale: 0.92, rotate: -2 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{
+                  duration: 0.6,
+                  delay: i * 0.06,
+                  type: "spring",
+                }}
+                className="overflow-hidden rounded-3xl border-2 border-[#FFD166]/40 bg-white"
+              >
+                <div className="relative aspect-square">
+                  <Image
+                    src={src}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
               </motion.li>
             ))}
           </ul>
@@ -121,7 +249,9 @@ export function KidsTop() {
       {/* Numbers / promise */}
       <section className="relative overflow-hidden bg-[#FF8FA3] px-6 py-32 text-white sm:px-12 lg:px-20">
         <div className="mx-auto max-w-6xl">
-          <p className="text-xs font-bold uppercase tracking-[0.3em]">3つのやくそく</p>
+          <p className="text-xs font-bold uppercase tracking-[0.3em]">
+            3つのやくそく
+          </p>
           <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold sm:text-5xl">
             <span className="inline-block">親も、</span>
             <span className="inline-block">安心して、</span>
@@ -130,7 +260,11 @@ export function KidsTop() {
           <ul className="mt-16 grid gap-8 sm:grid-cols-3">
             {[
               { n: "01", t: "少人数制", body: "1コマ最大8組まで。先生の目が必ず届く。" },
-              { n: "02", t: "保育士＋専門講師", body: "保育士・理系学生・絵本作家がペアで担当。" },
+              {
+                n: "02",
+                t: "保育士＋専門講師",
+                body: "保育士・理系学生・絵本作家がペアで担当。",
+              },
               { n: "03", t: "見学・体験OK", body: "親も同席。最初の1コマは1,500円で体験。" },
             ].map((p, i) => (
               <motion.li
@@ -141,7 +275,9 @@ export function KidsTop() {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="rounded-2xl bg-white/15 p-8 backdrop-blur-sm"
               >
-                <p className="font-[family-name:var(--font-mplus-rounded)] text-5xl font-extrabold">{p.n}</p>
+                <p className="font-[family-name:var(--font-mplus-rounded)] text-5xl font-extrabold">
+                  {p.n}
+                </p>
                 <p className="mt-4 text-xl font-bold">{p.t}</p>
                 <p className="mt-3 text-sm leading-loose opacity-90">{p.body}</p>
               </motion.li>
@@ -150,10 +286,68 @@ export function KidsTop() {
         </div>
       </section>
 
+      {/* Teachers — 講師紹介 */}
+      <section className="bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">
+            Teachers
+          </p>
+          <h2 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold text-[#3D2B1F] sm:text-5xl">
+            <span className="inline-block">お迎えするのは、</span>
+            <span className="inline-block">こんな先生。</span>
+          </h2>
+          <ul className="mt-16 grid gap-8 sm:grid-cols-2">
+            {TEACHERS.map((t, i) => (
+              <motion.li
+                key={t.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.7, delay: i * 0.1 }}
+                className="overflow-hidden rounded-3xl bg-white shadow-[0_8px_24px_-16px_rgba(0,0,0,0.18)]"
+              >
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src={t.image}
+                    alt={t.name}
+                    fill
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#FF8FA3]">
+                    {t.role}
+                  </p>
+                  <h3 className="mt-2 text-2xl font-extrabold text-[#3D2B1F]">
+                    {t.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-loose text-[#3D2B1F]/75">
+                    {t.body}
+                  </p>
+                </div>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* Voice */}
-      <section id="voice" className="bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20">
-        <div className="mx-auto max-w-6xl">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">Voice</p>
+      <section
+        id="voice"
+        className="relative overflow-hidden bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20"
+      >
+        <Image
+          src="/images/kids/12-voice-bg.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-40"
+        />
+        <div className="relative mx-auto max-w-6xl">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">
+            Voice
+          </p>
           <h2 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold text-[#3D2B1F] sm:text-5xl">
             保護者さまから。
           </h2>
@@ -170,7 +364,9 @@ export function KidsTop() {
                 <span className="absolute -top-4 left-6 inline-flex size-8 items-center justify-center rounded-full bg-[#FFD166] font-extrabold text-[#3D2B1F]">
                   ★
                 </span>
-                <p className="text-sm leading-loose text-[#3D2B1F]/85">{v.body}</p>
+                <p className="text-sm leading-loose text-[#3D2B1F]/85">
+                  {v.body}
+                </p>
                 <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-[#FF8FA3]">
                   — {v.name}
                 </p>
@@ -181,10 +377,15 @@ export function KidsTop() {
       </section>
 
       {/* Access */}
-      <section id="access" className="bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20">
+      <section
+        id="access"
+        className="bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20"
+      >
         <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">Access</p>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">
+              Access
+            </p>
             <h2 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-4xl font-extrabold text-[#3D2B1F] sm:text-5xl">
               <span className="inline-block">自由が丘の、</span>
               <span className="inline-block">ラボ棟2F。</span>
@@ -210,9 +411,21 @@ export function KidsTop() {
 
       {/* CTA */}
       <section className="relative overflow-hidden bg-[#3D2B1F] px-6 py-32 text-[#FFF9F0] sm:px-12 lg:px-20">
-        <div className="pointer-events-none absolute -top-40 left-1/2 size-[640px] -translate-x-1/2 rounded-full bg-[#FF8FA3] opacity-30 blur-3xl" aria-hidden />
+        <Image
+          src="/images/kids/05-parent-child.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover opacity-25"
+        />
+        <div
+          className="pointer-events-none absolute -top-40 left-1/2 size-[640px] -translate-x-1/2 rounded-full bg-[#FF8FA3] opacity-30 blur-3xl"
+          aria-hidden
+        />
         <div className="relative mx-auto max-w-3xl text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FFD166]">First Lesson</p>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FFD166]">
+            First Lesson
+          </p>
           <h2 className="mt-6 font-[family-name:var(--font-mplus-rounded)] text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-tight">
             <span className="inline-block">まずは、</span>
             <span className="inline-block">土曜の朝に。</span>
