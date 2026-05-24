@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText } from "@/lib/animations";
+import { FadeIn, RevealText, Tilt3D } from "@/lib/animations";
 
 const MENU = [
   {
@@ -153,23 +153,29 @@ export function DentalTop() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.7, delay: i * 0.1 }}
-                className="overflow-hidden rounded-3xl bg-white shadow-[0_8px_24px_-16px_rgba(31,41,51,0.2)]"
               >
-                <div className="relative aspect-[4/3] w-full">
-                  <Image
-                    src={p.image}
-                    alt={p.t}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-[#1F2933]">{p.t}</h3>
-                  <p className="mt-3 text-sm leading-loose text-[#1F2933]/70">
-                    {p.body}
-                  </p>
-                </div>
+                <Tilt3D
+                  intensity={8}
+                  raise={6}
+                  glare
+                  className="overflow-hidden rounded-3xl bg-white shadow-[0_8px_24px_-16px_rgba(31,41,51,0.2)]"
+                >
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={p.image}
+                      alt={p.t}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-[#1F2933]">{p.t}</h3>
+                    <p className="mt-3 text-sm leading-loose text-[#1F2933]/70">
+                      {p.body}
+                    </p>
+                  </div>
+                </Tilt3D>
               </motion.li>
             ))}
           </ul>

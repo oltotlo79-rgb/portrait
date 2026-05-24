@@ -58,6 +58,14 @@ body {
   overflow-wrap: anywhere;
 }
 
+/* Custom cursor が有効なときは OS のカーソルを隠す（マウス端末のみ） */
+@media (pointer: fine) {
+  html.cursor-none-active,
+  html.cursor-none-active * {
+    cursor: none !important;
+  }
+}
+
 /* 日本語の見出しは文節単位で改行＋行長を均等化（modern browsers） */
 h1, h2, h3, h4, h5, h6 {
   word-break: auto-phrase;

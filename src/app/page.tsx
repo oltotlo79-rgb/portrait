@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { sites } from "@/lib/site-config";
-import { FadeIn, RevealText } from "@/lib/animations";
+import { FadeIn, RevealText, Tilt3D } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
 import { NoiseOverlay } from "@/components/shared/NoiseOverlay";
 import { ArrowRight } from "lucide-react";
@@ -53,10 +53,11 @@ export default function PortfolioIndexPage() {
             {sites.map((site, i) => (
               <li key={site.slug}>
                 <FadeIn delay={i * 0.06}>
-                  <Link
-                    href={`/${site.slug}`}
-                    className="group relative block overflow-hidden rounded-lg border border-white/10 bg-white/[0.02] transition-colors hover:border-white/30"
-                  >
+                  <Tilt3D intensity={8} raise={6} glare className="rounded-lg">
+                    <Link
+                      href={`/${site.slug}`}
+                      className="group relative block overflow-hidden rounded-lg border border-white/10 bg-white/[0.02] transition-colors hover:border-white/30"
+                    >
                     <div className="relative aspect-[4/5] w-full overflow-hidden">
                       <Image
                         src={site.thumb}
@@ -86,7 +87,8 @@ export default function PortfolioIndexPage() {
                         <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>
-                  </Link>
+                    </Link>
+                  </Tilt3D>
                 </FadeIn>
               </li>
             ))}

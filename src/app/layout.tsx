@@ -3,6 +3,7 @@ import { MotionConfig } from "framer-motion";
 import { rootFontVariables } from "@/lib/fonts";
 import { LenisProvider } from "@/lib/animations";
 import { PortfolioBadge } from "@/components/shared/PortfolioBadge";
+import { CustomCursor } from "@/components/shared/CustomCursor";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default function RootLayout({
         <MotionConfig reducedMotion="user">
           <LenisProvider>{children}</LenisProvider>
           <PortfolioBadge />
+          <CustomCursor />
         </MotionConfig>
       </body>
     </html>

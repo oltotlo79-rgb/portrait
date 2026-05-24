@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText } from "@/lib/animations";
+import { FadeIn, RevealText, Tilt3D } from "@/lib/animations";
 
 const PROGRAMS = [
   {
@@ -170,37 +170,42 @@ export function KidsTop() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
-                whileHover={{ y: -8 }}
-                className="overflow-hidden rounded-3xl shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)]"
-                style={{
-                  background: p.color + "22",
-                  border: `2px solid ${p.color}`,
-                }}
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={p.image}
-                    alt={p.ja}
-                    fill
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-8">
-                  <div className="text-3xl">{p.emoji}</div>
-                  <h3 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-3xl font-extrabold text-[#3D2B1F]">
-                    {p.ja}
-                  </h3>
-                  <p
-                    className="text-xs font-bold uppercase tracking-[0.2em]"
-                    style={{ color: p.color }}
-                  >
-                    {p.en}
-                  </p>
-                  <p className="mt-6 text-sm leading-loose text-[#3D2B1F]/80">
-                    {p.body}
-                  </p>
-                </div>
+                <Tilt3D
+                  intensity={10}
+                  raise={6}
+                  glare
+                  className="overflow-hidden rounded-3xl shadow-[0_8px_24px_-12px_rgba(0,0,0,0.15)]"
+                  style={{
+                    background: p.color + "22",
+                    border: `2px solid ${p.color}`,
+                  }}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={p.image}
+                      alt={p.ja}
+                      fill
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <div className="text-3xl">{p.emoji}</div>
+                    <h3 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-3xl font-extrabold text-[#3D2B1F]">
+                      {p.ja}
+                    </h3>
+                    <p
+                      className="text-xs font-bold uppercase tracking-[0.2em]"
+                      style={{ color: p.color }}
+                    >
+                      {p.en}
+                    </p>
+                    <p className="mt-6 text-sm leading-loose text-[#3D2B1F]/80">
+                      {p.body}
+                    </p>
+                  </div>
+                </Tilt3D>
               </motion.li>
             ))}
           </ul>
