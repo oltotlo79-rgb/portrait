@@ -58,10 +58,20 @@ export function ChiroTop() {
               <p className="text-xs uppercase tracking-[0.4em] text-[#2E5266]">
                 Kotou Chiropractic · Aoba, Yokohama
               </p>
-              <h1 className="mt-6 font-[family-name:var(--font-zen-maru)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.1] text-[#1F2933]">
-                <RevealText text="痛みの「原因」を、" splitBy="word" />
+              <h1 className="mt-6 font-[family-name:var(--font-zen-maru)] text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.2] text-[#1F2933]">
+                <span className="inline-block">
+                  <RevealText text="痛みの" splitBy="word" />
+                </span>
+                <span className="inline-block">
+                  <RevealText text="「原因」を、" splitBy="word" delay={0.1} />
+                </span>
                 <span className="block text-[#2E5266]">
-                  <RevealText text="しずかに整える。" splitBy="word" delay={0.2} />
+                  <span className="inline-block">
+                    <RevealText text="しずかに" splitBy="word" delay={0.2} />
+                  </span>
+                  <span className="inline-block">
+                    <RevealText text="整える。" splitBy="word" delay={0.3} />
+                  </span>
                 </span>
               </h1>
               <FadeIn delay={0.5}>
