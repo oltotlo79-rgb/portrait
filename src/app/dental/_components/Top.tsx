@@ -34,7 +34,7 @@ const MENU = [
     code: "05",
     name: "ホームケア指導",
     body: "歯ブラシ・フロス・年代別ケアのレッスン。",
-    icon: "/images/dental/12-icon-pediatric.svg", // 仮: pediatricアイコンを流用（PhaseBで homecare 専用を生成）
+    icon: "/images/dental/16-icon-homecare.svg",
   },
 ];
 
@@ -261,10 +261,47 @@ export function DentalTop() {
         </div>
       </section>
 
+      {/* Smile — 目指したい笑顔 */}
+      <section className="bg-white px-6 py-24 sm:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="text-xs uppercase tracking-[0.4em] text-[#5BB7B7]">
+              Smile
+            </p>
+            <h2 className="mt-4 font-[family-name:var(--font-zen-kaku)] text-4xl font-bold text-[#1F2933] sm:text-5xl">
+              <span className="inline-block">めざすのは、</span>
+              <span className="inline-block">自然な笑顔。</span>
+            </h2>
+            <FadeIn delay={0.15}>
+              <p className="mt-8 max-w-md text-sm leading-loose text-[#1F2933]/80">
+                小児矯正は「歯並びを整える」だけではなく、
+                その先の何十年を、自分の歯で気持ちよく笑えるように。
+                成長を見ながら、無理のない段階で進めていきます。
+              </p>
+            </FadeIn>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1 }}
+            className="relative aspect-[4/5] overflow-hidden rounded-3xl"
+          >
+            <Image
+              src="/images/dental/18-smile-detail.webp"
+              alt="子どもの自然な笑顔"
+              fill
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="object-cover"
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Doctor */}
       <section
         id="doctor"
-        className="bg-white px-6 py-32 sm:px-12 lg:px-20"
+        className="bg-[#F4F8F9] px-6 py-32 sm:px-12 lg:px-20"
       >
         <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
           <motion.div
@@ -393,11 +430,11 @@ export function DentalTop() {
       {/* CTA */}
       <section className="relative overflow-hidden bg-[#5BB7B7] px-6 py-32 text-white sm:px-12 lg:px-20">
         <Image
-          src="/images/dental/01-hero-light.webp"
+          src="/images/dental/17-cta-bg.webp"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-15"
+          className="object-cover opacity-25"
         />
         <div
           className="pointer-events-none absolute -right-20 -top-20 size-80 rounded-full bg-[#FFC9B3] opacity-50 blur-3xl"

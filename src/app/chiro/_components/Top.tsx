@@ -214,6 +214,38 @@ export function ChiroTop() {
               </motion.li>
             ))}
           </ol>
+
+          {/* Treatment & Self-care details */}
+          <div className="mt-16 grid gap-6 sm:grid-cols-2">
+            <FadeIn>
+              <figure className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/chiro/14-treatment-detail.webp"
+                  alt="施術中の手元"
+                  fill
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 text-xs uppercase tracking-[0.3em] text-white/90">
+                  Treatment — 03 施術
+                </figcaption>
+              </figure>
+            </FadeIn>
+            <FadeIn delay={0.1}>
+              <figure className="relative aspect-[3/4] overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/chiro/15-self-care.webp"
+                  alt="セルフケア指導の手元"
+                  fill
+                  sizes="(min-width: 640px) 50vw, 100vw"
+                  className="object-cover"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-5 text-xs uppercase tracking-[0.3em] text-white/90">
+                  Self-care — 04 セルフケア
+                </figcaption>
+              </figure>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -334,17 +366,17 @@ export function ChiroTop() {
       <section className="relative overflow-hidden bg-[#2E5266] px-6 py-32 text-white sm:px-12 lg:px-20">
         {/* Background image with dark overlay */}
         <Image
-          src="/images/chiro/01-hero-reception.webp"
+          src="/images/chiro/16-cta-bg.webp"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-20"
+          className="object-cover opacity-30"
         />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(46,82,102,0.75) 0%, rgba(46,82,102,0.92) 100%)",
+              "linear-gradient(180deg, rgba(46,82,102,0.7) 0%, rgba(46,82,102,0.9) 100%)",
           }}
           aria-hidden
         />

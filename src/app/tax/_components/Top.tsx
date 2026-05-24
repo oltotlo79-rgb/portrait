@@ -241,6 +241,42 @@ export function TaxTop() {
         </div>
       </section>
 
+      {/* Trust — 信頼の握手 */}
+      <section className="relative overflow-hidden bg-[#0E2A47] px-6 py-24 text-white sm:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-[1.2fr_1fr]">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1 }}
+            className="relative aspect-[3/2] overflow-hidden rounded"
+          >
+            <Image
+              src="/images/tax/14-trust-handshake.webp"
+              alt="クライアントとの握手"
+              fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className="object-cover"
+            />
+          </motion.div>
+          <div>
+            <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
+              Partnership
+            </p>
+            <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-3xl font-bold sm:text-4xl">
+              <span className="inline-block">伴走する、</span>
+              <span className="inline-block">という姿勢。</span>
+            </h2>
+            <FadeIn delay={0.15}>
+              <p className="mt-8 max-w-md text-sm leading-loose text-white/80">
+                税務処理だけではなく、事業の意思決定に必要な情報を、
+                必要なタイミングで届ける。経営者の隣に立つパートナーであり続けます。
+              </p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
       {/* Profile */}
       <section
         id="profile"
@@ -287,8 +323,45 @@ export function TaxTop() {
         </div>
       </section>
 
+      {/* Process — チームでの取り組み */}
+      <section className="bg-white px-6 py-24 sm:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-[1fr_1.3fr]">
+          <div>
+            <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
+              Process
+            </p>
+            <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-3xl font-bold text-[#0E2A47] sm:text-4xl">
+              <span className="inline-block">チームで、</span>
+              <span className="inline-block">考え続ける。</span>
+            </h2>
+            <FadeIn delay={0.15}>
+              <p className="mt-8 max-w-md text-sm leading-loose text-[#15233A]/80">
+                ひとりではなく、税理士・会計士・診断士が連携。
+                数字の読み方、施策の妥当性、契約条件まで、
+                それぞれの視点から検討してご提案します。
+              </p>
+            </FadeIn>
+          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1 }}
+            className="relative aspect-[4/5] overflow-hidden rounded"
+          >
+            <Image
+              src="/images/tax/16-team-process.webp"
+              alt="チームでの検討風景"
+              fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
+              className="object-cover"
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Office — 事務所内観 */}
-      <section className="bg-white px-6 py-32 sm:px-12 lg:px-20">
+      <section className="bg-[#F5F2EC] px-6 py-32 sm:px-12 lg:px-20">
         <div className="mx-auto grid max-w-5xl items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
@@ -383,11 +456,11 @@ export function TaxTop() {
       {/* CTA */}
       <section className="relative overflow-hidden bg-[#0E2A47] px-6 py-32 text-white sm:px-12 lg:px-20">
         <Image
-          src="/images/tax/01-hero-bg.webp"
+          src="/images/tax/15-cta-bg.webp"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-20"
+          className="object-cover opacity-30"
         />
         <div
           className="absolute inset-0"

@@ -36,7 +36,7 @@ const PROGRAMS = [
     body: "春のいちごジャム、秋の栗ようかん。台所もラボに。",
     color: "#E89AC7",
     emoji: "🍓",
-    image: "/images/kids/05-parent-child.webp",
+    image: "/images/kids/13-program-season.webp",
   },
 ];
 
@@ -67,6 +67,12 @@ const TEACHERS = [
     role: "理系学生・実験担当",
     body: "東工大院生。実験パートを企画。むずかしいことも、ワクワクに変換します。",
     image: "/images/kids/11-teacher-02.webp",
+  },
+  {
+    name: "Aoi",
+    role: "絵本ワーク担当",
+    body: "絵本作家・読み聞かせ歴8年。物語の世界を、子どもと一緒につくります。",
+    image: "/images/kids/14-teacher-03.webp",
   },
 ];
 
@@ -301,7 +307,7 @@ export function KidsTop() {
             <span className="inline-block">お迎えするのは、</span>
             <span className="inline-block">こんな先生。</span>
           </h2>
-          <ul className="mt-16 grid gap-8 sm:grid-cols-2">
+          <ul className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {TEACHERS.map((t, i) => (
               <motion.li
                 key={t.name}
@@ -417,11 +423,11 @@ export function KidsTop() {
       {/* CTA */}
       <section className="relative overflow-hidden bg-[#3D2B1F] px-6 py-32 text-[#FFF9F0] sm:px-12 lg:px-20">
         <Image
-          src="/images/kids/05-parent-child.webp"
+          src="/images/kids/15-cta-parent-walking.webp"
           alt=""
           fill
           sizes="100vw"
-          className="object-cover opacity-25"
+          className="object-cover opacity-30"
         />
         <div
           className="pointer-events-none absolute -top-40 left-1/2 size-[640px] -translate-x-1/2 rounded-full bg-[#FF8FA3] opacity-30 blur-3xl"
