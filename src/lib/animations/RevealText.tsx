@@ -18,13 +18,17 @@ export function RevealText({
   splitBy = "word",
   as = "span",
 }: RevealTextProps) {
-  const parts = splitBy === "char" ? Array.from(text) : text.split(/(\s+)/);
+  // splitBy="word" でもスペースを含まない（日本語等）場合は char モードに自動フォールバック
+  // → 各文字が独立した inline-block になり、自然な行内折り返しが効く
+  const hasWhitespace = /\s/.test(text);
+  const effectiveSplit = splitBy === "word" && !hasWhitespace ? "char" : splitBy;
+  const parts =
+    effectiveSplit === "char" ? Array.from(text) : text.split(/(\s+)/);
   const Component = motion[as];
 
   return (
     <Component
       className={className}
-      style={{ display: "inline-block" }}
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.4 }}

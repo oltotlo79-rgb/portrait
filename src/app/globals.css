@@ -54,6 +54,20 @@ body {
   background: var(--site-bg);
   color: var(--site-fg);
   font-feature-settings: "palt" 1;
+  line-break: strict;
+  overflow-wrap: anywhere;
+}
+
+/* 日本語の見出しは文節単位で改行＋行長を均等化（modern browsers） */
+h1, h2, h3, h4, h5, h6 {
+  word-break: auto-phrase;
+  line-break: strict;
+  text-wrap: pretty;
+}
+
+/* 段落も pretty で末尾オーフン軽減 */
+p {
+  text-wrap: pretty;
 }
 
 @media (prefers-reduced-motion: reduce) {
