@@ -69,10 +69,31 @@ export function MinpakuHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6 }}
-          className="mt-10 flex justify-center"
+          className="mt-8 flex justify-center"
         >
+          {/* モバイル〜タブレット: 横書き */}
+          <span className="block text-center font-[family-name:var(--font-shippori-mincho)] text-[clamp(1.75rem,6vw,3rem)] leading-[1.4] tracking-[0.08em] lg:hidden">
+            <motion.span
+              initial={{ opacity: 0, filter: "blur(8px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ delay: 2.8, duration: 1.5 }}
+              className="block"
+            >
+              静かに、町家に、
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, filter: "blur(8px)" }}
+              animate={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ delay: 3.2, duration: 1.5 }}
+              className="block"
+            >
+              暮らすように泊まる。
+            </motion.span>
+          </span>
+
+          {/* デスクトップ: 縦書き（サイズと行間を絞ってビューポートに収まるよう調整） */}
           <span
-            className="font-[family-name:var(--font-shippori-mincho)] text-[clamp(2.5rem,6vw,5rem)] leading-[1.3] tracking-[0.15em]"
+            className="hidden font-[family-name:var(--font-shippori-mincho)] text-[clamp(1.5rem,2.4vw,2.25rem)] leading-[1.15] tracking-[0.08em] lg:inline-block"
             style={{ writingMode: "vertical-rl" }}
           >
             <motion.span
@@ -98,7 +119,7 @@ export function MinpakuHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 4.2, duration: 1 }}
-          className="mt-16 font-[family-name:var(--font-cormorant)] italic text-lg text-[#F4EDE3]/80"
+          className="mt-10 font-[family-name:var(--font-cormorant)] italic text-base text-[#F4EDE3]/80 sm:text-lg"
         >
           One stay, one party — a Machiya in Nishijin.
         </motion.p>
