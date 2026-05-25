@@ -78,42 +78,44 @@ export default function PortfolioIndexPage() {
             {sites.map((site, i) => (
               <li key={site.slug}>
                 <FadeIn delay={i * 0.06}>
-                  <Tilt3D intensity={8} raise={6} glare className="rounded-lg">
-                    <Link
-                      href={`/${site.slug}`}
-                      className="group relative block overflow-hidden rounded-lg border border-white/10 bg-white/[0.02] transition-colors hover:border-white/30"
-                    >
-                    <div className="relative aspect-[4/5] w-full overflow-hidden">
-                      <Image
-                        src={site.thumb}
-                        alt={`${site.name}のサムネイル`}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                      />
-                    </div>
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                    <div className="pointer-events-none absolute left-0 right-0 top-0 flex items-center justify-between px-5 py-4 text-[10px] uppercase tracking-[0.25em]">
-                      <span className="opacity-80">{site.industryEn}</span>
-                      <span className="rounded-full border border-white/30 px-2 py-0.5 text-[9px]">
-                        {site.status === "live" ? "LIVE" : "WIP"}
-                      </span>
-                    </div>
-                    <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5">
-                      <p className="text-[10px] uppercase tracking-[0.25em] text-white/60">
-                        {site.industryJa}
-                      </p>
-                      <h3 className="mt-1 text-xl font-medium">{site.name}</h3>
-                      <p className="mt-2 line-clamp-2 text-xs text-white/70">
-                        {site.catch}
-                      </p>
-                      <div className="mt-4 inline-flex items-center gap-2 text-xs">
-                        <span>サイトを見る</span>
-                        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                  <Link
+                    href={`/${site.slug}`}
+                    className="group block rounded-lg"
+                  >
+                    <Tilt3D intensity={8} raise={6} glare className="rounded-lg">
+                      <div className="relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.02] transition-colors group-hover:border-white/30">
+                        <div className="relative aspect-[4/5] w-full overflow-hidden">
+                          <Image
+                            src={site.thumb}
+                            alt={`${site.name}のサムネイル`}
+                            fill
+                            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                          />
+                        </div>
+                        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                        <div className="pointer-events-none absolute left-0 right-0 top-0 flex items-center justify-between px-5 py-4 text-[10px] uppercase tracking-[0.25em]">
+                          <span className="opacity-80">{site.industryEn}</span>
+                          <span className="rounded-full border border-white/30 px-2 py-0.5 text-[9px]">
+                            {site.status === "live" ? "LIVE" : "WIP"}
+                          </span>
+                        </div>
+                        <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5">
+                          <p className="text-[10px] uppercase tracking-[0.25em] text-white/60">
+                            {site.industryJa}
+                          </p>
+                          <h3 className="mt-1 text-xl font-medium">{site.name}</h3>
+                          <p className="mt-2 line-clamp-2 text-xs text-white/70">
+                            {site.catch}
+                          </p>
+                          <div className="mt-4 inline-flex items-center gap-2 text-xs">
+                            <span>サイトを見る</span>
+                            <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    </Link>
-                  </Tilt3D>
+                    </Tilt3D>
+                  </Link>
                 </FadeIn>
               </li>
             ))}
