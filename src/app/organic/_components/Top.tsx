@@ -62,7 +62,7 @@ export function OrganicTop() {
           aria-hidden
         />
 
-        <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-20 text-white sm:px-12 lg:px-20">
+        <div className="relative z-10 flex h-full flex-col justify-end px-6 pt-28 pb-20 text-white sm:px-12 lg:px-20">
           <div className="mx-auto w-full max-w-6xl">
             <motion.p
               initial={{ opacity: 0 }}
@@ -97,24 +97,6 @@ export function OrganicTop() {
                 </Link>
               </div>
             </FadeIn>
-            <FadeIn delay={1.45}>
-              <dl className="mt-12 grid max-w-xl grid-cols-3 divide-x divide-white/16 border-y border-white/16 py-5">
-                {HARVEST.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={item.label} className="px-4 first:pl-0 last:pr-0">
-                      <Icon className="mb-3 size-4 text-[#D8C29D]" />
-                      <dt className="text-[10px] uppercase tracking-[0.28em] text-white/56">
-                        {item.label}
-                      </dt>
-                      <dd className="mt-2 font-[family-name:var(--font-cormorant)] text-3xl italic">
-                        {item.value}
-                      </dd>
-                    </div>
-                  );
-                })}
-              </dl>
-            </FadeIn>
           </div>
         </div>
       </section>
@@ -126,6 +108,26 @@ export function OrganicTop() {
         trackClassName="font-[family-name:var(--font-cormorant)] text-[clamp(2.4rem,6vw,5.4rem)] italic text-[#3F5B36]/24"
         separator={<span className="inline-block size-2 rounded-full bg-[#C9462C]/60" />}
       />
+
+      {/* Quick facts strip — moved out of hero to avoid nav overlap on short viewports */}
+      <section className="border-b border-[#3F5B36]/10 bg-[#FAF6EE] px-6 py-10 sm:px-12 lg:px-20">
+        <dl className="mx-auto grid max-w-5xl grid-cols-3 divide-x divide-[#3F5B36]/15 text-[#2A2520]">
+          {HARVEST.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.label} className="px-4 first:pl-0 last:pr-0">
+                <Icon className="mb-3 size-4 text-[#C9462C]" />
+                <dt className="text-[10px] uppercase tracking-[0.28em] text-[#3F5B36]/70">
+                  {item.label}
+                </dt>
+                <dd className="mt-2 font-[family-name:var(--font-cormorant)] text-3xl italic text-[#3F5B36]">
+                  {item.value}
+                </dd>
+              </div>
+            );
+          })}
+        </dl>
+      </section>
 
       {/* Story */}
       <section id="story" className="bg-[#FAF6EE] px-6 py-40 sm:px-12 lg:px-20">
