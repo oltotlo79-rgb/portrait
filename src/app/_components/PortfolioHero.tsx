@@ -76,7 +76,7 @@ export function PortfolioHero({ sites }: { sites: SiteConfig[] }) {
             <RevealText
               text="デザインする。"
               splitBy="word"
-              className="block italic font-[family-name:var(--font-cormorant)]"
+              className="block font-[family-name:var(--font-shippori-mincho)] tracking-[0.05em] text-[var(--atlas-accent)]"
               delay={0.24}
             />
           </h1>
