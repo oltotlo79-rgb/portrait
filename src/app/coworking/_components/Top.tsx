@@ -834,16 +834,6 @@ function HeroSection() {
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.4, duration: 0.8 }}
-          className="absolute bottom-8 left-6 right-6 flex justify-between font-mono text-[10px] uppercase tracking-[0.4em] text-white/40 sm:left-12 sm:right-12 lg:left-20 lg:right-20"
-        >
-          <span>EST. 2020</span>
-          <span className="text-[#00E5FF]">SCROLL ↓</span>
-          <span>2 STUDIOS · TOKYO</span>
-        </motion.div>
       </div>
     </section>
   );
