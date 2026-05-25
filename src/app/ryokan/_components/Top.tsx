@@ -434,9 +434,10 @@ export function RyokanTop() {
           <p className="text-[10px] uppercase tracking-[0.5em] text-[#E8743C]">
             Reservation
           </p>
-          <h2 className="mt-8 font-[family-name:var(--font-shippori-mincho)] text-[clamp(2.5rem,6vw,5rem)] tracking-[0.1em]">
-            <span className="inline-block">月を、</span>
-            <span className="inline-block">お待ちしております。</span>
+          <h2 className="mt-8 font-[family-name:var(--font-shippori-mincho)] text-[clamp(2rem,5vw,4rem)] leading-[1.4] tracking-[0.1em]">
+            月を、
+            <br />
+            お待ちしております。
           </h2>
           <p className="mt-10 font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#F1EAD9]/80">
             ご予約は六か月前より承ります。仲居の手配のため、お早めにお知らせください。

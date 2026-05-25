@@ -12,7 +12,8 @@ export function OrganicNav() {
       className="absolute inset-x-0 top-0 z-30 flex items-center justify-between px-6 py-6 sm:px-12 lg:px-20"
     >
       <Link href="/organic" className="font-[family-name:var(--font-cormorant)] text-2xl italic text-[#3F5B36]">
-        KIYORA <span className="text-base not-italic tracking-[0.3em]">FARM</span>
+        <span className="pr-1">KIYORA</span>
+        <span className="text-base not-italic tracking-[0.3em]">FARM</span>
       </Link>
       <nav className="hidden gap-8 text-[10px] uppercase tracking-[0.4em] text-[#2A2520] sm:flex">
         <Link href="/organic/products" className="hover:text-[#C9462C]">Shop</Link>
@@ -32,7 +33,8 @@ export function OrganicFooter() {
     <footer className="border-t border-[#2A2520]/15 bg-[#FAF6EE] px-6 py-16 sm:px-12 lg:px-20">
       <div className="mx-auto max-w-6xl">
         <p className="font-[family-name:var(--font-cormorant)] text-4xl italic text-[#3F5B36]">
-          KIYORA <span className="text-2xl not-italic tracking-[0.3em]">FARM</span>
+          <span className="pr-2">KIYORA</span>
+          <span className="text-2xl not-italic tracking-[0.3em]">FARM</span>
         </p>
         <p className="mt-2 font-[family-name:var(--font-noto-serif-jp)] text-xs text-[#2A2520]/70">
           信州・東御の有機JAS認証農園
