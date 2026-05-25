@@ -46,7 +46,12 @@ export function RevealText({
         return (
           <span
             key={i}
-            style={{ display: "inline-block", overflow: "hidden" }}
+            style={{
+              display: "inline-block",
+              overflow: "hidden",
+              paddingInline: "0.1em",
+              marginInline: "-0.1em",
+            }}
           >
             <motion.span
               style={{ display: "inline-block", willChange: "transform" }}
