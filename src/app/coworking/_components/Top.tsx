@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
@@ -12,7 +11,6 @@ import {
   Headphones,
   Mic,
   Moon,
-  Printer,
   Quote,
   Signal,
   Sparkles,
@@ -873,12 +871,6 @@ function LiveStatusStrip() {
 }
 
 function CTASection() {
-  const [cursor, setCursor] = useState(true);
-  useEffect(() => {
-    const id = setInterval(() => setCursor((c) => !c), 500);
-    return () => clearInterval(id);
-  }, []);
-
   return (
     <section className="relative overflow-hidden bg-[#0A0E1A] px-6 py-32 text-white sm:px-12 lg:px-20">
       <motion.div
@@ -901,7 +893,15 @@ function CTASection() {
           See the
           <br />
           <span className="text-[#00E5FF]">
-            space{cursor ? "_" : " "}
+            space
+            <motion.span
+              aria-hidden
+              className="inline-block w-[0.6ch] text-[#00E5FF]"
+              animate={{ opacity: [1, 1, 0, 0] }}
+              transition={{ duration: 1.4, repeat: Infinity, ease: "linear" }}
+            >
+              _
+            </motion.span>
           </span>
         </h2>
         <p className="mx-auto mt-10 max-w-xl text-sm leading-loose text-white/70">
@@ -940,7 +940,6 @@ function CTASection() {
         }}
       />
 
-      <Printer aria-hidden className="hidden" />
     </section>
   );
 }
