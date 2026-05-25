@@ -37,7 +37,7 @@ export function ConstructionTop() {
           aria-hidden
         />
 
-        <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-12 lg:px-20">
+        <div className="relative z-10 flex h-full flex-col justify-center px-6 pt-32 pb-20 sm:px-12 lg:px-20">
           <div className="mx-auto w-full max-w-7xl">
             <motion.p
               initial={{ opacity: 0 }}
@@ -52,7 +52,7 @@ export function ConstructionTop() {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
-              className="mt-12 font-[family-name:var(--font-anton)] text-[clamp(8rem,28vw,22rem)] leading-[0.78] tracking-[-0.01em]"
+              className="mt-10 font-[family-name:var(--font-anton)] text-[clamp(5rem,18vw,14rem)] leading-[0.78] tracking-[-0.01em]"
             >
               <span className="block">100</span>
               <span className="block text-[0.18em] font-[family-name:var(--font-noto-serif-jp)] tracking-[0.2em] text-[#C45D2E]">
@@ -61,13 +61,13 @@ export function ConstructionTop() {
             </motion.h1>
 
             <FadeIn delay={1.4}>
-              <p className="mt-16 max-w-xl text-sm leading-loose text-[#F2EDE5]/80">
+              <p className="mt-10 max-w-xl text-sm leading-loose text-[#F2EDE5]/80">
                 信州松本で77年。地元産の木材と、自社大工8名の手仕事で、
                 親子三代で住み継げる家を建てています。
               </p>
             </FadeIn>
             <FadeIn delay={1.6}>
-              <div className="mt-12 flex flex-wrap items-center gap-4">
+              <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link href="/construction/works" className="inline-flex items-center gap-2 border border-[#C45D2E] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#C45D2E] transition-colors hover:bg-[#C45D2E] hover:text-[#2C2A28]">
                   施工事例を見る
                   <ArrowUpRight className="size-3.5" />
@@ -79,7 +79,7 @@ export function ConstructionTop() {
             </FadeIn>
 
             <FadeIn delay={1.75}>
-              <div className="mt-12 grid max-w-3xl gap-3 border border-[#F2EDE5]/14 bg-[#2C2A28]/58 p-4 backdrop-blur-md md:grid-cols-3">
+              <div className="mt-8 grid max-w-3xl gap-3 border border-[#F2EDE5]/14 bg-[#2C2A28]/58 p-4 backdrop-blur-md md:grid-cols-3">
                 {[
                   { icon: TreePine, label: "Local wood", value: "信州ヒノキ" },
                   { icon: Hammer, label: "Craft team", value: "自社大工8名" },

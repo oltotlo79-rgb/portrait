@@ -14,7 +14,8 @@ const HERO_METRICS = [
 
 export function FitnessHero() {
   return (
-    <section className="relative flex h-screen min-h-[680px] items-center overflow-hidden bg-[#0A0A0A] text-white">
+    <>
+    <section className="relative h-screen min-h-[680px] overflow-hidden bg-[#0A0A0A] text-white">
       {/* Background image */}
       <Image
         src="/images/fitness/01-hero-bg.webp"
@@ -55,7 +56,7 @@ export function FitnessHero() {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 sm:px-12 lg:px-20">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col justify-center px-6 pt-28 pb-16 sm:px-12 lg:px-20">
         <motion.p
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
@@ -71,7 +72,7 @@ export function FitnessHero() {
             steps={6}
             amplitudeX={8}
             amplitudeY={4}
-            className="block text-[clamp(5rem,18vw,16rem)] text-white"
+            className="block text-[clamp(3.5rem,12vw,10rem)] text-white"
           >
             IGNITE
           </GlitchText>
@@ -79,7 +80,7 @@ export function FitnessHero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.85, duration: 0.7 }}
-            className="block text-[clamp(5rem,18vw,16rem)] text-[#FFE600]"
+            className="block text-[clamp(3.5rem,12vw,10rem)] text-[#FFE600]"
           >
             YOUR FIRE
           </motion.span>
@@ -121,39 +122,28 @@ export function FitnessHero() {
           </div>
         </motion.div>
 
-        <motion.dl
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.9, duration: 0.7 }}
-          className="mt-12 grid max-w-2xl grid-cols-3 border-y border-[#FFE600]/24 py-5"
-        >
-          {HERO_METRICS.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.label} className="border-l border-[#FFE600]/24 px-5 first:border-l-0 first:pl-0">
-                <Icon className="mb-3 size-4 text-[#FFE600]" />
-                <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/44">
-                  {item.label}
-                </dt>
-                <dd className="mt-1 font-[family-name:var(--font-bebas)] text-5xl leading-none text-white">
-                  {item.value}
-                </dd>
-              </div>
-            );
-          })}
-        </motion.dl>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 0.8 }}
-          className="absolute bottom-8 left-6 right-6 flex justify-between text-[10px] font-bold uppercase tracking-[0.4em] text-white/60 sm:left-12 sm:right-12 lg:left-20 lg:right-20"
-        >
-          <span>EST. 2018</span>
-          <span className="text-[#FFE600]">SCROLL ↓</span>
-          <span>3 STUDIOS · TOKYO</span>
-        </motion.div>
       </div>
     </section>
+
+    {/* Metrics strip — moved out of hero to avoid nav overlap on short viewports */}
+    <section className="border-b border-[#FFE600]/15 bg-[#0A0A0A] px-6 py-10 sm:px-12 lg:px-20">
+      <dl className="mx-auto grid max-w-4xl grid-cols-3 border-y border-[#FFE600]/24 py-5">
+        {HERO_METRICS.map((item) => {
+          const Icon = item.icon;
+          return (
+            <div key={item.label} className="border-l border-[#FFE600]/24 px-5 first:border-l-0 first:pl-0">
+              <Icon className="mb-3 size-4 text-[#FFE600]" />
+              <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/44">
+                {item.label}
+              </dt>
+              <dd className="mt-1 font-[family-name:var(--font-bebas)] text-5xl leading-none text-white">
+                {item.value}
+              </dd>
+            </div>
+          );
+        })}
+      </dl>
+    </section>
+    </>
   );
 }

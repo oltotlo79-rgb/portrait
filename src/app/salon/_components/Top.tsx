@@ -61,9 +61,9 @@ export function SalonTop() {
           >
             Omotesando · Private salon
           </motion.p>
-          <h1 className="mt-8 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,9vw,9rem)] italic leading-[0.92] text-[#2E2A26]">
+          <h1 className="mt-8 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,9vw,9rem)] italic leading-[0.92] text-[#2E2A26] drop-shadow-[0_2px_18px_rgba(255,255,255,0.55)]">
             <RevealText text="A mirror," splitBy="word" delay={0.5} />
-            <span className="block font-[family-name:var(--font-noto-serif-jp)] not-italic text-[0.45em] tracking-[0.15em] text-[#2E2A26]/80">
+            <span className="block font-[family-name:var(--font-noto-serif-jp)] not-italic text-[0.45em] tracking-[0.15em] text-[#2E2A26] drop-shadow-[0_1px_6px_rgba(255,255,255,0.7)]">
               <RevealText text="鏡の前の時間を、ご褒美に。" splitBy="word" delay={0.85} />
             </span>
           </h1>
@@ -71,7 +71,7 @@ export function SalonTop() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2, duration: 1 }}
-            className="mt-16 max-w-md font-[family-name:var(--font-noto-sans-jp)] text-sm leading-loose text-[#2E2A26]/80"
+            className="mt-16 max-w-md font-[family-name:var(--font-noto-sans-jp)] text-sm leading-loose text-[#2E2A26] drop-shadow-[0_1px_4px_rgba(255,255,255,0.6)]"
           >
             完全予約制、デザイナー1名×お客様1名。
             <br />

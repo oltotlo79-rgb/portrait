@@ -118,18 +118,18 @@ export function TaxTop() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 2, ease: [0.76, 0, 0.24, 1], delay: 0.4 }}
-          className="absolute left-6 top-32 right-6 h-px origin-left bg-[#B4924C] sm:left-12 sm:right-12 lg:left-20 lg:right-20"
+          className="absolute left-6 top-24 right-6 h-px origin-left bg-[#B4924C] sm:left-12 sm:right-12 lg:left-20 lg:right-20"
           aria-hidden
         />
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 2, ease: [0.76, 0, 0.24, 1], delay: 0.7 }}
-          className="absolute left-6 bottom-32 right-6 h-px origin-right bg-[#B4924C] sm:left-12 sm:right-12 lg:left-20 lg:right-20"
+          className="absolute left-6 bottom-12 right-6 h-px origin-right bg-[#B4924C] sm:left-12 sm:right-12 lg:left-20 lg:right-20"
           aria-hidden
         />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-center px-6 sm:px-12 lg:px-20">
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-center px-6 pt-32 pb-20 sm:px-12 lg:px-20">
           <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">
             Matsunaga Tax Accountant Office · Yotsuya, Tokyo
           </p>

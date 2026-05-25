@@ -26,7 +26,7 @@ export function TravelDestinations() {
       style={{ height: `${DESTINATIONS.length * 90}vh` }}
     >
       <div className="sticky top-0 flex h-screen flex-col overflow-hidden">
-        <div className="px-6 pt-16 sm:px-12 lg:px-20">
+        <div className="px-6 pt-20 pb-12 sm:px-12 lg:px-20">
           <div className="mx-auto flex max-w-6xl items-end justify-between">
             <SectionLabel number="02" className="text-white/80">
               Destinations

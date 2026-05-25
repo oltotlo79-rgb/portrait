@@ -128,7 +128,7 @@ export function BakeryTop() {
           particleClassName="bg-[#3A2A18]/30"
         />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-36 pt-28 sm:px-12 lg:px-20">
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-16 pt-32 sm:px-12 lg:px-20">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -168,20 +168,6 @@ export function BakeryTop() {
             </div>
           </FadeIn>
 
-          <FadeIn delay={1.25}>
-            <dl className="mt-14 grid max-w-xl grid-cols-3 divide-x divide-[#3A2A18]/18 border-y border-[#3A2A18]/18 py-5">
-              {HERO_STATS.map((item) => (
-                <div key={item.label} className="px-4 first:pl-0 last:pr-0">
-                  <dt className="text-[10px] uppercase tracking-[0.26em] text-[#6B4423]/70">
-                    {item.label}
-                  </dt>
-                  <dd className="mt-2 font-[family-name:var(--font-cormorant)] text-3xl italic text-[#3A2A18]">
-                    {item.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </FadeIn>
         </div>
 
         <div className="absolute bottom-6 right-6 z-20 hidden w-[320px] rounded-2xl border border-[#3A2A18]/12 bg-[#FBF6ED]/82 p-4 text-[#3A2A18] shadow-[0_24px_80px_-36px_rgba(58,42,24,0.45)] backdrop-blur-md lg:block">
