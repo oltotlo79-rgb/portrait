@@ -189,28 +189,6 @@ export function YogaTop() {
           </FadeIn>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 z-10 hidden border-t border-[#F8F3EA]/15 bg-[#1F2E24]/72 px-6 py-5 text-[#F8F3EA] backdrop-blur-md md:block sm:px-12 lg:px-20">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.35em] text-[#E8D5B7]">
-                Today&apos;s rhythm
-              </p>
-              <p className="mt-1 text-sm text-[#F8F3EA]/72">
-                朝のフローから夜のリストラティブまで、体調に合わせて選べます。
-              </p>
-            </div>
-            <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {DAILY_RHYTHM.map((item) => (
-                <li key={item.time} className="min-w-0 border-l border-[#F8F3EA]/18 pl-4">
-                  <p className="font-[family-name:var(--font-cormorant)] text-2xl italic text-[#E8D5B7]">
-                    {item.time}
-                  </p>
-                  <p className="truncate text-xs font-medium">{item.title}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
       </section>
 
       <KineticMarquee
