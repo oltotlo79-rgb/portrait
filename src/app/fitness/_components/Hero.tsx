@@ -1,30 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRight, Dumbbell, Gauge, MapPin } from "lucide-react";
+import { GlitchText } from "@/lib/animations";
+
+const HERO_METRICS = [
+  { label: "Studios", value: "3", icon: MapPin },
+  { label: "Open", value: "24h", icon: Gauge },
+  { label: "Trial", value: "60m", icon: Dumbbell },
+];
 
 export function FitnessHero() {
-  const glitchRef = useRef<HTMLSpanElement>(null);
-
-  useEffect(() => {
-    const el = glitchRef.current;
-    if (!el) return;
-    let count = 0;
-    const id = setInterval(() => {
-      count++;
-      if (count > 6) {
-        clearInterval(id);
-        el.style.transform = "translate(0,0)";
-        return;
-      }
-      const dx = (Math.random() - 0.5) * 8;
-      const dy = (Math.random() - 0.5) * 4;
-      el.style.transform = `translate(${dx}px, ${dy}px)`;
-    }, 90);
-    return () => clearInterval(id);
-  }, []);
-
   return (
     <section className="relative flex h-screen min-h-[680px] items-center overflow-hidden bg-[#0A0A0A] text-white">
       {/* Background image */}
@@ -78,13 +66,15 @@ export function FitnessHero() {
         </motion.p>
 
         <h1 className="mt-8 font-[family-name:var(--font-bebas)] leading-[0.82] tracking-[-0.01em]">
-          <span
-            ref={glitchRef}
+          <GlitchText
+            seed={247}
+            steps={6}
+            amplitudeX={8}
+            amplitudeY={4}
             className="block text-[clamp(5rem,18vw,16rem)] text-white"
-            style={{ transition: "transform 0.04s" }}
           >
             IGNITE
-          </span>
+          </GlitchText>
           <motion.span
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,14 +97,51 @@ export function FitnessHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.5 }}
-          className="mt-16 flex flex-wrap items-center gap-8"
+          className="mt-16 flex flex-wrap items-end gap-8"
         >
           <p className="max-w-md font-[family-name:var(--font-noto-sans-jp)] text-sm leading-loose text-white/70">
             渋谷・池袋・恵比寿。24時間オープン、パーソナル特化。
             <br />
             コンテスト入賞のトレーナーが、本気で結果にコミットする。
           </p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/fitness/contact"
+              className="inline-flex items-center gap-2 bg-[#FFE600] px-6 py-3 font-[family-name:var(--font-bebas)] text-xl tracking-[0.18em] text-black transition-transform hover:scale-[1.04]"
+            >
+              BOOK TRIAL
+              <ArrowUpRight className="size-4" />
+            </Link>
+            <Link
+              href="/fitness/programs"
+              className="inline-flex items-center gap-2 border border-white/25 px-6 py-3 font-[family-name:var(--font-bebas)] text-xl tracking-[0.18em] text-white transition-colors hover:border-white"
+            >
+              PROGRAMS
+            </Link>
+          </div>
         </motion.div>
+
+        <motion.dl
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.9, duration: 0.7 }}
+          className="mt-12 grid max-w-2xl grid-cols-3 border-y border-[#FFE600]/24 py-5"
+        >
+          {HERO_METRICS.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.label} className="border-l border-[#FFE600]/24 px-5 first:border-l-0 first:pl-0">
+                <Icon className="mb-3 size-4 text-[#FFE600]" />
+                <dt className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/44">
+                  {item.label}
+                </dt>
+                <dd className="mt-1 font-[family-name:var(--font-bebas)] text-5xl leading-none text-white">
+                  {item.value}
+                </dd>
+              </div>
+            );
+          })}
+        </motion.dl>
 
         <motion.div
           initial={{ opacity: 0 }}

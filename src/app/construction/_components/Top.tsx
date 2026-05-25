@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn } from "@/lib/animations";
+import { ArrowUpRight, CalendarCheck, Hammer, Ruler, TreePine } from "lucide-react";
+import { FadeIn, KineticMarquee } from "@/lib/animations";
 
 const WORKS = [
   { code: "01", name: "松本市の平屋", year: "2025", body: "信州ヒノキの構造材、薪ストーブの大窓リビング。", image: "/images/construction/02-case-01-exterior.webp" },
@@ -67,17 +68,49 @@ export function ConstructionTop() {
             </FadeIn>
             <FadeIn delay={1.6}>
               <div className="mt-12 flex flex-wrap items-center gap-4">
-                <Link href="/construction/works" className="border border-[#C45D2E] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#C45D2E] transition-colors hover:bg-[#C45D2E] hover:text-[#2C2A28]">
+                <Link href="/construction/works" className="inline-flex items-center gap-2 border border-[#C45D2E] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#C45D2E] transition-colors hover:bg-[#C45D2E] hover:text-[#2C2A28]">
                   施工事例を見る
+                  <ArrowUpRight className="size-3.5" />
                 </Link>
                 <Link href="/construction/contact" className="text-xs uppercase tracking-[0.3em] text-[#F2EDE5]/80 hover:text-white">
                   構造見学会を予約 →
                 </Link>
               </div>
             </FadeIn>
+
+            <FadeIn delay={1.75}>
+              <div className="mt-12 grid max-w-3xl gap-3 border border-[#F2EDE5]/14 bg-[#2C2A28]/58 p-4 backdrop-blur-md md:grid-cols-3">
+                {[
+                  { icon: TreePine, label: "Local wood", value: "信州ヒノキ" },
+                  { icon: Hammer, label: "Craft team", value: "自社大工8名" },
+                  { icon: Ruler, label: "Open house", value: "構造見学可" },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.label} className="border-l border-[#C45D2E]/60 pl-4 first:border-l-0">
+                      <Icon className="mb-3 size-5 text-[#C45D2E]" />
+                      <p className="text-[10px] uppercase tracking-[0.28em] text-[#F2EDE5]/48">
+                        {item.label}
+                      </p>
+                      <p className="mt-1 font-[family-name:var(--font-noto-serif-jp)] text-sm font-bold text-[#F2EDE5]">
+                        {item.value}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>
+
+      <KineticMarquee
+        items={["structure", "hinoki", "craftsman", "open house", "100 years", "matsumoto"]}
+        durationSeconds={34}
+        className="border-y border-[#C45D2E]/20 bg-[#2C2A28] py-5"
+        trackClassName="font-[family-name:var(--font-anton)] text-[clamp(2.6rem,7vw,6rem)] tracking-[0.08em] text-[#F2EDE5]/18"
+        separator={<CalendarCheck className="size-5 text-[#C45D2E]" />}
+      />
 
       {/* Concept */}
       <section id="concept" className="bg-[#F2EDE5] px-6 py-40 sm:px-12 lg:px-20">

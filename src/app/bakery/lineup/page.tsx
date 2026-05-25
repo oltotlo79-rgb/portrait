@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { BakeryNav, BakeryFooter } from "../_components/Chrome";
 import { FadeIn } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";

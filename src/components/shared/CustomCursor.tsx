@@ -1,25 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  type SpringOptions,
-} from "framer-motion";
-
-const SPRING: SpringOptions = { damping: 28, stiffness: 320, mass: 0.4 };
-const SPRING_DOT: SpringOptions = { damping: 50, stiffness: 800, mass: 0.2 };
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motionSpring } from "@/lib/animations/tokens";
+import { layers } from "@/lib/styles/layers";
 
 type CursorState = "default" | "link" | "text";
 
 export function CustomCursor() {
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  const ringX = useSpring(x, SPRING);
-  const ringY = useSpring(y, SPRING);
-  const dotX = useSpring(x, SPRING_DOT);
-  const dotY = useSpring(y, SPRING_DOT);
+  const ringX = useSpring(x, motionSpring.cursor);
+  const ringY = useSpring(y, motionSpring.cursor);
+  const dotX = useSpring(x, motionSpring.cursorDot);
+  const dotY = useSpring(y, motionSpring.cursorDot);
 
   const [state, setState] = useState<CursorState>("default");
   const [enabled, setEnabled] = useState(false);
@@ -30,7 +24,7 @@ export function CustomCursor() {
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     if (isTouch) return;
     // reduced-motion でも基本動作はOK（spring は控えめになる）
-    setEnabled(true);
+    const enableId = window.requestAnimationFrame(() => setEnabled(true));
 
     const onMove = (e: MouseEvent) => {
       x.set(e.clientX);
@@ -57,6 +51,7 @@ export function CustomCursor() {
     document.documentElement.classList.add("cursor-none-active");
 
     return () => {
+      window.cancelAnimationFrame(enableId);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseover", onOver);
       document.documentElement.classList.remove("cursor-none-active");
@@ -73,20 +68,20 @@ export function CustomCursor() {
       {/* Outer ring — lags */}
       <motion.div
         aria-hidden
-        style={{ x: ringX, y: ringY }}
+        style={{ x: ringX, y: ringY, zIndex: layers.cursorRing }}
         animate={{ scale: ringScale }}
         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-none fixed left-0 top-0 z-[9999] -translate-x-1/2 -translate-y-1/2 will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 -translate-x-1/2 -translate-y-1/2 will-change-transform"
       >
         <div className="size-8 rounded-full border border-white mix-blend-difference" />
       </motion.div>
       {/* Inner dot — snappy */}
       <motion.div
         aria-hidden
-        style={{ x: dotX, y: dotY }}
+        style={{ x: dotX, y: dotY, zIndex: layers.cursorDot }}
         animate={{ scale: dotScale }}
         transition={{ duration: 0.15 }}
-        className="pointer-events-none fixed left-0 top-0 z-[10000] -translate-x-1/2 -translate-y-1/2 will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 -translate-x-1/2 -translate-y-1/2 will-change-transform"
       >
         <div className="size-1.5 rounded-full bg-white mix-blend-difference" />
       </motion.div>

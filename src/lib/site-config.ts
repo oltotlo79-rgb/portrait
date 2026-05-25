@@ -1,5 +1,27 @@
 export type SiteStatus = "live" | "wip";
 
+export type SiteCategory =
+  | "hospitality"
+  | "food"
+  | "wellness"
+  | "professional"
+  | "retail"
+  | "local"
+  | "lifestyle";
+
+export type MotionIntensity = "quiet" | "medium" | "bold" | "experimental";
+
+export type ConversionGoal = "booking" | "contact" | "purchase" | "visit" | "lead";
+
+export type DesignScores = {
+  trust: 0 | 1 | 2 | 3 | 4 | 5;
+  warmth: 0 | 1 | 2 | 3 | 4 | 5;
+  luxury: 0 | 1 | 2 | 3 | 4 | 5;
+  energy: 0 | 1 | 2 | 3 | 4 | 5;
+  craft: 0 | 1 | 2 | 3 | 4 | 5;
+  conversion: 0 | 1 | 2 | 3 | 4 | 5;
+};
+
 export type SiteConfig = {
   slug: string;
   name: string;
@@ -8,8 +30,14 @@ export type SiteConfig = {
   catch: string;
   primary: string;
   accent: string;
+  background: string;
   thumb: string;
   status: SiteStatus;
+  category: SiteCategory;
+  motionIntensity: MotionIntensity;
+  conversionGoal: ConversionGoal;
+  designKeywords: readonly string[];
+  designScores: DesignScores;
 };
 
 export const IMPLEMENTED_SITES = new Set([
@@ -40,8 +68,14 @@ export const sites: SiteConfig[] = [
     catch: "京都西陣、1日1組の町家ステイ",
     primary: "#3F4A3C",
     accent: "#C9A063",
+    background: "#F4EFE4",
     thumb: "/images/portfolio/thumb-minpaku.webp",
     status: "live",
+    category: "hospitality",
+    motionIntensity: "quiet",
+    conversionGoal: "booking",
+    designKeywords: ["町家", "静けさ", "余白"],
+    designScores: { trust: 4, warmth: 5, luxury: 4, energy: 1, craft: 5, conversion: 3 },
   },
   {
     slug: "travel",
@@ -51,8 +85,14 @@ export const sites: SiteConfig[] = [
     catch: "大人のためのオーダーメイド旅行",
     primary: "#0F4C81",
     accent: "#F4B400",
+    background: "#081A2D",
     thumb: "/images/portfolio/thumb-travel.webp",
     status: "live",
+    category: "hospitality",
+    motionIntensity: "medium",
+    conversionGoal: "lead",
+    designKeywords: ["旅程", "写真", "余韻"],
+    designScores: { trust: 4, warmth: 3, luxury: 4, energy: 3, craft: 2, conversion: 4 },
   },
   {
     slug: "restaurant",
@@ -62,8 +102,14 @@ export const sites: SiteConfig[] = [
     catch: "神楽坂のカウンター割烹",
     primary: "#0F0F0F",
     accent: "#B59154",
+    background: "#11100E",
     thumb: "/images/portfolio/thumb-restaurant.webp",
     status: "live",
+    category: "food",
+    motionIntensity: "quiet",
+    conversionGoal: "booking",
+    designKeywords: ["陰影", "料理", "緊張感"],
+    designScores: { trust: 4, warmth: 2, luxury: 5, energy: 2, craft: 5, conversion: 4 },
   },
   {
     slug: "kids",
@@ -73,8 +119,14 @@ export const sites: SiteConfig[] = [
     catch: "3〜8歳と親の創作・実験教室",
     primary: "#FF8FA3",
     accent: "#FFD166",
+    background: "#FFF8E8",
     thumb: "/images/portfolio/thumb-kids.webp",
     status: "live",
+    category: "lifestyle",
+    motionIntensity: "bold",
+    conversionGoal: "booking",
+    designKeywords: ["親子", "実験", "手描き"],
+    designScores: { trust: 3, warmth: 5, luxury: 1, energy: 5, craft: 4, conversion: 4 },
   },
   {
     slug: "salon",
@@ -84,8 +136,14 @@ export const sites: SiteConfig[] = [
     catch: "完全予約制ヘアサロン",
     primary: "#E8DCD0",
     accent: "#B8896A",
+    background: "#F6F0EA",
     thumb: "/images/portfolio/thumb-salon.webp",
     status: "live",
+    category: "lifestyle",
+    motionIntensity: "medium",
+    conversionGoal: "booking",
+    designKeywords: ["余白", "髪", "質感"],
+    designScores: { trust: 4, warmth: 3, luxury: 4, energy: 2, craft: 4, conversion: 4 },
   },
   {
     slug: "chiro",
@@ -95,8 +153,14 @@ export const sites: SiteConfig[] = [
     catch: "痛みの原因を整える",
     primary: "#2E5266",
     accent: "#A9C4C4",
+    background: "#F3F8F8",
     thumb: "/images/portfolio/thumb-chiro.webp",
     status: "live",
+    category: "wellness",
+    motionIntensity: "quiet",
+    conversionGoal: "booking",
+    designKeywords: ["姿勢", "安心", "清潔"],
+    designScores: { trust: 5, warmth: 4, luxury: 2, energy: 2, craft: 3, conversion: 4 },
   },
   {
     slug: "tax",
@@ -106,8 +170,14 @@ export const sites: SiteConfig[] = [
     catch: "経営者の右腕税理士",
     primary: "#0E2A47",
     accent: "#B4924C",
+    background: "#F7F8FA",
     thumb: "/images/portfolio/thumb-tax.webp",
     status: "live",
+    category: "professional",
+    motionIntensity: "quiet",
+    conversionGoal: "lead",
+    designKeywords: ["信頼", "罫線", "数字"],
+    designScores: { trust: 5, warmth: 2, luxury: 3, energy: 1, craft: 2, conversion: 5 },
   },
   {
     slug: "construction",
@@ -117,8 +187,14 @@ export const sites: SiteConfig[] = [
     catch: "100年もつ家を、手で建てる",
     primary: "#2C2A28",
     accent: "#C45D2E",
+    background: "#F2EEE7",
     thumb: "/images/portfolio/thumb-construction.webp",
     status: "live",
+    category: "local",
+    motionIntensity: "medium",
+    conversionGoal: "lead",
+    designKeywords: ["図面", "木材", "職人"],
+    designScores: { trust: 5, warmth: 3, luxury: 2, energy: 3, craft: 5, conversion: 4 },
   },
   {
     slug: "dental",
@@ -128,8 +204,14 @@ export const sites: SiteConfig[] = [
     catch: "痛みの少ない予防型歯科",
     primary: "#5BB7B7",
     accent: "#FFC9B3",
+    background: "#F6FCFC",
     thumb: "/images/portfolio/thumb-dental.webp",
     status: "live",
+    category: "wellness",
+    motionIntensity: "quiet",
+    conversionGoal: "booking",
+    designKeywords: ["予防", "家族", "透明感"],
+    designScores: { trust: 5, warmth: 4, luxury: 2, energy: 2, craft: 2, conversion: 5 },
   },
   {
     slug: "pet",
@@ -139,8 +221,14 @@ export const sites: SiteConfig[] = [
     catch: "完全個別対応のトリミング",
     primary: "#A37864",
     accent: "#FFC97A",
+    background: "#FFF3DD",
     thumb: "/images/portfolio/thumb-pet.webp",
     status: "live",
+    category: "local",
+    motionIntensity: "bold",
+    conversionGoal: "booking",
+    designKeywords: ["個別対応", "丸み", "安心"],
+    designScores: { trust: 4, warmth: 5, luxury: 1, energy: 4, craft: 3, conversion: 4 },
   },
   {
     slug: "organic",
@@ -150,8 +238,14 @@ export const sites: SiteConfig[] = [
     catch: "信州の有機野菜とハーブ",
     primary: "#3F5B36",
     accent: "#D8C29D",
+    background: "#F5F0E3",
     thumb: "/images/portfolio/thumb-organic.webp",
     status: "live",
+    category: "retail",
+    motionIntensity: "medium",
+    conversionGoal: "purchase",
+    designKeywords: ["畑", "紙", "季節"],
+    designScores: { trust: 4, warmth: 5, luxury: 2, energy: 2, craft: 5, conversion: 4 },
   },
   {
     slug: "fitness",
@@ -161,8 +255,14 @@ export const sites: SiteConfig[] = [
     catch: "燃え尽きたら、また点ければいい",
     primary: "#0A0A0A",
     accent: "#FFE600",
+    background: "#090909",
     thumb: "/images/portfolio/thumb-fitness.webp",
     status: "live",
+    category: "wellness",
+    motionIntensity: "experimental",
+    conversionGoal: "booking",
+    designKeywords: ["ネオン", "速度", "熱量"],
+    designScores: { trust: 3, warmth: 1, luxury: 2, energy: 5, craft: 2, conversion: 5 },
   },
   {
     slug: "ryokan",
@@ -172,8 +272,14 @@ export const sites: SiteConfig[] = [
     catch: "信州・美山の老舗、月白色の露天",
     primary: "#1A2230",
     accent: "#E8743C",
+    background: "#101722",
     thumb: "/images/portfolio/thumb-ryokan.webp",
     status: "live",
+    category: "hospitality",
+    motionIntensity: "quiet",
+    conversionGoal: "booking",
+    designKeywords: ["月", "湯気", "静謐"],
+    designScores: { trust: 5, warmth: 3, luxury: 5, energy: 1, craft: 5, conversion: 4 },
   },
   {
     slug: "bakery",
@@ -183,8 +289,14 @@ export const sites: SiteConfig[] = [
     catch: "朝6時、街の小さなブーランジェリー",
     primary: "#3A2A18",
     accent: "#D4A647",
+    background: "#FBF6ED",
     thumb: "/images/portfolio/thumb-bakery.webp",
     status: "live",
+    category: "food",
+    motionIntensity: "medium",
+    conversionGoal: "visit",
+    designKeywords: ["朝", "発酵", "手仕事"],
+    designScores: { trust: 4, warmth: 5, luxury: 2, energy: 2, craft: 5, conversion: 3 },
   },
   {
     slug: "yoga",
@@ -194,8 +306,14 @@ export const sites: SiteConfig[] = [
     catch: "代々木上原、少人数制のスタジオ",
     primary: "#2C3A2E",
     accent: "#6B7F6F",
+    background: "#F4F0E8",
     thumb: "/images/portfolio/thumb-yoga.webp",
     status: "live",
+    category: "wellness",
+    motionIntensity: "quiet",
+    conversionGoal: "booking",
+    designKeywords: ["呼吸", "植物", "余白"],
+    designScores: { trust: 4, warmth: 4, luxury: 3, energy: 1, craft: 3, conversion: 4 },
   },
   {
     slug: "coworking",
@@ -205,7 +323,13 @@ export const sites: SiteConfig[] = [
     catch: "渋谷・丸の内、24h テック特化",
     primary: "#0A0E1A",
     accent: "#00E5FF",
+    background: "#0A0E1A",
     thumb: "/images/portfolio/thumb-coworking.webp",
     status: "live",
+    category: "professional",
+    motionIntensity: "experimental",
+    conversionGoal: "lead",
+    designKeywords: ["グリッド", "稼働率", "深い集中"],
+    designScores: { trust: 4, warmth: 2, luxury: 3, energy: 4, craft: 2, conversion: 5 },
   },
 ];

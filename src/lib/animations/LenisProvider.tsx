@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { motionDurations } from "./tokens";
 
 let lenisInstance: Lenis | null = null;
 
@@ -15,7 +16,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     if (reduced) return;
 
     const lenis = new Lenis({
-      duration: 1.1,
+      duration: motionDurations.slow,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });

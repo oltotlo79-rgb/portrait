@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText, Tilt3D } from "@/lib/animations";
+import { Clock, Leaf, MapPin, Sparkles, Wind } from "lucide-react";
+import { FadeIn, KineticMarquee, RevealText, Tilt3D } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
 
 const CLASSES = [
@@ -55,11 +56,42 @@ const TEACHERS = [
   },
 ];
 
+const HERO_STATS = [
+  { label: "Class size", value: "8 max" },
+  { label: "Open", value: "06:00" },
+  { label: "Private", value: "1:1" },
+];
+
+const DAILY_RHYTHM = [
+  { time: "06:00", title: "Sunrise Flow", body: "朝の光で体温を上げる" },
+  { time: "11:00", title: "Reformer", body: "姿勢とコアを整える" },
+  { time: "18:30", title: "Power Yoga", body: "一日の緊張を動きでほどく" },
+  { time: "20:15", title: "Restorative", body: "深く休むための夜の余白" },
+];
+
+const EXPERIENCE = [
+  {
+    icon: Wind,
+    label: "Breath-led",
+    body: "呼吸のテンポに合わせて強度を調整。初心者でも置いていかれない設計です。",
+  },
+  {
+    icon: Leaf,
+    label: "Small room",
+    body: "最大8名。講師が全員の姿勢と疲れ方を見ながらクラスを進めます。",
+  },
+  {
+    icon: Sparkles,
+    label: "After care",
+    body: "レッスン後はハーブティーと短いセルフケアメモをお渡しします。",
+  },
+];
+
 export function YogaTop() {
   return (
     <>
       {/* Hero — dawn-to-day gradient + breathing circle */}
-      <section className="relative h-screen min-h-[720px] overflow-hidden bg-[#F4F0E8]">
+      <section className="relative h-screen min-h-[720px] overflow-hidden bg-[#25342A] text-[#F8F3EA]">
         <Image
           src="/images/yoga/01-hero-window.webp"
           alt=""
@@ -75,46 +107,50 @@ export function YogaTop() {
           className="pointer-events-none absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(232,213,183,0.6) 0%, rgba(107,127,111,0.15) 40%, rgba(244,240,232,0.4) 100%)",
+              "linear-gradient(90deg, rgba(31,46,36,0.9) 0%, rgba(31,46,36,0.72) 42%, rgba(31,46,36,0.18) 100%)",
           }}
-          animate={{ opacity: [0.7, 1, 0.7] }}
+          animate={{ opacity: [0.9, 1, 0.9] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(31,46,36,0.18)_0%,rgba(31,46,36,0.04)_45%,rgba(31,46,36,0.55)_100%)]"
         />
 
         {/* Breathing circle — center, inhales/exhales */}
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#6B7F6F]/40 lg:size-[640px]"
+          className="pointer-events-none absolute left-1/2 top-1/2 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#F8F3EA]/28 lg:size-[640px]"
           animate={{ scale: [1, 1.15, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute left-1/2 top-1/2 size-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#E8D5B7]/60 lg:size-[440px]"
+          className="pointer-events-none absolute left-1/2 top-1/2 size-[280px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#E8D5B7]/45 lg:size-[440px]"
           animate={{ scale: [1, 1.08, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-center px-6 sm:px-12 lg:px-20">
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-center px-6 pb-28 pt-28 sm:px-12 lg:px-20">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="text-[10px] uppercase tracking-[0.5em] text-[#6B7F6F]"
+            className="text-[10px] uppercase tracking-[0.5em] text-[#E8D5B7]"
           >
             Yoyogi-Uehara · Yoga &amp; Pilates
           </motion.p>
-          <h1 className="mt-8 font-[family-name:var(--font-cormorant)] text-[clamp(2.75rem,8vw,7rem)] italic leading-[0.95] text-[#2C3A2E]">
+          <h1 className="mt-8 font-[family-name:var(--font-cormorant)] text-[clamp(2.75rem,8vw,7rem)] italic leading-[0.95] text-[#F8F3EA] drop-shadow-[0_2px_24px_rgba(0,0,0,0.28)]">
             <RevealText text="Inhale," splitBy="word" />
             <span className="block">
               <RevealText text="Exhale." splitBy="word" delay={0.2} />
             </span>
-            <span className="block mt-4 font-[family-name:var(--font-noto-serif-jp)] not-italic text-[0.35em] tracking-[0.3em] text-[#2C3A2E]/80">
+            <span className="mt-4 block font-[family-name:var(--font-noto-serif-jp)] text-[0.35em] not-italic tracking-[0.3em] text-[#F8F3EA]/86">
               <RevealText text="ひと呼吸ずつ、整える。" splitBy="word" delay={0.6} />
             </span>
           </h1>
           <FadeIn delay={1.0}>
-            <p className="mt-10 max-w-md text-sm leading-loose text-[#2C3A2E]/80">
+            <p className="mt-10 max-w-md text-sm leading-loose text-[#F8F3EA]/82 drop-shadow-[0_1px_16px_rgba(0,0,0,0.25)]">
               代々木上原の小さなスタジオ。
               グループは最大8名、プライベートも承ります。
               朝6時から夜21時まで、ご自身のペースで。
@@ -124,20 +160,66 @@ export function YogaTop() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href="/yoga/contact"
-                className="rounded-full bg-[#2C3A2E] px-8 py-4 text-sm text-[#F4F0E8] transition-transform hover:scale-[1.04]"
+                className="rounded-full bg-[#F8F3EA] px-8 py-4 text-sm text-[#26362C] transition-transform hover:scale-[1.04]"
               >
                 体験レッスン（¥2,200）
               </Link>
               <Link
                 href="/yoga/classes"
-                className="rounded-full border-2 border-[#2C3A2E] px-8 py-4 text-sm text-[#2C3A2E] transition-colors hover:bg-[#2C3A2E] hover:text-[#F4F0E8]"
+                className="rounded-full border-2 border-[#F8F3EA]/70 px-8 py-4 text-sm text-[#F8F3EA] transition-colors hover:bg-[#F8F3EA] hover:text-[#26362C]"
               >
                 クラス一覧
               </Link>
             </div>
           </FadeIn>
+
+          <FadeIn delay={1.35}>
+            <dl className="mt-14 grid max-w-xl grid-cols-3 divide-x divide-[#F8F3EA]/18 border-y border-[#F8F3EA]/18 py-5">
+              {HERO_STATS.map((item) => (
+                <div key={item.label} className="px-4 first:pl-0 last:pr-0">
+                  <dt className="text-[10px] uppercase tracking-[0.28em] text-[#E8D5B7]/80">
+                    {item.label}
+                  </dt>
+                  <dd className="mt-2 font-[family-name:var(--font-cormorant)] text-3xl italic text-[#F8F3EA]">
+                    {item.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </FadeIn>
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 z-10 hidden border-t border-[#F8F3EA]/15 bg-[#1F2E24]/72 px-6 py-5 text-[#F8F3EA] backdrop-blur-md md:block sm:px-12 lg:px-20">
+          <div className="mx-auto flex max-w-6xl flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.35em] text-[#E8D5B7]">
+                Today&apos;s rhythm
+              </p>
+              <p className="mt-1 text-sm text-[#F8F3EA]/72">
+                朝のフローから夜のリストラティブまで、体調に合わせて選べます。
+              </p>
+            </div>
+            <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {DAILY_RHYTHM.map((item) => (
+                <li key={item.time} className="min-w-0 border-l border-[#F8F3EA]/18 pl-4">
+                  <p className="font-[family-name:var(--font-cormorant)] text-2xl italic text-[#E8D5B7]">
+                    {item.time}
+                  </p>
+                  <p className="truncate text-xs font-medium">{item.title}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
+
+      <KineticMarquee
+        items={["Breathe in", "Align", "Flow", "Strength", "Restore", "Breathe out"]}
+        durationSeconds={34}
+        className="border-y border-[#2C3A2E]/10 bg-[#F4F0E8] py-6"
+        trackClassName="font-[family-name:var(--font-cormorant)] text-[clamp(2.4rem,6vw,5.4rem)] italic text-[#2C3A2E]/28"
+        separator={<span className="inline-block h-px w-14 bg-[#C8795A]/70" />}
+      />
 
       {/* Classes */}
       <section className="bg-[#F4F0E8] px-6 py-32 sm:px-12 lg:px-20">
@@ -198,6 +280,78 @@ export function YogaTop() {
         </div>
       </section>
 
+      {/* Experience */}
+      <section className="bg-[#E8D5B7] px-6 py-32 text-[#26362C] sm:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
+          <div>
+            <SectionLabel number="02" className="text-[#C8795A]">
+              Practice Design
+            </SectionLabel>
+            <h2 className="mt-6 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,7vw,6rem)] italic leading-none">
+              Quiet,
+              <br />
+              but not plain.
+            </h2>
+            <p className="mt-8 max-w-sm font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#26362C]/72">
+              静かなページでも、予約前に「ここで過ごす時間」が想像できること。
+              ヨガサイトでは、動きの強さよりも呼吸・空間・一日のリズムを可視化します。
+            </p>
+          </div>
+
+          <div className="grid gap-10">
+            <ol className="grid gap-4">
+              {DAILY_RHYTHM.map((item, i) => (
+                <motion.li
+                  key={item.time}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.7, delay: i * 0.08 }}
+                  className="grid grid-cols-[auto_1fr] gap-6 border-b border-[#26362C]/18 pb-5"
+                >
+                  <div className="flex items-start gap-3">
+                    <Clock className="mt-1 size-4 text-[#C8795A]" />
+                    <span className="font-[family-name:var(--font-cormorant)] text-4xl italic leading-none">
+                      {item.time}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[#26362C]/68">
+                      {item.body}
+                    </p>
+                  </div>
+                </motion.li>
+              ))}
+            </ol>
+
+            <ul className="grid gap-4 md:grid-cols-3">
+              {EXPERIENCE.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <motion.li
+                    key={item.label}
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.6, delay: i * 0.08 }}
+                    className="border border-[#26362C]/14 bg-[#F4F0E8]/45 p-5"
+                  >
+                    <Icon className="size-5 text-[#C8795A]" />
+                    <h3 className="mt-4 text-sm font-semibold uppercase tracking-[0.18em]">
+                      {item.label}
+                    </h3>
+                    <p className="mt-3 text-xs leading-relaxed text-[#26362C]/66">
+                      {item.body}
+                    </p>
+                  </motion.li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Studio */}
       <section
         id="studio"
@@ -231,6 +385,16 @@ export function YogaTop() {
                 築古民家を一棟リノベ。床は無垢のオーク、東向きの大窓から朝の光が入ります。
                 グループは最大8名、ピラティスのリフォーマーは4台。
               </p>
+              <div className="mt-8 flex flex-wrap gap-3 text-[11px] uppercase tracking-[0.24em] text-[#F4F0E8]/78">
+                <span className="inline-flex items-center gap-2 border border-[#F4F0E8]/18 px-3 py-2">
+                  <MapPin className="size-3.5 text-[#E8D5B7]" />
+                  Yoyogi-Uehara
+                </span>
+                <span className="inline-flex items-center gap-2 border border-[#F4F0E8]/18 px-3 py-2">
+                  <Leaf className="size-3.5 text-[#E8D5B7]" />
+                  Oak floor
+                </span>
+              </div>
               <dl className="mt-10 grid grid-cols-2 gap-4 border-t border-[#F4F0E8]/15 pt-6 text-xs">
                 <div>
                   <dt className="uppercase tracking-[0.3em] text-[#E8D5B7]">

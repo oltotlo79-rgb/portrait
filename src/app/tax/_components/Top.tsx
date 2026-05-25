@@ -3,13 +3,14 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight, Clock3, FileCheck2, Landmark, ShieldCheck } from "lucide-react";
 import {
   motion,
   useInView,
   useMotionValue,
   animate,
 } from "framer-motion";
-import { FadeIn, RevealText } from "@/lib/animations";
+import { FadeIn, KineticMarquee, RevealText } from "@/lib/animations";
 
 const KPIS = [
   { v: 82, s: "社", l: "顧問先・IT/スタートアップ" },
@@ -148,9 +149,10 @@ export function TaxTop() {
             <div className="mt-12 flex flex-wrap items-center gap-4">
               <Link
                 href="/tax/contact"
-                className="border border-[#B4924C] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#B4924C] transition-colors hover:bg-[#B4924C] hover:text-[#0E2A47]"
+                className="inline-flex items-center gap-2 border border-[#B4924C] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#B4924C] transition-colors hover:bg-[#B4924C] hover:text-[#0E2A47]"
               >
                 無料相談を申し込む
+                <ArrowUpRight className="size-3.5" />
               </Link>
               <Link
                 href="/tax/services"
@@ -161,7 +163,42 @@ export function TaxTop() {
             </div>
           </FadeIn>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.35, duration: 0.9 }}
+          className="absolute bottom-8 right-8 z-20 hidden w-[360px] rounded border border-[#B4924C]/35 bg-[#0B223A]/82 p-5 shadow-[0_24px_90px_-44px_rgba(0,0,0,0.7)] backdrop-blur-md lg:block"
+        >
+          <p className="text-[10px] uppercase tracking-[0.35em] text-[#B4924C]">
+            Advisory brief
+          </p>
+          <dl className="mt-5 grid gap-4 text-sm">
+            {[
+              { icon: Clock3, label: "初回返信", value: "24h以内" },
+              { icon: FileCheck2, label: "月次資料", value: "クラウド共有" },
+              { icon: Landmark, label: "資金調達", value: "金融機関連携" },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.label} className="flex items-center gap-4 border-t border-white/10 pt-4 first:border-t-0 first:pt-0">
+                  <Icon className="size-5 text-[#B4924C]" />
+                  <dt className="flex-1 text-white/58">{item.label}</dt>
+                  <dd className="font-bold text-white">{item.value}</dd>
+                </div>
+              );
+            })}
+          </dl>
+        </motion.div>
       </section>
+
+      <KineticMarquee
+        items={["monthly close", "tax filing", "funding", "subsidy", "cash flow", "cloud accounting"]}
+        durationSeconds={36}
+        className="border-y border-[#0E2A47]/10 bg-[#F5F2EC] py-5"
+        trackClassName="font-[family-name:var(--font-noto-serif-jp)] text-[clamp(2rem,5vw,4.5rem)] font-bold text-[#0E2A47]/16"
+        separator={<ShieldCheck className="size-5 text-[#B4924C]" />}
+      />
 
       {/* KPIs */}
       <section className="relative overflow-hidden bg-[#F5F2EC] px-6 py-32 sm:px-12 lg:px-20">

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { KineticMarquee } from "@/lib/animations";
 
 const ITEMS = [
   "NO EXCUSES",
@@ -26,41 +26,13 @@ export function ScrollVelocityBanner({
   durationSeconds?: number;
 }) {
   return (
-    <section
-      aria-hidden
-      className="relative overflow-hidden border-y border-[#FFE600]/30 bg-[#0A0A0A] py-10"
-    >
-      <motion.div
-        className="flex w-max whitespace-nowrap font-[family-name:var(--font-bebas)] text-[clamp(3rem,8vw,7rem)] tracking-[0.05em] text-[#FFE600]"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{
-          duration: durationSeconds,
-          ease: "linear",
-          repeat: Infinity,
-          repeatType: "loop",
-        }}
-      >
-        <div className="flex shrink-0">
-          {ITEMS.map((t, i) => (
-            <Token key={`a-${i}`} label={t} />
-          ))}
-        </div>
-        <div className="flex shrink-0" aria-hidden>
-          {ITEMS.map((t, i) => (
-            <Token key={`b-${i}`} label={t} />
-          ))}
-        </div>
-      </motion.div>
-    </section>
-  );
-}
-
-function Token({ label }: { label: string }) {
-  return (
-    <span className="mr-12 inline-flex items-center gap-12">
-      <span>{label}</span>
-      <Dot />
-    </span>
+    <KineticMarquee
+      items={ITEMS}
+      durationSeconds={durationSeconds}
+      className="border-y border-[#FFE600]/30 bg-[#0A0A0A] py-10"
+      trackClassName="font-[family-name:var(--font-bebas)] text-[clamp(3rem,8vw,7rem)] tracking-[0.05em] text-[#FFE600]"
+      separator={<Dot />}
+    />
   );
 }
 function Dot() {

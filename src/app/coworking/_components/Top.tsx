@@ -24,7 +24,6 @@ import {
   FadeIn,
   GlitchText,
   KineticMarquee,
-  RevealText,
   Tilt3D,
 } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
@@ -217,7 +216,7 @@ export function CoworkingTop() {
               <span className="text-[#00E5FF]">you work.</span>
             </h2>
             <p className="max-w-xs font-mono text-xs uppercase tracking-[0.25em] text-white/40">
-              // 3 plans · 0 lock-in
+              {"// 3 plans · 0 lock-in"}
               <br />
               switch anytime, day-of
             </p>
@@ -310,7 +309,7 @@ export function CoworkingTop() {
               <span className="text-[#00E5FF]">deep work.</span>
             </h2>
             <p className="max-w-xs font-mono text-xs uppercase tracking-[0.25em] text-white/40">
-              // 6 amenities
+              {"// 6 amenities"}
               <br />
               tested, not advertised
             </p>
@@ -515,7 +514,7 @@ export function CoworkingTop() {
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#00E5FF]">
-              // Stack & Partners
+              {"// Stack & Partners"}
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
               ぶれない品質のために、揃えたもの
@@ -924,7 +923,7 @@ function CTASection() {
           </Link>
         </div>
         <p className="mt-12 font-mono text-[10px] uppercase tracking-[0.3em] text-white/30">
-          // No card needed for tour · No lock-in
+          {"// No card needed for tour · No lock-in"}
         </p>
       </div>
 

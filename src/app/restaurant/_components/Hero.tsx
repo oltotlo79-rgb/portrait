@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRight, Clock3, Utensils } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/animations/variants";
 
 export function RestaurantHero() {
@@ -98,6 +100,34 @@ export function RestaurantHero() {
           Scroll ↓
         </motion.p>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 3.7, duration: 0.9, ease: EASE_OUT_EXPO }}
+        className="absolute bottom-8 left-6 right-6 z-20 mx-auto grid max-w-5xl gap-3 border border-[#EFE9DD]/12 bg-[#0F0F0F]/70 p-4 backdrop-blur-md sm:left-12 sm:right-12 md:grid-cols-[1fr_auto_auto]"
+      >
+        <div>
+          <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.35em] text-[#B59154]">
+            <Utensils className="size-3.5" />
+            Tonight&apos;s counter
+          </p>
+          <p className="mt-2 font-[family-name:var(--font-noto-serif-jp)] text-sm text-[#EFE9DD]/76">
+            18:00 / 20:30 の二部制。八席のみ、季節のおまかせ。
+          </p>
+        </div>
+        <div className="flex items-center gap-3 border-[#EFE9DD]/10 text-xs text-[#EFE9DD]/72 md:border-l md:px-6">
+          <Clock3 className="size-4 text-[#B59154]" />
+          最終入店 20:30
+        </div>
+        <Link
+          href="/restaurant/reservation"
+          className="inline-flex items-center justify-center gap-2 border border-[#B59154] px-5 py-3 text-[10px] uppercase tracking-[0.28em] text-[#B59154] transition-colors hover:bg-[#B59154] hover:text-[#0F0F0F]"
+        >
+          予約する
+          <ArrowUpRight className="size-3.5" />
+        </Link>
+      </motion.div>
     </section>
   );
 }

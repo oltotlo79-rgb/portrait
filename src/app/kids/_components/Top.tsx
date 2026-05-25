@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText, Tilt3D } from "@/lib/animations";
+import { CalendarDays, MapPin, Sparkles, Users } from "lucide-react";
+import { FadeIn, KineticMarquee, RevealText, Tilt3D } from "@/lib/animations";
 
 const PROGRAMS = [
   {
@@ -83,6 +84,12 @@ const WORKS = [
   "/images/kids/09-work-04.webp",
 ];
 
+const HERO_FACTS = [
+  { icon: Users, label: "Max", value: "8組" },
+  { icon: CalendarDays, label: "Weekend", value: "90分" },
+  { icon: MapPin, label: "Place", value: "自由が丘" },
+];
+
 export function KidsTop() {
   return (
     <>
@@ -155,8 +162,35 @@ export function KidsTop() {
             <span>👥 1コマ最大8組</span>
             <span>📍 自由が丘</span>
           </div>
+
+          <FadeIn delay={0.9}>
+            <div className="mt-10 grid max-w-2xl gap-3 rounded-3xl border-2 border-[#3D2B1F]/10 bg-white/72 p-4 shadow-[0_20px_60px_-36px_rgba(61,43,31,0.35)] backdrop-blur md:grid-cols-3">
+              {HERO_FACTS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.label} className="rounded-2xl bg-[#FFF9F0] p-4">
+                    <Icon className="size-5 text-[#FF8FA3]" />
+                    <p className="mt-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#3D2B1F]/48">
+                      {item.label}
+                    </p>
+                    <p className="mt-1 font-[family-name:var(--font-mplus-rounded)] text-2xl font-extrabold text-[#3D2B1F]">
+                      {item.value}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </FadeIn>
         </div>
       </section>
+
+      <KineticMarquee
+        items={["experiment", "craft", "picture book", "season sweets", "parent & child"]}
+        durationSeconds={30}
+        className="border-y-2 border-[#FFD166]/50 bg-[#FFF9F0] py-5"
+        trackClassName="font-[family-name:var(--font-mplus-rounded)] text-[clamp(2rem,5vw,4.6rem)] font-extrabold text-[#FF8FA3]/30"
+        separator={<Sparkles className="size-6 text-[#FFD166]" />}
+      />
 
       {/* Programs */}
       <section className="relative bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20">

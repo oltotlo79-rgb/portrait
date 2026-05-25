@@ -4,7 +4,7 @@ import { YogaTop } from "./_components/Top";
 export default function YogaPage() {
   return (
     <>
-      <YogaNav />
+      <YogaNav variant="hero" />
       <YogaTop />
       <YogaFooter />
     </>

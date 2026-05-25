@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { EASE_OUT_EXPO } from "./variants";
+import { motionDurations, motionStaggers } from "./tokens";
 
 type RevealTextProps = {
   text: string;
@@ -34,7 +35,7 @@ export function RevealText({
       viewport={{ once: true, amount: 0.4 }}
       variants={{
         show: {
-          transition: { staggerChildren: 0.035, delayChildren: delay },
+          transition: { staggerChildren: motionStaggers.tight, delayChildren: delay },
         },
       }}
     >
@@ -53,7 +54,7 @@ export function RevealText({
                 hidden: { y: "110%" },
                 show: {
                   y: "0%",
-                  transition: { duration: 0.9, ease: EASE_OUT_EXPO },
+                  transition: { duration: motionDurations.slow, ease: EASE_OUT_EXPO },
                 },
               }}
             >

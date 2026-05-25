@@ -3,7 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText, Tilt3D } from "@/lib/animations";
+import { ArrowUpRight, Clock3, Coffee, Flame, Wheat } from "lucide-react";
+import {
+  AmbientParticles,
+  FadeIn,
+  KineticMarquee,
+  RevealText,
+  Tilt3D,
+} from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
 
 const LINEUP = [
@@ -47,6 +54,39 @@ const SCHEDULE = [
   { time: "18:30", body: "CLOSE" },
 ];
 
+const HERO_STATS = [
+  { label: "First bake", value: "06:00" },
+  { label: "Open", value: "07:30" },
+  { label: "Sold out", value: "15:00頃" },
+];
+
+const CRAFT_STEPS = [
+  {
+    number: "01",
+    title: "粉を選ぶ",
+    body: "北海道産小麦とライ麦を、その日の湿度に合わせて配合します。",
+    image: "/images/bakery/07-flour-light.webp",
+  },
+  {
+    number: "02",
+    title: "生地を見る",
+    body: "温度計だけに頼らず、手触りと香りで発酵の進みを確かめます。",
+    image: "/images/bakery/08-hands-knead.webp",
+  },
+  {
+    number: "03",
+    title: "火を入れる",
+    body: "朝の一番窯はクロワッサン。層が立つ温度だけを狙います。",
+    image: "/images/bakery/02-oven-morning.webp",
+  },
+];
+
+const PAIRINGS = [
+  { bread: "クロワッサン", drink: "深煎りブレンド", note: "バターの甘さを苦味で締める" },
+  { bread: "カンパーニュ", drink: "季節のスープ", note: "酸味と野菜の甘みを合わせる" },
+  { bread: "あんバター", drink: "ミルクコーヒー", note: "塩気と小倉あんをやわらげる" },
+];
+
 export function BakeryTop() {
   return (
     <>
@@ -81,31 +121,14 @@ export function BakeryTop() {
           aria-hidden
         />
 
-        {/* Floating flour particles */}
-        {Array.from({ length: 14 }).map((_, i) => (
-          <motion.span
-            key={i}
-            aria-hidden
-            className="pointer-events-none absolute size-1 rounded-full bg-[#3A2A18]/30"
-            initial={{
-              x: `${(i * 73) % 100}vw`,
-              y: "100vh",
-              opacity: 0,
-            }}
-            animate={{
-              y: "-10vh",
-              opacity: [0, 0.6, 0.6, 0],
-            }}
-            transition={{
-              duration: 12 + (i % 5),
-              delay: i * 0.7,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          />
-        ))}
+        <AmbientParticles
+          count={14}
+          seed={603}
+          className="z-[1]"
+          particleClassName="bg-[#3A2A18]/30"
+        />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-24 sm:px-12 lg:px-20">
+        <div className="relative z-10 mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-36 pt-28 sm:px-12 lg:px-20">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -144,8 +167,54 @@ export function BakeryTop() {
               </Link>
             </div>
           </FadeIn>
+
+          <FadeIn delay={1.25}>
+            <dl className="mt-14 grid max-w-xl grid-cols-3 divide-x divide-[#3A2A18]/18 border-y border-[#3A2A18]/18 py-5">
+              {HERO_STATS.map((item) => (
+                <div key={item.label} className="px-4 first:pl-0 last:pr-0">
+                  <dt className="text-[10px] uppercase tracking-[0.26em] text-[#6B4423]/70">
+                    {item.label}
+                  </dt>
+                  <dd className="mt-2 font-[family-name:var(--font-cormorant)] text-3xl italic text-[#3A2A18]">
+                    {item.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </FadeIn>
+        </div>
+
+        <div className="absolute bottom-6 right-6 z-20 hidden w-[320px] rounded-2xl border border-[#3A2A18]/12 bg-[#FBF6ED]/82 p-4 text-[#3A2A18] shadow-[0_24px_80px_-36px_rgba(58,42,24,0.45)] backdrop-blur-md lg:block">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+            <Image
+              src="/images/bakery/11-bread-stack.webp"
+              alt="焼き上がったパン"
+              fill
+              sizes="320px"
+              className="object-cover"
+            />
+          </div>
+          <div className="mt-4 flex items-start justify-between gap-4">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.28em] text-[#D4A647]">
+                Morning batch
+              </p>
+              <p className="mt-1 font-[family-name:var(--font-noto-serif-jp)] text-sm font-bold">
+                11:00 デニッシュ焼き上がり
+              </p>
+            </div>
+            <Flame className="mt-1 size-5 text-[#C8793B]" />
+          </div>
         </div>
       </section>
+
+      <KineticMarquee
+        items={["croissant", "levain", "butter", "morning coffee", "baguette", "sold out"]}
+        durationSeconds={36}
+        className="border-y border-[#3A2A18]/10 bg-[#3A2A18] py-5"
+        trackClassName="font-[family-name:var(--font-cormorant)] text-[clamp(2.6rem,6vw,5.8rem)] italic text-[#FBF6ED]/24"
+        separator={<span className="inline-block h-px w-16 bg-[#D4A647]/80" />}
+      />
 
       {/* Lineup — Tilt3D cards */}
       <section className="bg-[#FBF6ED] px-6 py-32 sm:px-12 lg:px-20">
@@ -202,20 +271,102 @@ export function BakeryTop() {
         </div>
       </section>
 
+      {/* Craft */}
+      <section className="bg-[#F2E7D6] px-6 py-32 sm:px-12 lg:px-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-12 lg:grid-cols-[0.85fr_1.4fr] lg:items-end">
+            <div>
+              <SectionLabel number="02" className="text-[#C8793B]">
+                Craft
+              </SectionLabel>
+              <h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,7vw,6rem)] italic leading-none text-[#3A2A18]">
+                Flour,
+                <br />
+                hands,
+                <br />
+                fire.
+              </h2>
+              <p className="mt-8 max-w-sm font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#3A2A18]/72">
+                ベーカリーサイトは、商品写真だけでは少し弱い。
+                工程の温度と手触りを見せることで、価格以上の理由を伝えます。
+              </p>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {CRAFT_STEPS.map((step, i) => (
+                <motion.article
+                  key={step.number}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.35 }}
+                  transition={{ duration: 0.7, delay: i * 0.08 }}
+                  className="group bg-[#FBF6ED]"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src={step.image}
+                      alt={step.title}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <span className="absolute left-4 top-4 rounded-full bg-[#FBF6ED]/86 px-3 py-1 font-[family-name:var(--font-cormorant)] text-2xl italic text-[#3A2A18] backdrop-blur">
+                      {step.number}
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-[family-name:var(--font-noto-serif-jp)] text-lg font-bold text-[#3A2A18]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-3 text-xs leading-relaxed text-[#3A2A18]/68">
+                      {step.body}
+                    </p>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Schedule — Timeline */}
       <section
         id="schedule"
         className="bg-[#3A2A18] px-6 py-32 text-[#FBF6ED] sm:px-12 lg:px-20"
       >
-        <div className="mx-auto max-w-5xl">
-          <SectionLabel number="02" className="text-[#D4A647]">
-            Daily Schedule
-          </SectionLabel>
-          <h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-5xl italic">
-            A day at the oven
-          </h2>
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.2fr] lg:items-start">
+          <div className="lg:sticky lg:top-8">
+            <SectionLabel number="03" className="text-[#D4A647]">
+              Daily Schedule
+            </SectionLabel>
+            <h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,7vw,6rem)] italic leading-none">
+              A day
+              <br />
+              at the oven
+            </h2>
+            <div className="mt-10 overflow-hidden rounded-2xl border border-[#FBF6ED]/10">
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/bakery/02-oven-morning.webp"
+                  alt="朝のオーブン"
+                  fill
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="grid grid-cols-2 divide-x divide-[#FBF6ED]/10 bg-[#27190E] text-xs">
+                <div className="p-4">
+                  <Clock3 className="mb-3 size-4 text-[#D4A647]" />
+                  月・火 定休
+                </div>
+                <div className="p-4">
+                  <Wheat className="mb-3 size-4 text-[#D4A647]" />
+                  なくなり次第終了
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <ol className="mt-16 space-y-2">
+          <ol className="space-y-2">
             {SCHEDULE.map((s, i) => (
               <motion.li
                 key={s.time}
@@ -223,9 +374,9 @@ export function BakeryTop() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: i * 0.06 }}
-                className="grid grid-cols-[auto_auto_1fr] items-baseline gap-6 border-b border-[#FBF6ED]/15 py-5"
+                className="grid grid-cols-[auto_auto_1fr] items-baseline gap-6 border-b border-[#FBF6ED]/15 py-6"
               >
-                <span className="font-[family-name:var(--font-cormorant)] text-3xl italic text-[#D4A647]">
+                <span className="font-[family-name:var(--font-cormorant)] text-4xl italic text-[#D4A647]">
                   {s.time}
                 </span>
                 <span className="size-1 rounded-full bg-[#D4A647]" />
@@ -235,6 +386,72 @@ export function BakeryTop() {
               </motion.li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* Pairing */}
+      <section className="bg-[#FBF6ED] px-6 py-32 sm:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.2fr_0.9fr] lg:items-center">
+          <div className="relative min-h-[520px]">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.9 }}
+              className="absolute left-0 top-0 h-[58%] w-[72%] overflow-hidden rounded-2xl"
+            >
+              <Image
+                src="/images/bakery/12-coffee-pair.webp"
+                alt="パンとコーヒー"
+                fill
+                sizes="(min-width: 1024px) 55vw, 100vw"
+                className="object-cover"
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 32 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.9, delay: 0.12 }}
+              className="absolute bottom-0 right-0 h-[56%] w-[58%] overflow-hidden rounded-2xl border-[10px] border-[#FBF6ED]"
+            >
+              <Image
+                src="/images/bakery/10-counter.webp"
+                alt="店内カウンター"
+                fill
+                sizes="(min-width: 1024px) 45vw, 100vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </div>
+
+          <div>
+            <SectionLabel number="04" className="text-[#D4A647]">
+              Pairing
+            </SectionLabel>
+            <h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,7vw,5.5rem)] italic leading-none text-[#3A2A18]">
+              Take a seat,
+              <br />
+              while warm.
+            </h2>
+            <p className="mt-8 font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#3A2A18]/72">
+              焼き立てを持ち帰るだけでなく、店内の小さなカウンターで一息。
+              パンに合わせて、コーヒーとスープを日替わりで用意しています。
+            </p>
+            <ul className="mt-8 divide-y divide-[#3A2A18]/12 border-y border-[#3A2A18]/12">
+              {PAIRINGS.map((item) => (
+                <li key={item.bread} className="grid grid-cols-[auto_1fr] gap-4 py-4">
+                  <Coffee className="mt-1 size-4 text-[#C8793B]" />
+                  <div>
+                    <p className="text-sm font-bold text-[#3A2A18]">
+                      {item.bread} / {item.drink}
+                    </p>
+                    <p className="mt-1 text-xs text-[#3A2A18]/62">{item.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -257,7 +474,7 @@ export function BakeryTop() {
             />
           </motion.div>
           <div>
-            <SectionLabel number="03" className="text-[#D4A647]">
+            <SectionLabel number="05" className="text-[#D4A647]">
               Story
             </SectionLabel>
             <h2 className="mt-6 font-[family-name:var(--font-cormorant)] text-5xl italic text-[#3A2A18]">
@@ -305,9 +522,10 @@ export function BakeryTop() {
           </p>
           <Link
             href="/bakery/contact"
-            className="mt-12 inline-block rounded-full bg-[#3A2A18] px-12 py-5 text-sm text-[#FBF6ED] transition-transform hover:scale-[1.04]"
+            className="group mt-12 inline-flex items-center gap-3 rounded-full bg-[#3A2A18] px-12 py-5 text-sm text-[#FBF6ED] transition-transform hover:scale-[1.04]"
           >
-            お取り置きする →
+            お取り置きする
+            <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
         </div>
       </section>

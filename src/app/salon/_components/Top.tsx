@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { FadeIn, MagneticButton, RevealText } from "@/lib/animations";
+import { CalendarDays, Coffee, Scissors, Sparkles } from "lucide-react";
+import { FadeIn, KineticMarquee, MagneticButton, RevealText } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
 
 const MENUS = [
@@ -79,6 +80,30 @@ export function SalonTop() {
         </div>
 
         <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.25, duration: 0.9 }}
+          className="absolute bottom-8 left-6 right-6 z-20 mx-auto hidden max-w-5xl grid-cols-3 gap-3 rounded-sm border border-[#2E2A26]/12 bg-[#E8DCD0]/78 p-4 text-[#2E2A26] shadow-[0_20px_80px_-40px_rgba(46,42,38,0.35)] backdrop-blur-md md:grid"
+        >
+          {[
+            { icon: Scissors, label: "Private", body: "1席だけの完全予約" },
+            { icon: CalendarDays, label: "Stay", body: "平均滞在 120分" },
+            { icon: Coffee, label: "Pause", body: "季節のハーブティー" },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.label} className="border-l border-[#B8896A]/40 pl-4 first:border-l-0">
+                <Icon className="mb-3 size-4 text-[#B8896A]" />
+                <p className="text-[10px] uppercase tracking-[0.28em] text-[#B8896A]">
+                  {item.label}
+                </p>
+                <p className="mt-1 text-xs text-[#2E2A26]/70">{item.body}</p>
+              </div>
+            );
+          })}
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.6 }}
@@ -87,6 +112,14 @@ export function SalonTop() {
           Scroll ↓
         </motion.div>
       </section>
+
+      <KineticMarquee
+        items={["cut", "color", "treatment", "private salon", "mirror time", "styling"]}
+        durationSeconds={36}
+        className="border-y border-[#2E2A26]/10 bg-[#E8DCD0] py-5"
+        trackClassName="font-[family-name:var(--font-cormorant)] text-[clamp(2.5rem,6vw,5.6rem)] italic text-[#2E2A26]/20"
+        separator={<Sparkles className="size-5 text-[#B8896A]/70" />}
+      />
 
       {/* Concept */}
       <section className="relative bg-[#E8DCD0] px-6 py-40 sm:px-12 lg:px-20">

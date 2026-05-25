@@ -1,4 +1,5 @@
 import type { Variants } from "framer-motion";
+import { motionDurations } from "./tokens";
 
 export const EASE_OUT_EXPO = [0.16, 1, 0.3, 1] as const;
 export const EASE_IN_OUT_QUART = [0.76, 0, 0.24, 1] as const;
@@ -8,13 +9,13 @@ export const fadeUp: Variants = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: EASE_OUT_EXPO },
+    transition: { duration: motionDurations.normal, ease: EASE_OUT_EXPO },
   },
 };
 
 export const fadeIn: Variants = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { duration: 0.6, ease: EASE_OUT_EXPO } },
+  show: { opacity: 1, transition: { duration: motionDurations.normal, ease: EASE_OUT_EXPO } },
 };
 
 export const stagger: Variants = {

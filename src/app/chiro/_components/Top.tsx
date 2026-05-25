@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText } from "@/lib/animations";
+import { Activity, ArrowUpRight, Clock3, ShieldCheck, StretchHorizontal } from "lucide-react";
+import { FadeIn, KineticMarquee, RevealText } from "@/lib/animations";
 
 const SYMPTOMS = [
   {
@@ -84,9 +85,10 @@ export function ChiroTop() {
                 <div className="mt-10 flex flex-wrap items-center gap-4">
                   <Link
                     href="/chiro/contact"
-                    className="rounded-full bg-[#2E5266] px-8 py-4 text-sm text-white transition-transform hover:scale-[1.04]"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#2E5266] px-8 py-4 text-sm text-white transition-transform hover:scale-[1.04]"
                   >
                     予約する
+                    <ArrowUpRight className="size-4" />
                   </Link>
                   <Link
                     href="/chiro/symptoms"
@@ -94,6 +96,26 @@ export function ChiroTop() {
                   >
                     症状別に見る
                   </Link>
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.85}>
+                <div className="mt-10 grid max-w-2xl gap-3 rounded-3xl border border-[#2E5266]/10 bg-white/80 p-4 shadow-[0_18px_70px_-42px_rgba(46,82,102,0.32)] md:grid-cols-3">
+                  {[
+                    { icon: Activity, label: "初回", value: "60分" },
+                    { icon: ShieldCheck, label: "国家資格", value: "柔整師" },
+                    { icon: Clock3, label: "受付", value: "20時まで" },
+                  ].map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={item.label} className="rounded-2xl bg-[#F4F8F9] p-4">
+                        <Icon className="size-5 text-[#2E5266]" />
+                        <p className="mt-3 text-[10px] uppercase tracking-[0.24em] text-[#1F2933]/44">
+                          {item.label}
+                        </p>
+                        <p className="mt-1 text-xl font-bold text-[#1F2933]">{item.value}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               </FadeIn>
             </div>
@@ -125,6 +147,14 @@ export function ChiroTop() {
           </div>
         </div>
       </section>
+
+      <KineticMarquee
+        items={["posture", "mobility", "self care", "back pain", "shoulder", "headache"]}
+        durationSeconds={34}
+        className="border-y border-[#2E5266]/12 bg-white py-5"
+        trackClassName="font-[family-name:var(--font-zen-maru)] text-[clamp(2rem,5vw,4.5rem)] font-bold text-[#2E5266]/18"
+        separator={<StretchHorizontal className="size-5 text-[#A9C4C4]" />}
+      />
 
       {/* Symptoms */}
       <section className="bg-[#F4F8F9] px-6 py-32 sm:px-12 lg:px-20">

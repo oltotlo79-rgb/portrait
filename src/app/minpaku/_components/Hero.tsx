@@ -1,7 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRight, Bath, Coffee, MapPin } from "lucide-react";
 
 export function MinpakuHero() {
   return (
@@ -132,6 +134,39 @@ export function MinpakuHero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.5em] text-[#F4EDE3]/60"
       >
         Scroll ↓
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 4.6, duration: 0.9 }}
+        className="absolute bottom-8 left-6 right-6 z-10 mx-auto hidden max-w-5xl grid-cols-[1fr_auto] gap-4 rounded-sm border border-[#F4EDE3]/14 bg-[#1f2618]/68 p-5 text-[#F4EDE3] backdrop-blur-md md:grid"
+      >
+        <div className="grid gap-4 sm:grid-cols-3">
+          {[
+            { icon: MapPin, label: "Nishijin", body: "京都西陣、路地奥の町家" },
+            { icon: Bath, label: "Private", body: "1日1組、庭付き一棟貸し" },
+            { icon: Coffee, label: "Breakfast", body: "土鍋ごはんと季節の小鉢" },
+          ].map((item) => {
+            const Icon = item.icon;
+            return (
+              <div key={item.label} className="border-l border-[#C9A063]/40 pl-4">
+                <Icon className="mb-3 size-4 text-[#C9A063]" />
+                <p className="text-[10px] uppercase tracking-[0.3em] text-[#C9A063]">
+                  {item.label}
+                </p>
+                <p className="mt-1 text-xs text-[#F4EDE3]/74">{item.body}</p>
+              </div>
+            );
+          })}
+        </div>
+        <Link
+          href="/minpaku/contact"
+          className="inline-flex items-center self-center rounded-full border border-[#C9A063] px-5 py-3 text-[10px] uppercase tracking-[0.28em] text-[#C9A063] transition-colors hover:bg-[#C9A063] hover:text-[#1f2618]"
+        >
+          空室相談
+          <ArrowUpRight className="ml-2 size-3.5" />
+        </Link>
       </motion.div>
     </section>
   );

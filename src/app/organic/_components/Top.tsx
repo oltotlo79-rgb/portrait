@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText } from "@/lib/animations";
+import { ArrowUpRight, Leaf, PackageCheck, Sprout, Truck } from "lucide-react";
+import { FadeIn, KineticMarquee, RevealText } from "@/lib/animations";
 
 const PRODUCTS = [
   { code: "P01", en: "Vegetable Box", ja: "季節の野菜セット (L)", price: "¥3,800", body: "8〜10種・1.5kg目安。配送日に収穫。", image: "/images/organic/11-product-set.webp" },
@@ -15,6 +16,12 @@ const JOURNAL = [
   { date: "2026.04.20", title: "春のセットの楽しみ方 — 新玉ねぎは生で。" },
   { date: "2026.04.05", title: "ハーブのある食卓 — 5分でできる3つのアイデア。" },
   { date: "2026.03.18", title: "土の話 — KIYORAの畑がやっている、おだやかな農法。" },
+];
+
+const HARVEST = [
+  { label: "Altitude", value: "720m", icon: Sprout },
+  { label: "Harvest", value: "当日", icon: Leaf },
+  { label: "Delivery", value: "翌日〜", icon: Truck },
 ];
 
 export function OrganicTop() {
@@ -81,17 +88,44 @@ export function OrganicTop() {
             </FadeIn>
             <FadeIn delay={1.3}>
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link href="/organic/products" className="border border-white px-8 py-4 text-xs uppercase tracking-[0.3em] text-white transition-colors hover:bg-white hover:text-[#3F5B36]">
+                <Link href="/organic/products" className="inline-flex items-center gap-2 border border-white px-8 py-4 text-xs uppercase tracking-[0.3em] text-white transition-colors hover:bg-white hover:text-[#3F5B36]">
                   Shop now
+                  <ArrowUpRight className="size-3.5" />
                 </Link>
                 <Link href="#story" className="text-xs uppercase tracking-[0.3em] text-white/80 hover:text-white">
                   Story →
                 </Link>
               </div>
             </FadeIn>
+            <FadeIn delay={1.45}>
+              <dl className="mt-12 grid max-w-xl grid-cols-3 divide-x divide-white/16 border-y border-white/16 py-5">
+                {HARVEST.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.label} className="px-4 first:pl-0 last:pr-0">
+                      <Icon className="mb-3 size-4 text-[#D8C29D]" />
+                      <dt className="text-[10px] uppercase tracking-[0.28em] text-white/56">
+                        {item.label}
+                      </dt>
+                      <dd className="mt-2 font-[family-name:var(--font-cormorant)] text-3xl italic">
+                        {item.value}
+                      </dd>
+                    </div>
+                  );
+                })}
+              </dl>
+            </FadeIn>
           </div>
         </div>
       </section>
+
+      <KineticMarquee
+        items={["root vegetables", "fresh herbs", "organic box", "field notes", "seasonal recipes"]}
+        durationSeconds={38}
+        className="border-y border-[#3F5B36]/12 bg-[#FAF6EE] py-5"
+        trackClassName="font-[family-name:var(--font-cormorant)] text-[clamp(2.4rem,6vw,5.4rem)] italic text-[#3F5B36]/24"
+        separator={<span className="inline-block size-2 rounded-full bg-[#C9462C]/60" />}
+      />
 
       {/* Story */}
       <section id="story" className="bg-[#FAF6EE] px-6 py-40 sm:px-12 lg:px-20">
@@ -120,6 +154,50 @@ export function OrganicTop() {
                 ))}
               </ul>
             </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#E9DDC7] px-6 py-28 sm:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              "/images/organic/06-farmer-hands-01.webp",
+              "/images/organic/07-farmer-hands-02.webp",
+              "/images/organic/08-farmer-hands-03.webp",
+            ].map((src, i) => (
+              <motion.div
+                key={src}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.7, delay: i * 0.08 }}
+                className="relative aspect-[4/5] overflow-hidden"
+              >
+                <Image
+                  src={src}
+                  alt="畑での手仕事"
+                  fill
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-cover"
+                />
+              </motion.div>
+            ))}
+          </div>
+          <div>
+            <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.4em] text-[#C9462C]">
+              <PackageCheck className="size-4" />
+              From field to box
+            </p>
+            <h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,7vw,5.5rem)] italic leading-none text-[#3F5B36]">
+              Packed
+              <br />
+              the same day.
+            </h2>
+            <p className="mt-8 font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#2A2520]/76">
+              収穫、選別、箱詰め、発送までを同じ日に。EC でも畑の温度が伝わるよう、
+              商品ページだけでなく工程と鮮度の理由を前面に出します。
+            </p>
           </div>
         </div>
       </section>

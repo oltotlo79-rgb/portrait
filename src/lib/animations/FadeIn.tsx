@@ -2,6 +2,7 @@
 
 import { motion, type HTMLMotionProps } from "framer-motion";
 import { fadeUp } from "./variants";
+import { motionViewport } from "./tokens";
 
 type FadeInProps = HTMLMotionProps<"div"> & {
   delay?: number;
@@ -12,7 +13,7 @@ type FadeInProps = HTMLMotionProps<"div"> & {
 export function FadeIn({
   children,
   delay = 0,
-  amount = 0.3,
+  amount = motionViewport.normal.amount,
   once = true,
   className,
   ...rest

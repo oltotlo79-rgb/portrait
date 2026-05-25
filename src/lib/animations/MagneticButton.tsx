@@ -8,6 +8,7 @@ import {
   type HTMLMotionProps,
 } from "framer-motion";
 import { cn } from "@/lib/cn";
+import { motionSpring } from "./tokens";
 
 type Props = HTMLMotionProps<"button"> & {
   strength?: number;
@@ -21,8 +22,8 @@ export const MagneticButton = forwardRef<HTMLButtonElement, Props>(
     const localRef = useRef<HTMLButtonElement>(null);
     const x = useMotionValue(0);
     const y = useMotionValue(0);
-    const sx = useSpring(x, { stiffness: 200, damping: 18 });
-    const sy = useSpring(y, { stiffness: 200, damping: 18 });
+    const sx = useSpring(x, motionSpring.tilt);
+    const sy = useSpring(y, motionSpring.tilt);
 
     return (
       <motion.button

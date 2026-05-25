@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText, Tilt3D } from "@/lib/animations";
+import { CalendarCheck, HeartPulse, ShieldCheck, Smile } from "lucide-react";
+import { FadeIn, KineticMarquee, RevealText, Tilt3D } from "@/lib/animations";
 
 const MENU = [
   {
@@ -132,8 +133,37 @@ export function DentalTop() {
               </Link>
             </div>
           </FadeIn>
+
+          <FadeIn delay={0.85}>
+            <div className="mt-12 grid max-w-3xl gap-3 rounded-3xl border border-[#1F2933]/8 bg-white/82 p-4 shadow-[0_18px_70px_-40px_rgba(31,41,51,0.3)] backdrop-blur md:grid-cols-3">
+              {[
+                { icon: ShieldCheck, label: "痛みに配慮", value: "表面麻酔" },
+                { icon: Smile, label: "親子対応", value: "キッズ完備" },
+                { icon: CalendarCheck, label: "予約", value: "WEB 24h" },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.label} className="rounded-2xl bg-[#F4F8F9] p-4">
+                    <Icon className="size-5 text-[#5BB7B7]" />
+                    <p className="mt-3 text-[10px] uppercase tracking-[0.24em] text-[#1F2933]/46">
+                      {item.label}
+                    </p>
+                    <p className="mt-1 text-xl font-bold text-[#1F2933]">{item.value}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </FadeIn>
         </div>
       </section>
+
+      <KineticMarquee
+        items={["preventive care", "family room", "kids space", "gentle treatment", "home care"]}
+        durationSeconds={34}
+        className="border-y border-[#5BB7B7]/18 bg-white py-5"
+        trackClassName="font-[family-name:var(--font-zen-kaku)] text-[clamp(2rem,5vw,4.5rem)] font-bold text-[#5BB7B7]/20"
+        separator={<HeartPulse className="size-5 text-[#FFC9B3]" />}
+      />
 
       {/* Promises */}
       <section className="bg-[#F4F8F9] px-6 py-32 sm:px-12 lg:px-20">

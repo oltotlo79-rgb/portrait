@@ -3,7 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FadeIn, RevealText } from "@/lib/animations";
+import { CalendarCheck, Clock3, Heart, ShieldCheck } from "lucide-react";
+import { FadeIn, KineticMarquee, RevealText } from "@/lib/animations";
 
 const MENU = [
   { en: "Trim", ja: "カットコース", price: "6,500〜", body: "シャンプー・ブロー・カット・耳掃除・爪切り・足裏。" },
@@ -70,6 +71,26 @@ export function PetTop() {
                   </Link>
                 </div>
               </FadeIn>
+              <FadeIn delay={0.9}>
+                <div className="mt-10 grid max-w-xl gap-3 rounded-3xl border border-[#3B2A1C]/8 bg-white/76 p-4 shadow-[0_18px_70px_-40px_rgba(59,42,28,0.34)] backdrop-blur md:grid-cols-3">
+                  {[
+                    { icon: ShieldCheck, label: "個別", value: "1頭ずつ" },
+                    { icon: Clock3, label: "休憩", value: "多めに" },
+                    { icon: CalendarCheck, label: "予約", value: "WEB OK" },
+                  ].map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={item.label} className="rounded-2xl bg-[#FFF7EE] p-4">
+                        <Icon className="size-5 text-[#A37864]" />
+                        <p className="mt-3 text-[10px] uppercase tracking-[0.24em] text-[#3B2A1C]/46">
+                          {item.label}
+                        </p>
+                        <p className="mt-1 text-xl font-bold text-[#3B2A1C]">{item.value}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </FadeIn>
             </div>
 
             {/* Photo: hidden on mobile (太字テキストを優先), visible sm+ as grid cell */}
@@ -93,6 +114,14 @@ export function PetTop() {
           </div>
         </div>
       </section>
+
+      <KineticMarquee
+        items={["trim", "bath", "spa", "senior care", "cat grooming", "private room"]}
+        durationSeconds={32}
+        className="border-y border-[#A37864]/16 bg-[#FFF7EE] py-5"
+        trackClassName="font-[family-name:var(--font-zen-maru)] text-[clamp(2rem,5vw,4.7rem)] font-bold text-[#A37864]/22"
+        separator={<Heart className="size-5 fill-[#FFC97A] text-[#FFC97A]" />}
+      />
 
       {/* Promise */}
       <section className="bg-[#A37864] px-6 py-32 text-white sm:px-12 lg:px-20">

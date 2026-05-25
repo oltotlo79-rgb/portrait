@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/cn";
 
-export function YogaNav() {
+export function YogaNav({ variant = "default" }: { variant?: "default" | "hero" }) {
+  const isHero = variant === "hero";
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -16 }}
@@ -13,30 +16,43 @@ export function YogaNav() {
     >
       <Link
         href="/yoga"
-        className="font-[family-name:var(--font-cormorant)] text-2xl italic tracking-wide text-[#2C3A2E]"
+        className={cn(
+          "font-[family-name:var(--font-cormorant)] text-2xl italic tracking-wide",
+          isHero ? "text-[#F8F3EA]" : "text-[#2C3A2E]",
+        )}
       >
         nagi
         <span className="ml-1 text-[10px] uppercase tracking-[0.3em] not-italic">
           · 凪
         </span>
       </Link>
-      <nav className="hidden gap-8 text-[10px] uppercase tracking-[0.3em] text-[#2C3A2E] sm:flex">
-        <Link href="/yoga/classes" className="hover:text-[#6B7F6F]">
+      <nav
+        className={cn(
+          "hidden gap-8 text-[10px] uppercase tracking-[0.3em] sm:flex",
+          isHero ? "text-[#F8F3EA]/82" : "text-[#2C3A2E]",
+        )}
+      >
+        <Link href="/yoga/classes" className={isHero ? "hover:text-white" : "hover:text-[#6B7F6F]"}>
           Classes
         </Link>
-        <Link href="/yoga#teachers" className="hover:text-[#6B7F6F]">
+        <Link href="/yoga#teachers" className={isHero ? "hover:text-white" : "hover:text-[#6B7F6F]"}>
           Teachers
         </Link>
-        <Link href="/yoga#studio" className="hover:text-[#6B7F6F]">
+        <Link href="/yoga#studio" className={isHero ? "hover:text-white" : "hover:text-[#6B7F6F]"}>
           Studio
         </Link>
-        <Link href="/yoga/contact" className="hover:text-[#6B7F6F]">
+        <Link href="/yoga/contact" className={isHero ? "hover:text-white" : "hover:text-[#6B7F6F]"}>
           Trial
         </Link>
       </nav>
       <Link
         href="/yoga/contact"
-        className="rounded-full bg-[#2C3A2E] px-5 py-2 text-[10px] uppercase tracking-[0.3em] text-[#F4F0E8] transition-transform hover:scale-[1.04]"
+        className={cn(
+          "rounded-full px-5 py-2 text-[10px] uppercase tracking-[0.3em] transition-transform hover:scale-[1.04]",
+          isHero
+            ? "bg-[#F8F3EA] text-[#26362C]"
+            : "bg-[#2C3A2E] text-[#F4F0E8]",
+        )}
       >
         体験予約
       </Link>

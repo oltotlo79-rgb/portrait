@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRight, Moon, Soup, Waves } from "lucide-react";
 import { FadeIn, MagneticButton, RevealText, Tilt3D } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
 
@@ -101,9 +102,10 @@ export function RyokanTop() {
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href="/ryokan/contact"
-                className="border border-[#E8743C] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#E8743C] transition-colors hover:bg-[#E8743C] hover:text-[#0F141C]"
+                className="inline-flex items-center gap-2 border border-[#E8743C] px-8 py-4 text-xs uppercase tracking-[0.3em] text-[#E8743C] transition-colors hover:bg-[#E8743C] hover:text-[#0F141C]"
               >
                 ご予約・お問い合わせ
+                <ArrowUpRight className="size-3.5" />
               </Link>
               <Link
                 href="/ryokan/rooms"
@@ -114,6 +116,38 @@ export function RyokanTop() {
             </div>
           </FadeIn>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2, duration: 0.9 }}
+          className="absolute bottom-8 right-8 z-10 hidden w-[340px] border border-[#F1EAD9]/12 bg-[#0F141C]/72 p-5 backdrop-blur-md lg:block"
+        >
+          <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.35em] text-[#E8743C]">
+            <Moon className="size-4" />
+            Tonight
+          </p>
+          <dl className="mt-5 grid grid-cols-3 divide-x divide-[#F1EAD9]/12 text-center">
+            {[
+              { icon: Moon, label: "月齢", value: "12.4" },
+              { icon: Waves, label: "湯温", value: "41℃" },
+              { icon: Soup, label: "夕餉", value: "18時" },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <div key={item.label} className="px-3">
+                  <Icon className="mx-auto mb-3 size-4 text-[#D9D1B8]" />
+                  <dt className="text-[10px] tracking-[0.2em] text-[#F1EAD9]/42">
+                    {item.label}
+                  </dt>
+                  <dd className="mt-1 font-[family-name:var(--font-cormorant)] text-2xl italic">
+                    {item.value}
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}

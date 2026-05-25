@@ -9,6 +9,7 @@ import {
   useTransform,
   type HTMLMotionProps,
 } from "framer-motion";
+import { motionSpring } from "./tokens";
 
 type Tilt3DProps = HTMLMotionProps<"div"> & {
   children: ReactNode;
@@ -41,11 +42,11 @@ export function Tilt3D({
 
   const rotateY = useSpring(
     useTransform(mouseX, [-0.5, 0.5], [-intensity, intensity]),
-    { damping: 18, stiffness: 200, mass: 0.4 },
+    motionSpring.tilt,
   );
   const rotateX = useSpring(
     useTransform(mouseY, [-0.5, 0.5], [intensity, -intensity]),
-    { damping: 18, stiffness: 200, mass: 0.4 },
+    motionSpring.tilt,
   );
 
   // Glare: 光のホットスポット位置（%）
