@@ -52,12 +52,9 @@ export function IndustryAtlas({ sites }: { sites: SiteConfig[] }) {
           <SectionLabel number="02" className="opacity-70">
             Industry Atlas
           </SectionLabel>
-          <h2 className="mt-8 font-[family-name:var(--font-manrope)] text-[clamp(2.4rem,5vw,5.8rem)] font-light leading-[0.95]">
-            業種の
-            <br />
-            温度差まで
-            <br />
-            見せる。
+          <h2 className="mt-8 font-[family-name:var(--font-manrope)] text-[clamp(2.4rem,5vw,5.8rem)] font-light leading-[1.05]">
+            <span className="block whitespace-nowrap">業種ごとの</span>
+            <span className="block whitespace-nowrap">温度差まで見せる</span>
           </h2>
           <p className="mt-8 max-w-md text-sm leading-loose text-white/62">
             サンプルを一覧するだけでなく、信頼感・高級感・行動誘導・モーション強度を比較できます。

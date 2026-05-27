@@ -65,18 +65,22 @@ export function PortfolioHero({ sites }: { sites: SiteConfig[] }) {
             Interactive Design Atlas
           </FadeIn>
 
-          <h1 className="mt-8 font-[family-name:var(--font-manrope)] text-[clamp(3.2rem,9vw,8.6rem)] font-light leading-[0.94]">
-            <RevealText text="業種ごとの" splitBy="word" className="block" />
+          <h1 className="mt-8 font-[family-name:var(--font-manrope)] text-[clamp(2.4rem,9vw,8.6rem)] font-light leading-[1]">
+            <RevealText
+              text="業種ごとの"
+              splitBy="word"
+              className="block whitespace-nowrap"
+            />
             <RevealText
               text="選ばれ方を"
               splitBy="word"
-              className="block font-[family-name:var(--font-noto-serif-jp)]"
+              className="block whitespace-nowrap font-[family-name:var(--font-noto-serif-jp)]"
               delay={0.12}
             />
             <RevealText
-              text="デザインする。"
+              text="デザインする"
               splitBy="word"
-              className="block font-[family-name:var(--font-shippori-mincho)] tracking-[0.05em] text-[var(--atlas-accent)]"
+              className="block whitespace-nowrap pb-[0.1em] font-[family-name:var(--font-shippori-mincho)] leading-[1.08] tracking-[0.05em] text-[var(--atlas-accent)]"
               delay={0.24}
             />
           </h1>
