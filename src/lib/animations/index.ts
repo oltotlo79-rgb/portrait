@@ -5,6 +5,7 @@ export { MagneticButton } from "./MagneticButton";
 export { Marquee } from "./Marquee";
 export { Tilt3D } from "./Tilt3D";
 export { GlitchText } from "./GlitchText";
+export { Typewriter } from "./Typewriter";
 export { KineticMarquee } from "./KineticMarquee";
 export { AmbientParticles } from "./AmbientParticles";
 export { LenisProvider, getLenis } from "./LenisProvider";

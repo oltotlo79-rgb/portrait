@@ -22,9 +22,9 @@ import {
 import {
   AmbientParticles,
   FadeIn,
-  GlitchText,
   KineticMarquee,
   Tilt3D,
+  Typewriter,
 } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
 
@@ -761,20 +761,18 @@ function HeroSection() {
         </motion.div>
 
         <h1 className="mt-8 font-mono uppercase leading-[0.88] tracking-[-0.01em]">
-          <GlitchText
-            seed={808}
-            steps={8}
-            intervalMs={80}
-            amplitudeX={6}
-            amplitudeY={3}
+          <Typewriter
+            text="DEEP WORK,"
+            initialDelayMs={600}
+            charDelayMs={95}
             className="block text-[clamp(2.5rem,10vw,7.5rem)] text-white"
-          >
-            DEEP WORK,
-          </GlitchText>
+            cursorClassName="text-[#00E5FF]"
+            cursorPersists={false}
+          />
           <motion.span
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.7 }}
+            transition={{ delay: 1.75, duration: 0.7 }}
             className="block text-[clamp(2.5rem,10vw,7.5rem)] text-[#00E5FF]"
           >
             ON-DEMAND.

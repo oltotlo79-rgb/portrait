@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, Sparkles } from "lucide-react";
 import { FadeIn, RevealText } from "@/lib/animations";
@@ -210,7 +210,7 @@ export function KidsTop() {
             <br />
             <span className="text-[#FF8FA3]">
               <RevealText
-                text="親子のとなりに。"
+                text="親子のとなりに"
                 splitBy="char"
                 delay={0.22}
               />
@@ -236,7 +236,7 @@ export function KidsTop() {
               For Each Age
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,3.6vw,2.4rem)] font-extrabold leading-tight text-[#3D2B1F]">
-              年齢にあわせた、3つの入り口。
+              年齢にあわせた、3つの入り口
             </h2>
           </div>
 
@@ -292,7 +292,7 @@ export function KidsTop() {
               Programs · 4 themes
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-[#3D2B1F]">
-              4つのテーマで、毎週ちがう体験。
+              4つのテーマで、毎週ちがう体験
             </h2>
           </div>
 
@@ -306,16 +306,20 @@ export function KidsTop() {
 
       <WaveDivider color="#FFF9F0" flip />
 
+      {/* How it works + Schedule wrapper — shared falling petals */}
+      <div className="relative isolate overflow-hidden">
+        <FallingPetals />
+
       {/* How it works — 4 step flow */}
-      <section className="relative overflow-hidden bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20">
+      <section className="relative bg-[#FFF9F0] px-6 py-32 sm:px-12 lg:px-20">
         <FloatingDecor variant="flow" />
-        <div className="relative mx-auto max-w-6xl">
+        <div className="relative z-10 mx-auto max-w-6xl">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#7AC4A2]">
               How it works
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-[#3D2B1F]">
-              はじめての方へ、4つのステップ。
+              はじめての方へ、4つのステップ
             </h2>
           </div>
 
@@ -370,14 +374,14 @@ export function KidsTop() {
       </section>
 
       {/* Schedule — フィルター検索風 */}
-      <section className="relative overflow-hidden bg-[#FFF9F0] px-6 pb-32 sm:px-12 lg:px-20">
-        <div className="relative mx-auto max-w-5xl">
+      <section className="relative bg-[#FFF9F0] px-6 pb-32 sm:px-12 lg:px-20">
+        <div className="relative z-10 mx-auto max-w-5xl">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">
               Schedule · April 2026
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-[#3D2B1F]">
-              開講中のクラスをさがす。
+              開講中のクラスをさがす
             </h2>
           </div>
 
@@ -428,14 +432,14 @@ export function KidsTop() {
       </section>
 
       {/* Works gallery */}
-      <section className="relative overflow-hidden bg-[#FFF9F0] px-6 pb-28 sm:px-12 lg:px-20">
-        <div className="relative mx-auto max-w-6xl">
+      <section className="relative bg-[#FFF9F0] px-6 pb-28 sm:px-12 lg:px-20">
+        <div className="relative z-10 mx-auto max-w-6xl">
           <div className="text-center">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">
               Works
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-[#3D2B1F]">
-              子どもたちが、つくったもの。
+              子どもたちが、つくったもの
             </h2>
           </div>
           <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -463,6 +467,9 @@ export function KidsTop() {
         </div>
       </section>
 
+      </div>
+      {/* End of How it works + Schedule + Works wrapper */}
+
       {/* Promise */}
       <section className="relative overflow-hidden bg-[#FF8FA3] px-6 py-32 text-white sm:px-12 lg:px-20">
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -475,7 +482,7 @@ export function KidsTop() {
               3つのやくそく
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight">
-              親も、安心して、一緒に。
+              親も、安心して、一緒に
             </h2>
           </div>
           <ul className="mt-14 grid gap-6 sm:grid-cols-3">
@@ -515,7 +522,7 @@ export function KidsTop() {
               Teachers
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-[#3D2B1F]">
-              お迎えするのは、こんな先生。
+              お迎えするのは、こんな先生
             </h2>
           </div>
           <ul className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -567,7 +574,7 @@ export function KidsTop() {
               Voice
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-[#3D2B1F]">
-              保護者さまから。
+              保護者さまから
             </h2>
           </div>
           <ul className="mt-14 grid gap-6 lg:grid-cols-3">
@@ -604,7 +611,7 @@ export function KidsTop() {
             </p>
             <h2 className="mt-3 font-[family-name:var(--font-mplus-rounded)] text-[clamp(1.8rem,4vw,2.8rem)] font-extrabold leading-tight text-[#3D2B1F]">
               <span className="inline-block">自由が丘の、</span>
-              <span className="inline-block">ラボ棟2F。</span>
+              <span className="inline-block">ラボ棟2F</span>
             </h2>
             <p className="mt-7 text-sm leading-loose text-[#3D2B1F]/80">
               自由が丘駅から徒歩6分。商店街の真ん中、文具店の上です。
@@ -644,7 +651,7 @@ export function KidsTop() {
           </p>
           <h2 className="mt-6 font-[family-name:var(--font-mplus-rounded)] text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-tight">
             <span className="inline-block">まずは、</span>
-            <span className="inline-block">土曜の朝に。</span>
+            <span className="inline-block">土曜の朝に</span>
           </h2>
           <p className="mt-8 text-sm leading-loose opacity-80">
             体験レッスン 1,500円（保護者1名含む）。10:00 or 13:30 から。
@@ -727,7 +734,7 @@ function HeroCarousel() {
             <RevealText text="つくる時間が、" splitBy="char" />
           </span>
           <span className="block">
-            <RevealText text="考える力を育てる。" splitBy="char" delay={0.18} />
+            <RevealText text="考える力を育てる" splitBy="char" delay={0.18} />
           </span>
         </h1>
 
@@ -974,6 +981,121 @@ function ProgramCard({ program, delay }: { program: Program; delay: number }) {
       </motion.div>
     </motion.li>
   );
+}
+
+/* ====================================================== */
+/*  FallingPetals — ambient confetti & leaves              */
+/* ====================================================== */
+type PetalKind = "leaf-green" | "leaf-yellow" | "flower-pink" | "flower-yellow" | "dot";
+
+type Petal = {
+  id: number;
+  left: number;
+  size: number;
+  duration: number;
+  delay: number;
+  sway: number;
+  rotateDir: 1 | -1;
+  kind: PetalKind;
+};
+
+function FallingPetals() {
+  const petals = useMemo<Petal[]>(() => {
+    const kinds: PetalKind[] = [
+      "leaf-green",
+      "leaf-yellow",
+      "flower-pink",
+      "flower-yellow",
+      "dot",
+    ];
+    return Array.from({ length: 26 }, (_, i) => {
+      // Pseudo-random but deterministic so SSR/CSR match
+      const r = (n: number) => {
+        const x = Math.sin(i * 999 + n * 73) * 10000;
+        return x - Math.floor(x);
+      };
+      return {
+        id: i,
+        left: r(1) * 100,
+        size: 14 + Math.floor(r(2) * 18), // 14-32px
+        duration: 22 + r(3) * 16, // 22-38s (calm drift across 3 sections)
+        delay: r(4) * 22, // 0-22s (stagger entry)
+        sway: 24 + r(5) * 36, // 24-60px
+        rotateDir: r(6) > 0.5 ? 1 : -1,
+        kind: kinds[Math.floor(r(7) * kinds.length)] ?? "leaf-green",
+      };
+    });
+  }, []);
+
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 z-20 overflow-hidden"
+    >
+      {petals.map((p) => (
+        <motion.span
+          key={p.id}
+          className="absolute block"
+          style={{
+            left: `${p.left}%`,
+            top: "-6%",
+            width: p.size,
+            height: p.size,
+          }}
+          initial={{ y: 0, x: 0, rotate: 0, opacity: 0 }}
+          animate={{
+            y: "320vh",
+            x: [0, p.sway, -p.sway * 0.6, p.sway * 0.4, 0],
+            rotate: 360 * p.rotateDir,
+            opacity: [0, 0.85, 0.85, 0.85, 0],
+          }}
+          transition={{
+            duration: p.duration,
+            delay: p.delay,
+            repeat: Infinity,
+            ease: "linear",
+            x: {
+              duration: p.duration,
+              delay: p.delay,
+              repeat: Infinity,
+              ease: "easeInOut",
+              times: [0, 0.25, 0.5, 0.75, 1],
+            },
+            opacity: {
+              duration: p.duration,
+              delay: p.delay,
+              repeat: Infinity,
+              ease: "linear",
+              times: [0, 0.08, 0.5, 0.92, 1],
+            },
+          }}
+        >
+          <PetalSVG kind={p.kind} />
+        </motion.span>
+      ))}
+    </div>
+  );
+}
+
+function PetalSVG({ kind }: { kind: PetalKind }) {
+  switch (kind) {
+    case "leaf-green":
+      return <LeafSVG className="block size-full text-[#7AC4A2]" />;
+    case "leaf-yellow":
+      return <LeafSVG className="block size-full text-[#FFD166]" />;
+    case "flower-pink":
+      return <FlowerSVG className="block size-full text-[#FF8FA3]" />;
+    case "flower-yellow":
+      return <FlowerSVG className="block size-full text-[#FFD166]" />;
+    case "dot":
+      return (
+        <svg viewBox="0 0 12 12" className="block size-full" aria-hidden>
+          <circle cx="6" cy="6" r="5" fill="#E89AC7" />
+        </svg>
+      );
+    default:
+      return null;
+  }
 }
 
 /* ====================================================== */
