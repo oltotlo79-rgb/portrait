@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { MagneticButton } from "@/lib/animations";
+import { KineticLetters, MagneticButton } from "@/lib/animations";
 import { ArrowRight } from "lucide-react";
 
 export function FitnessCTA() {
@@ -26,9 +26,29 @@ export function FitnessCTA() {
           Free 60-min trial
         </p>
         <h2 className="mt-8 font-[family-name:var(--font-bebas)] text-[clamp(4rem,12vw,11rem)] leading-[0.85] tracking-[0.01em]">
-          BURNT OUT?
-          <br />
-          <span className="text-[#FFE600]">LIGHT UP AGAIN.</span>
+          <KineticLetters
+            text="BURNT OUT?"
+            seed={1024}
+            trigger="inView"
+            scatterX={300}
+            scatterY={180}
+            scatterRotate={35}
+            stagger={0.06}
+            duration={1.1}
+            className="block"
+          />
+          <KineticLetters
+            text="LIGHT UP AGAIN."
+            seed={2048}
+            trigger="inView"
+            delay={0.45}
+            scatterX={300}
+            scatterY={180}
+            scatterRotate={35}
+            stagger={0.05}
+            duration={1.1}
+            className="block text-[#FFE600]"
+          />
         </h2>
         <p className="mx-auto mt-10 max-w-xl text-sm leading-loose text-white/70">
           まずは60分の無料体験。カウンセリングと、トレーニングを少しだけ。

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { KineticLetters } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
 import { PROGRAMS } from "./programs-data";
 
@@ -20,9 +21,29 @@ export function Programs() {
           </p>
         </div>
         <h2 className="mt-6 max-w-3xl font-[family-name:var(--font-bebas)] text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-[0.02em]">
-          Train like
-          <br />
-          <span className="text-[#FFE600]">you mean it.</span>
+          <KineticLetters
+            text="Train like"
+            seed={512}
+            trigger="inView"
+            scatterX={200}
+            scatterY={120}
+            scatterRotate={25}
+            stagger={0.05}
+            duration={1.0}
+            className="block"
+          />
+          <KineticLetters
+            text="you mean it."
+            seed={612}
+            trigger="inView"
+            delay={0.35}
+            scatterX={200}
+            scatterY={120}
+            scatterRotate={25}
+            stagger={0.05}
+            duration={1.0}
+            className="block text-[#FFE600]"
+          />
         </h2>
 
         <ul className="mt-20 grid gap-6 sm:grid-cols-2">

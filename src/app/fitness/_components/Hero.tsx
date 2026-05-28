@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Dumbbell, Gauge, MapPin } from "lucide-react";
-import { GlitchText } from "@/lib/animations";
+import { KineticLetters } from "@/lib/animations";
 
 const HERO_METRICS = [
   { label: "Studios", value: "3", icon: MapPin },
@@ -67,31 +67,42 @@ export function FitnessHero() {
         </motion.p>
 
         <h1 className="mt-8 font-[family-name:var(--font-bebas)] leading-[0.82] tracking-[-0.01em]">
-          <GlitchText
+          <KineticLetters
+            text="IGNITE"
             seed={247}
-            steps={6}
-            amplitudeX={8}
-            amplitudeY={4}
+            trigger="mount"
+            delay={0.4}
+            scatterX={280}
+            scatterY={180}
+            scatterRotate={40}
+            stagger={0.07}
+            duration={1.1}
             className="block text-[clamp(3.5rem,12vw,10rem)] text-white"
-          >
-            IGNITE
-          </GlitchText>
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.7 }}
+          />
+          <KineticLetters
+            text="YOUR FIRE"
+            seed={42}
+            trigger="mount"
+            delay={0.85}
+            scatterX={260}
+            scatterY={160}
+            scatterRotate={35}
+            stagger={0.05}
+            duration={1.0}
             className="block text-[clamp(3.5rem,12vw,10rem)] text-[#FFE600]"
-          >
-            YOUR FIRE
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.05, duration: 0.7 }}
+          />
+          <KineticLetters
+            text="again, and again."
+            seed={84}
+            trigger="mount"
+            delay={1.2}
+            scatterX={140}
+            scatterY={80}
+            scatterRotate={20}
+            stagger={0.025}
+            duration={0.85}
             className="block -mt-3 text-[clamp(2.5rem,7vw,5rem)] text-white/80"
-          >
-            again, and again.
-          </motion.span>
+          />
         </h1>
 
         <motion.div
