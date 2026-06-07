@@ -24,8 +24,7 @@ export function RestaurantCTA() {
           Reservation
         </p>
         <h2 className="mt-8 font-[family-name:var(--font-shippori-mincho)] text-[clamp(2.5rem,6vw,5rem)] leading-tight tracking-[0.1em]">
-          今宵、一席<br />
-          お待ちしております。
+          今宵、一席お待ちしております
         </h2>
         <p className="mt-10 font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#EFE9DD]/70">
           ご予約は二か月前より承ります。お電話、またはご予約フォームから。
