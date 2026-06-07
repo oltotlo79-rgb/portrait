@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Compass, MapPinned, Plane } from "lucide-react";
+import { ArrowUpRight, MapPinned, Plane } from "lucide-react";
 import { RevealText, motionTimings } from "@/lib/animations";
 
 const SCENES = [
@@ -220,15 +220,6 @@ export function TravelHero() {
         </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.2, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 items-center gap-2 text-[10px] uppercase tracking-[0.4em] opacity-70 md:flex"
-      >
-        <Compass className="size-3.5" />
-        Scroll ↓
-      </motion.div>
     </section>
   );
 }

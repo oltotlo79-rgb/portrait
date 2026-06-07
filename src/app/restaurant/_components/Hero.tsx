@@ -90,15 +90,6 @@ export function RestaurantHero() {
         >
           一席 ご来店ありがとうございます
         </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 4, duration: 0.8 }}
-          className="mt-16 text-[10px] uppercase tracking-[0.4em] text-[#EFE9DD]/40"
-        >
-          Scroll ↓
-        </motion.p>
       </div>
 
       <motion.div

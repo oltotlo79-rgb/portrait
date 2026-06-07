@@ -149,14 +149,6 @@ export function RyokanTop() {
           </dl>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.4, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-[0.5em] text-[#F1EAD9]/60"
-        >
-          Scroll ↓
-        </motion.div>
       </section>
 
       {/* Concept */}
