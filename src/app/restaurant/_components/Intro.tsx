@@ -14,7 +14,7 @@ export function RestaurantIntro() {
           transition={{ duration: 1 }}
           className="font-[family-name:var(--font-shippori-mincho)] text-xl leading-[1.7] tracking-[0.08em] text-[#B59154] sm:text-2xl lg:text-3xl lg:leading-[2] lg:tracking-[0.15em] lg:[writing-mode:vertical-rl]"
         >
-          季節の、一献に、はじまる夜を。
+          季節の、一献に、はじまる夜を
         </motion.p>
 
         <div>
@@ -22,7 +22,7 @@ export function RestaurantIntro() {
             <h2 className="font-[family-name:var(--font-noto-serif-jp)] text-3xl font-bold leading-tight sm:text-4xl">
               月替わりのおまかせで、
               <br />
-              神楽坂の夜をしつらえます。
+              神楽坂の夜をしつらえます
             </h2>
           </FadeIn>
           <FadeIn delay={0.15}>

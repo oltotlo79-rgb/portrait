@@ -108,7 +108,7 @@ export function DentalTop() {
           <h1 className="mt-6 font-[family-name:var(--font-zen-kaku)] text-[clamp(2.5rem,8vw,6rem)] font-bold leading-[1.05] text-[#1F2933]">
             <RevealText text="歯医者さん、" splitBy="word" />
             <span className="block text-[#5BB7B7]">
-              <RevealText text="苦手じゃなくなる。" splitBy="word" delay={0.2} />
+              <RevealText text="苦手じゃなくなる" splitBy="word" delay={0.2} />
             </span>
           </h1>
           <FadeIn delay={0.5}>
@@ -173,7 +173,7 @@ export function DentalTop() {
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-zen-kaku)] text-4xl font-bold text-[#1F2933] sm:text-5xl">
             <span className="inline-block">やわらかい、</span>
-            <span className="inline-block">医療を。</span>
+            <span className="inline-block">医療を</span>
           </h2>
           <ul className="mt-16 grid gap-6 sm:grid-cols-3">
             {PROMISES.map((p, i) => (
@@ -279,7 +279,7 @@ export function DentalTop() {
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-zen-kaku)] text-4xl font-bold text-[#1F2933] sm:text-5xl">
               <span className="inline-block">お子さま連れも、</span>
-              <span className="inline-block">おひとりさまも。</span>
+              <span className="inline-block">おひとりさまも</span>
             </h2>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-md text-sm leading-loose text-[#1F2933]/80">
@@ -300,7 +300,7 @@ export function DentalTop() {
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-zen-kaku)] text-4xl font-bold text-[#1F2933] sm:text-5xl">
               <span className="inline-block">めざすのは、</span>
-              <span className="inline-block">自然な笑顔。</span>
+              <span className="inline-block">自然な笑顔</span>
             </h2>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-md text-sm leading-loose text-[#1F2933]/80">
@@ -475,7 +475,7 @@ export function DentalTop() {
           <h2 className="mt-6 font-[family-name:var(--font-zen-kaku)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-tight">
             次の検診、
             <br />
-            今からどうぞ。
+            今からどうぞ
           </h2>
           <p className="mt-8 text-sm leading-loose opacity-90">
             24時間WEB予約。お電話でも承ります。

@@ -71,7 +71,7 @@ export function ChiroTop() {
                     <RevealText text="しずかに" splitBy="word" delay={0.2} />
                   </span>
                   <span className="inline-block">
-                    <RevealText text="整える。" splitBy="word" delay={0.3} />
+                    <RevealText text="整える" splitBy="word" delay={0.3} />
                   </span>
                 </span>
               </h1>
@@ -163,7 +163,7 @@ export function ChiroTop() {
             Symptoms
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-zen-maru)] text-4xl font-bold text-[#1F2933] sm:text-5xl">
-            こんなお悩みに。
+            こんなお悩みに
           </h2>
           <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {SYMPTOMS.map((s, i) => (
@@ -288,7 +288,7 @@ export function ChiroTop() {
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-zen-maru)] text-4xl font-bold text-[#1F2933] sm:text-5xl">
               <span className="inline-block">整える、</span>
-              <span className="inline-block">ということ。</span>
+              <span className="inline-block">ということ</span>
             </h2>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-md text-sm leading-loose text-[#1F2933]/80">
@@ -380,7 +380,7 @@ export function ChiroTop() {
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-zen-maru)] text-4xl font-bold text-[#1F2933] sm:text-5xl">
               <span className="inline-block">白い、</span>
-              <span className="inline-block">ひと部屋で。</span>
+              <span className="inline-block">ひと部屋で</span>
             </h2>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-md text-sm leading-loose text-[#1F2933]/80">
@@ -415,7 +415,7 @@ export function ChiroTop() {
           <p className="text-xs uppercase tracking-[0.4em]">Reservation</p>
           <h2 className="mt-6 font-[family-name:var(--font-zen-maru)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-tight">
             <span className="inline-block">まずは初回</span>
-            <span className="inline-block">60分から。</span>
+            <span className="inline-block">60分から</span>
           </h2>
           <p className="mt-8 text-sm leading-loose opacity-90">
             初回 ¥6,000（問診＋検査＋施術＋セルフケア指導）。2回目以降 ¥4,500。

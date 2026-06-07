@@ -31,7 +31,7 @@ export function RestaurantSpace() {
         </SectionLabel>
         <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] text-[#EFE9DD] sm:text-5xl">
           <span className="inline-block">十席だけの、</span>
-          <span className="inline-block">夜のしつらえ。</span>
+          <span className="inline-block">夜のしつらえ</span>
         </h2>
 
         <ul className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

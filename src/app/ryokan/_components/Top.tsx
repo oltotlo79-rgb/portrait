@@ -86,7 +86,7 @@ export function RyokanTop() {
               <RevealText text="月の光と、" splitBy="word" delay={0.6} />
             </span>
             <span className="block text-[#E8743C]">
-              <RevealText text="お湯の温度。" splitBy="word" delay={0.9} />
+              <RevealText text="お湯の温度" splitBy="word" delay={0.9} />
             </span>
           </h1>
 
@@ -161,13 +161,13 @@ export function RyokanTop() {
             transition={{ duration: 1 }}
             className="font-[family-name:var(--font-shippori-mincho)] text-2xl tracking-[0.1em] text-[#D9D1B8] sm:text-3xl lg:leading-[2] lg:tracking-[0.15em] lg:[writing-mode:vertical-rl]"
           >
-            湯を、守る。
+            湯を、守る
           </motion.p>
           <div>
             <FadeIn>
               <h2 className="font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
                 <span className="inline-block">一三〇年、</span>
-                <span className="inline-block">湯と灯を継ぐ。</span>
+                <span className="inline-block">湯と灯を継ぐ</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.15}>
@@ -192,7 +192,7 @@ export function RyokanTop() {
             客室
           </SectionLabel>
           <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
-            十四室、それぞれに名月。
+            十四室、それぞれに名月
           </h2>
 
           <ul className="mt-16 grid gap-6 lg:grid-cols-3">
@@ -276,7 +276,7 @@ export function RyokanTop() {
             </SectionLabel>
             <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
               <span className="inline-block">名物、</span>
-              <span className="inline-block">月の色の露天。</span>
+              <span className="inline-block">月の色の露天</span>
             </h2>
             <FadeIn delay={0.15}>
               <p className="mt-10 max-w-md font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#F1EAD9]/85">
@@ -324,7 +324,7 @@ export function RyokanTop() {
             会席
           </SectionLabel>
           <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
-            月替わりの六品。
+            月替わりの六品
           </h2>
 
           <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_1fr]">
@@ -429,7 +429,7 @@ export function RyokanTop() {
           <h2 className="mt-8 font-[family-name:var(--font-shippori-mincho)] text-[clamp(2rem,5vw,4rem)] leading-[1.4] tracking-[0.1em]">
             月を、
             <br />
-            お待ちしております。
+            お待ちしております
           </h2>
           <p className="mt-10 font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#F1EAD9]/80">
             ご予約は六か月前より承ります。仲居の手配のため、お早めにお知らせください。

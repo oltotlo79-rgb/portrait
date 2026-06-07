@@ -49,7 +49,7 @@ export function TravelConcierge() {
             <span className="font-[family-name:var(--font-cormorant)] italic text-[#F4B400]">
               3回の相談
             </span>
-            で形になる。
+            で形になる
           </h2>
           <FadeIn delay={0.2}>
             <p className="mt-8 font-[family-name:var(--font-noto-serif-jp)] text-base leading-loose text-white/80">

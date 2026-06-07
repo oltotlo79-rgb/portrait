@@ -33,7 +33,7 @@ export function TravelVoice() {
         </SectionLabel>
         <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold leading-tight sm:text-5xl">
           <span className="inline-block">旅から、</span>
-          <span className="inline-block">戻ってきた人の言葉。</span>
+          <span className="inline-block">戻ってきた人の言葉</span>
         </h2>
 
         <ul className="mt-16 grid gap-6 lg:grid-cols-3">

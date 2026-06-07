@@ -15,7 +15,7 @@ export default function KidsContactPage() {
         <div className="relative mx-auto max-w-4xl px-6 sm:px-12 lg:px-20">
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#FF8FA3]">Contact</p>
           <h1 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-[clamp(2.5rem,7vw,5rem)] font-extrabold leading-tight text-[#3D2B1F]">
-            体験のお申し込み。
+            体験のお申し込み
           </h1>
         </div>
       </section>

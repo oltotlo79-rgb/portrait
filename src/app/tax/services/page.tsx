@@ -26,7 +26,7 @@ export default function TaxServicesPage() {
           <div className="mx-auto w-full max-w-5xl">
             <p className="text-xs uppercase tracking-[0.4em] text-[#B4924C]">Services</p>
             <h1 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-[clamp(2.5rem,7vw,6rem)] font-bold">
-              ご支援領域。
+              ご支援領域
             </h1>
           </div>
         </div>

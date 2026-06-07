@@ -26,7 +26,7 @@ export default function PortfolioIndexPage() {
             <h2 className="mt-8 max-w-[8em] font-[family-name:var(--font-manrope)] text-[clamp(2.25rem,4.6vw,4.6rem)] font-light leading-[1.08]">
               <span className="block whitespace-nowrap">あなたの事業に</span>
               <span className="block whitespace-nowrap">合う見せ方を</span>
-              <span className="block whitespace-nowrap">相談する。</span>
+              <span className="block whitespace-nowrap">相談する</span>
             </h2>
           </div>
           <FadeIn className="max-w-xl">

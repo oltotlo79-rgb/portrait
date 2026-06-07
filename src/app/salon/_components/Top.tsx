@@ -268,7 +268,7 @@ function CoverHero() {
                 <RevealText text="two hours." splitBy="word" delay={0.75} />
               </h1>
               <p className="mt-6 font-[family-name:var(--font-noto-serif-jp)] text-base leading-loose text-[#2E2A26]/80 sm:text-lg">
-                <RevealText text="鏡の前の時間を、ご褒美に。" delay={1.0} />
+                <RevealText text="鏡の前の時間を、ご褒美に" delay={1.0} />
               </p>
             </div>
 
@@ -338,7 +338,7 @@ function ConceptEditorial() {
               Personal,
               <br />
               <span className="font-[family-name:var(--font-noto-serif-jp)] not-italic text-[0.55em] tracking-[0.12em] text-[#2E2A26]/80">
-                と書いて、丁寧。
+                と書いて、丁寧
               </span>
             </h2>
           </FadeIn>

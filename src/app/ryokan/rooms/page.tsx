@@ -52,7 +52,7 @@ export default function RyokanRoomsPage() {
           <div className="mx-auto w-full max-w-6xl">
             <SectionLabel className="text-[#E8743C]">Rooms</SectionLabel>
             <h1 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-[clamp(2.5rem,6vw,5rem)] tracking-[0.1em]">
-              十四室、それぞれに名月。
+              十四室、それぞれに名月
             </h1>
           </div>
         </div>

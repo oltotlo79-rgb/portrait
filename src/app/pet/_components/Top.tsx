@@ -206,7 +206,7 @@ export function PetTop() {
               <RevealText text="うちの子だけの時間を、" splitBy="char" />
             </span>
             <span className="block text-[#A37864]">
-              <RevealText text="いちばん大切に。" splitBy="char" delay={0.2} />
+              <RevealText text="いちばん大切に" splitBy="char" delay={0.2} />
             </span>
           </h1>
 
@@ -393,7 +393,7 @@ export function PetTop() {
                 Catalog · 12 items
               </p>
               <h2 className="mt-3 font-[family-name:var(--font-zen-maru)] text-[clamp(2rem,4vw,3rem)] font-bold leading-tight text-[#3B2A1C]">
-                すべてのメニュー。
+                すべてのメニュー
               </h2>
             </div>
             <Link
@@ -540,7 +540,7 @@ export function PetTop() {
               </p>
               <h2 className="mt-3 font-[family-name:var(--font-zen-maru)] text-[clamp(2rem,4vw,3rem)] font-bold leading-tight text-[#3B2A1C]">
                 <span className="inline-block">飼い主さんの</span>
-                <span className="inline-block">声。</span>
+                <span className="inline-block">声</span>
               </h2>
             </div>
             <div className="hidden items-baseline gap-2 sm:flex">
@@ -601,7 +601,7 @@ export function PetTop() {
             Gallery
           </p>
           <h2 className="mt-3 font-[family-name:var(--font-zen-maru)] text-[clamp(2rem,4vw,3rem)] font-bold leading-tight text-[#3B2A1C]">
-            ご来店の子たち。
+            ご来店の子たち
           </h2>
 
           <ul className="mt-12 grid auto-rows-[180px] grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
@@ -644,7 +644,7 @@ export function PetTop() {
             Staff
           </p>
           <h2 className="mt-3 font-[family-name:var(--font-zen-maru)] text-[clamp(2rem,4vw,3rem)] font-bold leading-tight text-[#3B2A1C]">
-            トリマー紹介。
+            トリマー紹介
           </h2>
           <ul className="mt-12 grid gap-6 lg:grid-cols-3">
             {STAFF.map((s, i) => (
@@ -695,7 +695,7 @@ export function PetTop() {
         <div className="relative mx-auto max-w-3xl text-center">
           <p className="text-[28px]">🐾 🐩 🐶</p>
           <h2 className="mt-6 font-[family-name:var(--font-zen-maru)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-tight">
-            お待ちしています。
+            お待ちしています
           </h2>
           <p className="mt-8 text-sm leading-loose opacity-90">
             初回ご来店は、カウンセリング30分付き。
@@ -756,7 +756,7 @@ function FeaturedSection() {
             <RevealText text="炭酸スパで、" splitBy="char" />
             <br />
             <span className="text-[#FFC97A]">
-              <RevealText text="毛艶ふわふわ。" splitBy="char" delay={0.15} />
+              <RevealText text="毛艶ふわふわ" splitBy="char" delay={0.15} />
             </span>
           </h2>
           <p className="mt-8 max-w-md text-sm leading-loose opacity-85">

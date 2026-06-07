@@ -146,7 +146,7 @@ export function YogaTop() {
               <RevealText text="Exhale." splitBy="word" delay={0.2} />
             </span>
             <span className="mt-4 block font-[family-name:var(--font-noto-serif-jp)] text-[0.35em] not-italic tracking-[0.3em] text-[#F8F3EA]/86">
-              <RevealText text="ひと呼吸ずつ、整える。" splitBy="word" delay={0.6} />
+              <RevealText text="ひと呼吸ずつ、整える" splitBy="word" delay={0.6} />
             </span>
           </h1>
           <FadeIn delay={1.0}>

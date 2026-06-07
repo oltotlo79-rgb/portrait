@@ -45,7 +45,7 @@ export function RestaurantMenu() {
             お品書き
           </SectionLabel>
           <h2 className="mt-4 font-[family-name:var(--font-shippori-mincho)] text-3xl tracking-[0.1em] sm:text-4xl">
-            月替わりのおまかせ。
+            月替わりのおまかせ
           </h2>
 
           <div className="mt-10 grid flex-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">

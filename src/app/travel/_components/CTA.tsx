@@ -23,7 +23,7 @@ export function TravelCTA() {
         <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-tight">
           まだ知らない場所で
           <br />
-          過ごす夜を、ご一緒に。
+          過ごす夜を、ご一緒に
         </h2>
         <p className="mt-8 text-sm leading-loose text-[#101820]/70">
           無料の初回相談は60分。お電話／オンラインのどちらでも対応します。

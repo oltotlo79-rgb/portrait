@@ -56,7 +56,7 @@ export function ConstructionTop() {
             >
               <span className="block">100</span>
               <span className="block text-[0.18em] font-[family-name:var(--font-noto-serif-jp)] tracking-[0.2em] text-[#C45D2E]">
-                YEARS — 100年もつ家を、手で建てる。
+                YEARS — 100年もつ家を、手で建てる
               </span>
             </motion.h1>
 
@@ -125,7 +125,7 @@ export function ConstructionTop() {
               <h2 className="font-[family-name:var(--font-noto-serif-jp)] text-3xl font-bold leading-tight text-[#2C2A28] sm:text-4xl">
                 木と、人と、時間を、
                 <br />
-                ひとつずつ。
+                ひとつずつ
               </h2>
             </FadeIn>
             <FadeIn delay={0.15}>

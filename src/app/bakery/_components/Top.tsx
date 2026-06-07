@@ -140,7 +140,7 @@ export function BakeryTop() {
           <h1 className="mt-6 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,9vw,8rem)] italic leading-[0.95] text-[#3A2A18]">
             <RevealText text="bread &" splitBy="word" />
             <span className="block font-[family-name:var(--font-noto-serif-jp)] not-italic text-[0.45em] tracking-[0.2em] text-[#3A2A18]/85">
-              <RevealText text="朝の小さな灯。" splitBy="word" delay={0.3} />
+              <RevealText text="朝の小さな灯" splitBy="word" delay={0.3} />
             </span>
           </h1>
 
@@ -501,7 +501,7 @@ export function BakeryTop() {
             Reserve
           </p>
           <h2 className="mt-6 font-[family-name:var(--font-cormorant)] text-[clamp(2.5rem,6vw,5rem)] italic leading-tight text-[#3A2A18]">
-            <span className="inline-block">朝、温かいうちに。</span>
+            <span className="inline-block">朝、温かいうちに</span>
           </h2>
           <p className="mt-8 font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#3A2A18]/80">
             人気のクロワッサンとカンパーニュは、前日までのお取り置きを承ります。

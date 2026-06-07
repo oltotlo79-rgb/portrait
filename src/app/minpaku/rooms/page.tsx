@@ -44,7 +44,7 @@ export default function RoomsPage() {
             <SectionLabel className="text-[#C9A063]">Rooms</SectionLabel>
             <h1 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-[clamp(2.5rem,6vw,5rem)] tracking-[0.1em]">
               <span className="inline-block">二室、</span>
-              <span className="inline-block">それぞれに。</span>
+              <span className="inline-block">それぞれに</span>
             </h1>
           </div>
         </div>

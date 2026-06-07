@@ -136,7 +136,7 @@ export function TaxTop() {
           <h1 className="mt-8 font-[family-name:var(--font-noto-serif-jp)] text-[clamp(2.5rem,7vw,6rem)] font-bold leading-[1.05]">
             <RevealText text="経営者の、" splitBy="word" />
             <span className="block text-[#B4924C]">
-              <RevealText text="その右隣に。" splitBy="word" delay={0.2} />
+              <RevealText text="その右隣に" splitBy="word" delay={0.2} />
             </span>
           </h1>
           <FadeIn delay={0.6}>
@@ -215,7 +215,7 @@ export function TaxTop() {
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47] sm:text-5xl">
             <span className="inline-block">数字で見る、</span>
-            <span className="inline-block">ご支援の実績。</span>
+            <span className="inline-block">ご支援の実績</span>
           </h2>
           <ul className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {KPIS.map((k, i) => (
@@ -242,7 +242,7 @@ export function TaxTop() {
             Services
           </p>
           <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47] sm:text-5xl">
-            4つのサービス領域。
+            4つのサービス領域
           </h2>
           <ul className="mt-16 grid gap-4 sm:grid-cols-2">
             {SERVICES.map((s, i) => (
@@ -302,7 +302,7 @@ export function TaxTop() {
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-3xl font-bold sm:text-4xl">
               <span className="inline-block">伴走する、</span>
-              <span className="inline-block">という姿勢。</span>
+              <span className="inline-block">という姿勢</span>
             </h2>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-md text-sm leading-loose text-white/80">
@@ -369,7 +369,7 @@ export function TaxTop() {
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-3xl font-bold text-[#0E2A47] sm:text-4xl">
               <span className="inline-block">チームで、</span>
-              <span className="inline-block">考え続ける。</span>
+              <span className="inline-block">考え続ける</span>
             </h2>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-md text-sm leading-loose text-[#15233A]/80">
@@ -420,7 +420,7 @@ export function TaxTop() {
               Office
             </p>
             <h2 className="mt-4 font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold text-[#0E2A47]">
-              四ツ谷の、小さな事務所。
+              四ツ谷の、小さな事務所
             </h2>
             <FadeIn delay={0.15}>
               <p className="mt-8 max-w-md text-sm leading-loose text-[#15233A]/80">
@@ -513,7 +513,7 @@ export function TaxTop() {
           </p>
           <h2 className="mt-6 font-[family-name:var(--font-noto-serif-jp)] text-[clamp(2.5rem,6vw,5rem)] font-bold leading-tight">
             <span className="inline-block">無料相談、</span>
-            <span className="inline-block">初回60分。</span>
+            <span className="inline-block">初回60分</span>
           </h2>
           <p className="mt-8 text-sm leading-loose text-white/80">
             来所・オンライン・お電話、いずれもお選びいただけます。

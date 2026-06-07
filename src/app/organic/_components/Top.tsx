@@ -13,9 +13,9 @@ const PRODUCTS = [
 ];
 
 const JOURNAL = [
-  { date: "2026.04.20", title: "春のセットの楽しみ方 — 新玉ねぎは生で。" },
-  { date: "2026.04.05", title: "ハーブのある食卓 — 5分でできる3つのアイデア。" },
-  { date: "2026.03.18", title: "土の話 — KIYORAの畑がやっている、おだやかな農法。" },
+  { date: "2026.04.20", title: "春のセットの楽しみ方 — 新玉ねぎは生で" },
+  { date: "2026.04.05", title: "ハーブのある食卓 — 5分でできる3つのアイデア" },
+  { date: "2026.03.18", title: "土の話 — KIYORAの畑がやっている、おだやかな農法" },
 ];
 
 const HARVEST = [
@@ -76,7 +76,7 @@ export function OrganicTop() {
             <h1 className="mt-8 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,9vw,9rem)] italic leading-[0.95]">
               <RevealText text="From the soil," splitBy="word" delay={0.4} />
               <span className="block font-[family-name:var(--font-noto-serif-jp)] not-italic text-[0.45em] tracking-[0.15em]">
-                <RevealText text="土から、食卓まで。" splitBy="word" delay={0.7} />
+                <RevealText text="土から、食卓まで" splitBy="word" delay={0.7} />
               </span>
             </h1>
 

@@ -46,7 +46,7 @@ export function MinpakuAbout() {
           transition={{ duration: 1 }}
           className="font-[family-name:var(--font-shippori-mincho)] text-2xl tracking-[0.1em] text-[#3F4A3C] sm:text-3xl lg:leading-[2] lg:tracking-[0.15em] lg:[writing-mode:vertical-rl]"
         >
-          路地に、灯る。
+          路地に、灯る
         </motion.p>
         <div>
           <FadeIn>
@@ -78,7 +78,7 @@ export function MinpakuRooms() {
         </SectionLabel>
         <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
           <span className="inline-block">二室、</span>
-          <span className="inline-block">それぞれに。</span>
+          <span className="inline-block">それぞれに</span>
         </h2>
         <ul className="mt-20 grid gap-10 lg:grid-cols-2 lg:gap-16">
           {ROOMS.map((r, i) => (
@@ -131,7 +131,7 @@ export function MinpakuSeasons() {
           季 の 庭
         </SectionLabel>
         <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] text-[#1A1A1A] sm:text-5xl">
-          四つの顔をもつ坪庭。
+          四つの顔をもつ坪庭
         </h2>
         <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {SEASONS.map((s, i) => (
@@ -178,7 +178,7 @@ export function MinpakuExperience() {
         </SectionLabel>
         <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
           <span className="inline-block">滞在に、</span>
-          <span className="inline-block">もう一筆。</span>
+          <span className="inline-block">もう一筆</span>
         </h2>
         <ul className="mt-16 grid gap-6 lg:grid-cols-3">
           {EXPERIENCES.map((e, i) => (
@@ -217,7 +217,7 @@ export function MinpakuAccess() {
           </SectionLabel>
           <h2 className="mt-6 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] text-[#1A1A1A] sm:text-5xl">
             <span className="inline-block">西陣の、</span>
-            <span className="inline-block">奥の路地へ。</span>
+            <span className="inline-block">奥の路地へ</span>
           </h2>
           <dl className="mt-12 space-y-6 text-sm">
             <Row label="所在地" value="京都市上京区（詳細はご予約後にお伝えします）" />
@@ -269,7 +269,7 @@ export function MinpakuCTA() {
         <h2 className="mt-8 font-[family-name:var(--font-shippori-mincho)] text-[clamp(2.5rem,6vw,5rem)] tracking-[0.1em]">
           おひとり様、
           <br />
-          おひと組ずつ。
+          おひと組ずつ
         </h2>
         <p className="mt-10 font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#F4EDE3]/75">
           ご予約は三か月前より承ります。下記より、お気軽にお問い合わせください。

@@ -46,7 +46,7 @@ export function TravelNumbers() {
           By the Numbers
         </SectionLabel>
         <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-noto-serif-jp)] text-4xl font-bold leading-tight sm:text-5xl">
-          数字で見るHORIZON。
+          数字で見るHORIZON
         </h2>
 
         <ul className="mt-20 grid grid-cols-1 gap-x-10 gap-y-16 sm:grid-cols-2">

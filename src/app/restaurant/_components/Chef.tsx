@@ -19,7 +19,7 @@ export function RestaurantChef() {
           <h2 className="mt-8 font-[family-name:var(--font-shippori-mincho)] text-4xl tracking-[0.1em] sm:text-5xl">
             包丁を入れる、
             <br />
-            その一手の前に。
+            その一手の前に
           </h2>
           <FadeIn delay={0.15}>
             <p className="mt-10 max-w-lg font-[family-name:var(--font-noto-serif-jp)] text-sm leading-loose text-[#EFE9DD]/80">

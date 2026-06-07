@@ -89,7 +89,7 @@ export function MinpakuHero() {
               transition={{ delay: 3.2, duration: 1.5 }}
               className="block"
             >
-              暮らすように泊まる。
+              暮らすように泊まる
             </motion.span>
           </span>
 
@@ -112,7 +112,7 @@ export function MinpakuHero() {
               transition={{ delay: 3.2, duration: 1.5 }}
               className="block"
             >
-              暮らすように泊まる。
+              暮らすように泊まる
             </motion.span>
           </span>
         </motion.h1>

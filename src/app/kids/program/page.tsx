@@ -29,7 +29,7 @@ export default function KidsProgramPage() {
           <h1 className="mt-4 font-[family-name:var(--font-mplus-rounded)] text-[clamp(2.5rem,8vw,6rem)] font-extrabold leading-[1] text-[#3D2B1F]">
             毎週、ちがう
             <br />
-            ふしぎを。
+            ふしぎを
           </h1>
         </div>
       </section>
