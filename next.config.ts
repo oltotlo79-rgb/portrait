@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  images: { unoptimized: true },
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      { protocol: "https", hostname: "images.microcms-assets.io" },
+    ],
+  },
   trailingSlash: true,
   reactStrictMode: true,
 };
