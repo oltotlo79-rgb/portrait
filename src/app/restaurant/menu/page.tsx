@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { RestaurantNav } from "../_components/Nav";
 import { RestaurantFooter } from "../_components/Footer";
-import { COURSE } from "../_components/menu-data";
+import { getCourses, getInfo } from "../_data";
 import { FadeIn } from "@/lib/animations";
 import { SectionLabel } from "@/components/shared/SectionLabel";
 
@@ -18,7 +18,8 @@ const SAKE = [
   { name: "新政 No.6 S-type", area: "秋田", price: "¥2,800 / 一合" },
 ];
 
-export default function MenuPage() {
+export default async function MenuPage() {
+  const [courses, info] = await Promise.all([getCourses(), getInfo()]);
   return (
     <>
       <section className="relative h-[58vh] min-h-[420px] overflow-hidden bg-[#0F0F0F] text-[#EFE9DD]">
@@ -51,7 +52,7 @@ export default function MenuPage() {
           </FadeIn>
 
           <ul className="mt-20 divide-y divide-[#B59154]/15 border-y border-[#B59154]/15">
-            {COURSE.map((c, i) => (
+            {courses.map((c, i) => (
               <FadeIn key={c.no} delay={i * 0.04}>
                 <li className="grid grid-cols-[auto_1fr_auto] items-baseline gap-8 py-8">
                   <span className="font-[family-name:var(--font-shippori-mincho)] text-3xl text-[#B59154]">
@@ -105,7 +106,7 @@ export default function MenuPage() {
         </div>
       </main>
 
-      <RestaurantFooter />
+      <RestaurantFooter info={info} />
     </>
   );
 }
