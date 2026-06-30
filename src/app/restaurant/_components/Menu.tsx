@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll } from "framer-motion";
 import { SectionLabel } from "@/components/shared/SectionLabel";
-import { COURSE } from "./menu-data";
+import type { Course } from "../_data/types";
 
 /**
  * Pinned-scroll の献立。
@@ -13,7 +13,7 @@ import { COURSE } from "./menu-data";
  * - スクロール進捗で active index を更新、画像と文字をクロスフェード
  * - 下部に細い進捗バーを 5 本並べ、献立の流れを示す
  */
-export function RestaurantMenu() {
+export function RestaurantMenu({ courses }: { courses: Course[] }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -25,8 +25,8 @@ export function RestaurantMenu() {
   useEffect(() => {
     return scrollYProgress.on("change", (v) => {
       const next = Math.min(
-        COURSE.length - 1,
-        Math.floor(v * COURSE.length * 1.02),
+        courses.length - 1,
+        Math.floor(v * courses.length * 1.02),
       );
       setActive(next);
     });
@@ -37,7 +37,7 @@ export function RestaurantMenu() {
       id="menu"
       ref={sectionRef}
       className="relative bg-[#0F0F0F]"
-      style={{ height: `${COURSE.length * 100}vh` }}
+      style={{ height: `${courses.length * 100}vh` }}
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden px-6 py-16 text-[#EFE9DD] sm:px-12 lg:px-20">
         <div className="mx-auto flex w-full max-w-6xl flex-col">
@@ -51,7 +51,7 @@ export function RestaurantMenu() {
           <div className="mt-10 grid flex-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">
             {/* Image stack — crossfade */}
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md">
-              {COURSE.map((dish, i) => (
+              {courses.map((dish, i) => (
                 <motion.div
                   key={dish.no}
                   className="absolute inset-0"
@@ -75,7 +75,7 @@ export function RestaurantMenu() {
                     aria-hidden
                   />
                   <div className="absolute left-6 top-6 text-[10px] uppercase tracking-[0.4em] text-white/70">
-                    {String(i + 1).padStart(2, "0")} / 05
+                    {String(i + 1).padStart(2, "0")} / {String(courses.length).padStart(2, "0")}
                   </div>
                 </motion.div>
               ))}
@@ -83,7 +83,7 @@ export function RestaurantMenu() {
 
             {/* Text stack — crossfade with slight y */}
             <div className="relative min-h-[320px]">
-              {COURSE.map((dish, i) => (
+              {courses.map((dish, i) => (
                 <motion.div
                   key={dish.no}
                   className="absolute inset-0 flex flex-col justify-center"
@@ -113,7 +113,7 @@ export function RestaurantMenu() {
 
           {/* Progress bars */}
           <div className="mt-10 flex gap-3">
-            {COURSE.map((dish, i) => (
+            {courses.map((dish, i) => (
               <div key={dish.no} className="flex-1">
                 <div className="relative h-px bg-[#EFE9DD]/15">
                   <motion.div
