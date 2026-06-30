@@ -1,6 +1,6 @@
 import { getClient, hasMicroCMS } from "@/lib/microcms";
 import { normalizeImage } from "./normalize";
-import { loadImageMap, toLocalImage } from "./images";
+import { loadImageMap, toLocalImage, localizeHtml } from "./images";
 import { seedCourses, seedNews, seedInfo } from "./seed";
 import type {
   Course,
@@ -33,6 +33,7 @@ export async function getCourses(): Promise<Course[]> {
 
 export async function getNews(): Promise<NewsItem[]> {
   if (!hasMicroCMS()) return seedNews;
+  const map = loadImageMap();
   const res = await getClient().getList<RawNews>({
     endpoint: "news",
     queries: { limit: 20, orders: "-publishedAt" },
@@ -42,7 +43,7 @@ export async function getNews(): Promise<NewsItem[]> {
     title: n.title,
     publishedAt: n.publishedAt,
     category: n.category,
-    body: n.body,
+    body: localizeHtml(n.body, map, seedInfo.heroImage),
   }));
 }
 

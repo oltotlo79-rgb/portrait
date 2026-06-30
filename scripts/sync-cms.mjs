@@ -23,6 +23,8 @@ const MAP_FILE = path.join(
   "cms-image-map.json",
 );
 
+const CDN_URL_RE = /https:\/\/images\.microcms-assets\.io\/[^\s"')]+/g;
+
 function localName(url) {
   const clean = url.split("?")[0];
   const parts = clean.split("/").filter(Boolean);
@@ -40,18 +42,28 @@ async function main() {
 
   const client = createClient({ serviceDomain: DOMAIN, apiKey: KEY });
 
-  const [courses, info] = await Promise.all([
+  const [courses, info, news] = await Promise.all([
     client
       .getList({ endpoint: "courses", queries: { limit: 100 } })
       .then((r) => r.contents)
       .catch(() => []),
     client.getObject({ endpoint: "info" }).catch(() => ({})),
+    client
+      .getList({ endpoint: "news", queries: { limit: 100 } })
+      .then((r) => r.contents)
+      .catch(() => []),
   ]);
 
   const imageUrls = [];
   for (const c of courses) if (c.image?.url) imageUrls.push(c.image.url);
   if (info?.heroImage?.url) imageUrls.push(info.heroImage.url);
   if (info?.logo?.url) imageUrls.push(info.logo.url);
+  for (const n of news) {
+    if (typeof n.body === "string") {
+      const found = n.body.match(CDN_URL_RE);
+      if (found) imageUrls.push(...found);
+    }
+  }
 
   await mkdir(IMG_DIR, { recursive: true });
   const map = {};

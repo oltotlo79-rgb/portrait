@@ -8,16 +8,23 @@ const MAP_PATH = path.join(
 
 const MICROCMS_HOST = "https://images.microcms-assets.io/";
 
-/** prebuild スクリプトが出力した url→ローカルパス対応表を読む。無ければ空。 */
+/** リッチテキストHTML内の microCMS CDN 画像URLを検出する正規表現 */
+const CDN_URL_RE = /https:\/\/images\.microcms-assets\.io\/[^\s"')]+/g;
+
+let cachedMap: Record<string, string> | null = null;
+
+/** prebuild スクリプトが出力した url→ローカルパス対応表を読む（メモ化）。無ければ空。 */
 export function loadImageMap(): Record<string, string> {
+  if (cachedMap) return cachedMap;
   try {
-    return JSON.parse(fs.readFileSync(MAP_PATH, "utf-8")) as Record<
+    cachedMap = JSON.parse(fs.readFileSync(MAP_PATH, "utf-8")) as Record<
       string,
       string
     >;
   } catch {
-    return {};
+    cachedMap = {};
   }
+  return cachedMap;
 }
 
 /**
@@ -35,4 +42,17 @@ export function toLocalImage(
   if (map[url]) return map[url];
   if (url.startsWith(MICROCMS_HOST)) return fallback;
   return url;
+}
+
+/**
+ * リッチテキストHTML内の microCMS CDN 画像URLをローカルパスへ置換する（転送量対策）。
+ * 対応表に無いCDN URLは fallback に置換し、CDN直URLを決して残さない。
+ */
+export function localizeHtml(
+  html: string,
+  map: Record<string, string>,
+  fallback: string,
+): string {
+  if (!html) return html;
+  return html.replace(CDN_URL_RE, (u) => map[u] ?? fallback);
 }

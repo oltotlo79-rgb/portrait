@@ -4,9 +4,6 @@ const nextConfig: NextConfig = {
   output: "export",
   images: {
     unoptimized: true,
-    remotePatterns: [
-      { protocol: "https", hostname: "images.microcms-assets.io" },
-    ],
   },
   trailingSlash: true,
   reactStrictMode: true,
