@@ -39,11 +39,11 @@ export default async function ReservationPage() {
             <dl className="mt-12 space-y-6 text-xs">
               <div>
                 <dt className="uppercase tracking-[0.3em] text-[#B59154]">電話</dt>
-                <dd className="mt-2 text-[#EFE9DD]">03-XXXX-XXXX（16:00以降）</dd>
+                <dd className="mt-2 text-[#EFE9DD]">{info.tel}（16:00以降）</dd>
               </div>
               <div>
                 <dt className="uppercase tracking-[0.3em] text-[#B59154]">メール</dt>
-                <dd className="mt-2 text-[#EFE9DD]">kuromoji@example.jp</dd>
+                <dd className="mt-2 text-[#EFE9DD]">{info.email}</dd>
               </div>
               <div>
                 <dt className="uppercase tracking-[0.3em] text-[#B59154]">アレルギー</dt>
