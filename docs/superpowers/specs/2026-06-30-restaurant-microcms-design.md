@@ -23,6 +23,17 @@
 - **CSR（ブラウザから直接API取得）**: APIキー露出・SEO低下・静的書き出しの強みを捨てるため不採用。
 - **下書きプレビュー**: サーバーエンドポイントが必要で `output: 'export'` では不可。スコープ外。
 
+## 2.1. データ転送量対策（microCMS Hobby 20GB/月 制約）★必須
+
+microCMS Hobby プランは**データ転送量が月20GB**で、超過すると当月いっぱい API が停止する（課金での即時解除は不可）。転送量を主に消費するのは**画像配信**。対策として、**訪問者に microCMS の画像CDN URLを直リンクさせない**。
+
+- **画像はビルド時に1回だけ microCMS から取得**し、`public/images/restaurant/cms/` に保存 → Cloudflare から配信する。
+- 訪問者のページ閲覧は 100% Cloudflare 配信となり、microCMS の転送量を消費しない。microCMS へのアクセスは「ビルド1回あたり画像取得1回」のみ。
+- 実装は prebuild スクリプト `scripts/sync-cms.mjs`（env-gated・env無しなら no-op）でコンテンツ取得＋画像ダウンロード＋`url→ローカルパス`の対応表JSONを出力。`package.json` の build を `node scripts/sync-cms.mjs && next build` にする。
+- レンダリング側（`<img>` / `next/image` の `src`）は**必ずローカルパス**を指す。microCMS CDN URL をそのまま出力しない（これが本対策の肝）。
+
+> Next.js は `output: 'export'` ＋ `images: { unoptimized: true }` のため `next/image` の自動最適化/ローカル化は使えない。上記スクリプトで等価の「ビルド時ローカル化」を行う。
+
 ## 3. コンテンツモデル（microCMS スキーマ）
 
 | API ID | 形式 | 主なフィールド | 置き換え元 |
@@ -41,7 +52,7 @@
 - `src/lib/microcms.ts` … 公式 SDK `microcms-js-sdk` のクライアント。`MICROCMS_SERVICE_DOMAIN` / `MICROCMS_API_KEY` を環境変数から読む。
 - `src/app/restaurant/_data/` に**シードJSON**（現行 `menu-data.ts` 相当＋news/infoの初期値）を保持。
 - 各取得関数（`getCourses` / `getNews` / `getInfo`）は **環境変数があれば microCMS、なければシードJSONにフォールバック**。ローカル/CIでキーが無くてもビルド成功。
-- **画像URLの正規化**: microCMS は画像を `{ url, width, height }` で返し、シードはローカルパス文字列。両者を `image: string`（URL）に揃える正規化関数を通す。キーの有無に関わらず画像が表示される。
+- **画像URLの正規化＋ローカル化**: microCMS は画像を `{ url, width, height }` で返し、シードはローカルパス文字列。正規化関数で `image: string` に揃えた上で、microCMS 由来の画像は prebuild スクリプトが出力した**対応表経由でローカルパスに差し替える**（§2.1）。CDN URL を素通しにしない。env無しのフォールバック時はシードのローカルパスがそのまま使われる。
 
 ## 5. 再デプロイ・環境変数フロー
 
@@ -51,7 +62,7 @@
 
 ## 6. スコープ境界（YAGNI）
 
-- **やる**: 飲食1業種（`courses` / `news` / `info`）のCMS化。画像差し替え対応。フォールバック。Webhook自動再ビルド。
+- **やる**: 飲食1業種（`courses` / `news` / `info`）のCMS化。画像差し替え対応。フォールバック。Webhook自動再ビルド。**ビルド時画像ローカル化（20GB転送量対策、§2.1）**。
 - **やらない**: 下書きプレビュー、全業種展開、お問い合わせ送信機能、他業種の改修。
 
 ## 7. テスト・検証
