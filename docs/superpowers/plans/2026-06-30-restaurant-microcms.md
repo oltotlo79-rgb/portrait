@@ -556,6 +556,318 @@ git commit -m "feat: add restaurant CMS data access with seed fallback"
 
 ---
 
+## Task 6b: ビルド時画像ローカル化（microCMS 20GB転送量対策）
+
+**背景:** microCMS Hobby は月20GB転送で超過するとAPI停止。訪問者に microCMS CDN の画像URLを直リンクさせず、ビルド時に1回だけ画像を取得して `public/` に保存→Cloudflareから配信する。詳細は spec §2.1。
+
+**Files:**
+- Create: `scripts/sync-cms.mjs`
+- Create: `src/app/restaurant/_data/images.ts`
+- Test: `src/app/restaurant/_data/images.test.ts`
+- Modify: `src/app/restaurant/_data/index.ts`
+- Modify: `package.json`（build スクリプト）
+- Modify: `.gitignore`
+
+- [ ] **Step 1: 画像変換ユーティリティの失敗テストを書く（TDD）**
+
+Create `src/app/restaurant/_data/images.test.ts`:
+```ts
+import { describe, it, expect } from "vitest";
+import { toLocalImage } from "./images";
+
+const MAP = {
+  "https://images.microcms-assets.io/assets/x/y/dish.webp":
+    "/images/restaurant/cms/y-dish.webp",
+};
+
+describe("toLocalImage", () => {
+  it("対応表にあればローカルパスを返す", () => {
+    expect(
+      toLocalImage(
+        "https://images.microcms-assets.io/assets/x/y/dish.webp",
+        MAP,
+        "/fallback.webp",
+      ),
+    ).toBe("/images/restaurant/cms/y-dish.webp");
+  });
+
+  it("対応表に無いmicroCMS直URLは絶対に返さずfallback", () => {
+    expect(
+      toLocalImage(
+        "https://images.microcms-assets.io/assets/x/z/other.webp",
+        MAP,
+        "/fallback.webp",
+      ),
+    ).toBe("/fallback.webp");
+  });
+
+  it("シードのローカルパスはそのまま", () => {
+    expect(
+      toLocalImage("/images/restaurant/03-dish-hassun.webp", MAP, "/fallback.webp"),
+    ).toBe("/images/restaurant/03-dish-hassun.webp");
+  });
+
+  it("空文字はfallback", () => {
+    expect(toLocalImage("", MAP, "/fallback.webp")).toBe("/fallback.webp");
+  });
+});
+```
+
+- [ ] **Step 2: 失敗を確認**
+
+Run: `pnpm exec vitest run src/app/restaurant/_data/images.test.ts`
+Expected: FAIL（`toLocalImage` 未定義）。
+
+- [ ] **Step 3: images.ts を実装**
+
+Create `src/app/restaurant/_data/images.ts`:
+```ts
+import fs from "node:fs";
+import path from "node:path";
+
+const MAP_PATH = path.join(
+  process.cwd(),
+  "src/app/restaurant/_data/cms-image-map.json",
+);
+
+const MICROCMS_HOST = "https://images.microcms-assets.io/";
+
+/** prebuild スクリプトが出力した url→ローカルパス対応表を読む。無ければ空。 */
+export function loadImageMap(): Record<string, string> {
+  try {
+    return JSON.parse(fs.readFileSync(MAP_PATH, "utf-8")) as Record<
+      string,
+      string
+    >;
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * 画像URLを「訪問者に配信して良いパス」へ変換する。
+ * - 対応表にあれば Cloudflare 配信のローカルパス
+ * - microCMS CDN の直URLは絶対に返さない（転送量対策）→ fallback
+ * - それ以外（シードのローカルパス等）はそのまま
+ */
+export function toLocalImage(
+  url: string,
+  map: Record<string, string>,
+  fallback: string,
+): string {
+  if (!url) return fallback;
+  if (map[url]) return map[url];
+  if (url.startsWith(MICROCMS_HOST)) return fallback;
+  return url;
+}
+```
+
+- [ ] **Step 4: テスト成功を確認**
+
+Run: `pnpm exec vitest run src/app/restaurant/_data/images.test.ts`
+Expected: PASS（4件）。
+
+- [ ] **Step 5: index.ts を画像ローカル化に対応**
+
+`src/app/restaurant/_data/index.ts` を以下に全置換（getCourses/getInfo の image を `toLocalImage` 経由に。news は画像フィールド無しのため変更なし）:
+```ts
+import { getClient, hasMicroCMS } from "@/lib/microcms";
+import { normalizeImage } from "./normalize";
+import { loadImageMap, toLocalImage } from "./images";
+import { seedCourses, seedNews, seedInfo } from "./seed";
+import type {
+  Course,
+  NewsItem,
+  ShopInfo,
+  RawCourse,
+  RawNews,
+  RawInfo,
+} from "./types";
+
+export async function getCourses(): Promise<Course[]> {
+  if (!hasMicroCMS()) return seedCourses;
+  const map = loadImageMap();
+  const res = await getClient().getList<RawCourse>({
+    endpoint: "courses",
+    queries: { limit: 100, orders: "order" },
+  });
+  return res.contents.map((c, i) => ({
+    no: c.no,
+    en: c.en,
+    ja: c.ja,
+    body: c.body,
+    image: toLocalImage(
+      normalizeImage(c.image),
+      map,
+      seedCourses[i]?.image ?? seedInfo.heroImage,
+    ),
+  }));
+}
+
+export async function getNews(): Promise<NewsItem[]> {
+  if (!hasMicroCMS()) return seedNews;
+  const res = await getClient().getList<RawNews>({
+    endpoint: "news",
+    queries: { limit: 20, orders: "-publishedAt" },
+  });
+  return res.contents.map((n) => ({
+    id: n.id,
+    title: n.title,
+    publishedAt: n.publishedAt,
+    category: n.category,
+    body: n.body,
+  }));
+}
+
+export async function getInfo(): Promise<ShopInfo> {
+  if (!hasMicroCMS()) return seedInfo;
+  const map = loadImageMap();
+  const i = await getClient().getObject<RawInfo>({ endpoint: "info" });
+  return {
+    shopName: i.shopName,
+    tagline: i.tagline,
+    hours: i.hours,
+    closed: i.closed,
+    seats: i.seats,
+    tel: i.tel,
+    email: i.email,
+    address: i.address,
+    access: i.access,
+    heroImage: toLocalImage(
+      normalizeImage(i.heroImage, seedInfo.heroImage),
+      map,
+      seedInfo.heroImage,
+    ),
+    logo: toLocalImage(
+      normalizeImage(i.logo, seedInfo.logo),
+      map,
+      seedInfo.logo,
+    ),
+  };
+}
+```
+
+- [ ] **Step 6: prebuild 同期スクリプトを作成**
+
+Create `scripts/sync-cms.mjs`:
+```js
+// microCMS のコンテンツ画像をビルド時に取得し public/ へ保存、url→ローカルパス対応表を出力する。
+// env 未設定なら何もしない（シードデータで動作）。
+import { createClient } from "microcms-js-sdk";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+
+const DOMAIN = process.env.MICROCMS_SERVICE_DOMAIN;
+const KEY = process.env.MICROCMS_API_KEY;
+
+const IMG_DIR = path.join(
+  process.cwd(),
+  "public",
+  "images",
+  "restaurant",
+  "cms",
+);
+const MAP_FILE = path.join(
+  process.cwd(),
+  "src",
+  "app",
+  "restaurant",
+  "_data",
+  "cms-image-map.json",
+);
+
+function localName(url) {
+  const clean = url.split("?")[0];
+  const parts = clean.split("/").filter(Boolean);
+  return parts
+    .slice(-2)
+    .join("-")
+    .replace(/[^a-zA-Z0-9._-]/g, "_");
+}
+
+async function main() {
+  if (!DOMAIN || !KEY) {
+    console.log("[sync-cms] microCMS env 未設定のためスキップ（シードデータを使用）");
+    return;
+  }
+
+  const client = createClient({ serviceDomain: DOMAIN, apiKey: KEY });
+
+  const [courses, info] = await Promise.all([
+    client
+      .getList({ endpoint: "courses", queries: { limit: 100 } })
+      .then((r) => r.contents)
+      .catch(() => []),
+    client.getObject({ endpoint: "info" }).catch(() => ({})),
+  ]);
+
+  const imageUrls = [];
+  for (const c of courses) if (c.image?.url) imageUrls.push(c.image.url);
+  if (info?.heroImage?.url) imageUrls.push(info.heroImage.url);
+  if (info?.logo?.url) imageUrls.push(info.logo.url);
+
+  await mkdir(IMG_DIR, { recursive: true });
+  const map = {};
+  for (const url of imageUrls) {
+    if (map[url]) continue;
+    const name = localName(url);
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.warn(`[sync-cms] 取得失敗 ${url}: ${res.status}`);
+      continue;
+    }
+    const buf = Buffer.from(await res.arrayBuffer());
+    await writeFile(path.join(IMG_DIR, name), buf);
+    map[url] = `/images/restaurant/cms/${name}`;
+  }
+
+  await mkdir(path.dirname(MAP_FILE), { recursive: true });
+  await writeFile(MAP_FILE, JSON.stringify(map, null, 2));
+  console.log(`[sync-cms] ${Object.keys(map).length} 枚の画像をローカル化しました`);
+}
+
+main().catch((e) => {
+  console.error("[sync-cms] エラー:", e);
+  process.exit(1);
+});
+```
+
+- [ ] **Step 7: build スクリプトに同期を組み込む**
+
+`package.json` の `scripts.build` を変更:
+```json
+"build": "node scripts/sync-cms.mjs && next build"
+```
+
+- [ ] **Step 8: 生成物を .gitignore に追加**
+
+`.gitignore` の末尾に追記:
+```
+# microCMS ビルド時生成物
+/public/images/restaurant/cms/
+/src/app/restaurant/_data/cms-image-map.json
+```
+
+- [ ] **Step 9: 全テスト＋env無しビルド検証**
+
+Run: `pnpm test`
+Expected: PASS（normalize 3 + index 3 + images 4 = 10件）。
+
+Run: `pnpm exec node scripts/sync-cms.mjs`
+Expected: env未設定なのでスキップのログのみ、exit 0。
+
+Run: `pnpm build`
+Expected: 成功（同期スキップ→next build成功、`out/restaurant/index.html` 生成。env無しなのでシード表示）。
+
+- [ ] **Step 10: Commit**
+
+```bash
+git add scripts/sync-cms.mjs src/app/restaurant/_data/images.ts src/app/restaurant/_data/images.test.ts src/app/restaurant/_data/index.ts package.json .gitignore
+git commit -m "feat: localize microCMS images at build time (20GB transfer safeguard)"
+```
+
+---
+
 ## Task 7: Menu.tsx を props 化
 
 **Files:**
@@ -938,6 +1250,14 @@ Create `docs/microcms-setup.md`:
 ## 3. 環境変数を設定
 - ローカル: `.env.local` に `MICROCMS_SERVICE_DOMAIN` と `MICROCMS_API_KEY`
 - Cloudflare: Workers Builds の環境変数に同じ2つを設定
+
+## 3.5. ビルドコマンドと転送量対策（重要）
+
+microCMS Hobby は月20GB転送で超過するとAPIが停止する。本サイトは画像をビルド時に1回だけ取得して `public/images/restaurant/cms/` に保存し、訪問者へは Cloudflare から配信する（microCMS CDN を直リンクしない）。この処理は build スクリプト `node scripts/sync-cms.mjs && next build` の前段で走る。
+
+- **Cloudflare Workers Builds のビルドコマンドは必ず `pnpm build`（= 上記チェーン）にすること。** `next build` を直接呼ぶ設定だと画像同期が走らず、CDN直リンクになって転送量対策が効かない。
+- env が未設定だと同期はスキップされ、シード画像で表示される（壊れない）。
+- お知らせ本文（リッチエディタ）に貼った microCMS 画像も同期対象（`sync-cms.mjs` が本文HTMLを走査し、`localizeHtml` がローカルパスへ置換）。本文・画像フィールドいずれも CDN 直URLは訪問者へ出力されない。
 
 ## 4. 自動再ビルド（Webhook）
 1. Cloudflare 側で Deploy Hook（再ビルド用URL）を発行

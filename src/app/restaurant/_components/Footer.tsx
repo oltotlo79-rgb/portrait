@@ -1,6 +1,7 @@
 import Link from "next/link";
+import type { ShopInfo } from "../_data/types";
 
-export function RestaurantFooter() {
+export function RestaurantFooter({ info }: { info: ShopInfo }) {
   return (
     <footer className="border-t border-[#B59154]/20 bg-[#0F0F0F] px-6 py-20 text-[#EFE9DD] sm:px-12 lg:px-20">
       <div className="mx-auto max-w-6xl">
@@ -10,28 +11,27 @@ export function RestaurantFooter() {
               黒 文 字
             </p>
             <p className="mt-6 max-w-xs font-[family-name:var(--font-noto-serif-jp)] text-xs leading-relaxed text-[#EFE9DD]/70">
-              神楽坂の路地に佇む、カウンター10席の割烹。
-              月替わりのおまかせ仕立てで、季節の一献をお届けします。
+              {info.tagline}
             </p>
           </div>
           <dl className="grid gap-6 text-xs text-[#EFE9DD]/80 sm:grid-cols-2 sm:gap-x-16">
             <div>
               <dt className="uppercase tracking-[0.3em] text-[#B59154]">Hours</dt>
               <dd className="mt-2">
-                18:00 / 20:30 二部制<br />
-                日曜・第二月曜定休
+                {info.hours}<br />
+                {info.closed}
               </dd>
             </div>
             <div>
               <dt className="uppercase tracking-[0.3em] text-[#B59154]">Address</dt>
               <dd className="mt-2">
-                東京都新宿区神楽坂◯-◯<br />
-                神楽坂駅 徒歩4分
+                {info.address}<br />
+                {info.access}
               </dd>
             </div>
             <div>
               <dt className="uppercase tracking-[0.3em] text-[#B59154]">Reserve</dt>
-              <dd className="mt-2">03-XXXX-XXXX<br />kuromoji@example.jp</dd>
+              <dd className="mt-2">{info.tel}<br />{info.email}</dd>
             </div>
             <div>
               <dt className="uppercase tracking-[0.3em] text-[#B59154]">Portfolio</dt>

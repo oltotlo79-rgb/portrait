@@ -5,13 +5,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Clock3, Utensils } from "lucide-react";
 import { EASE_OUT_EXPO } from "@/lib/animations/variants";
+import type { ShopInfo } from "../_data/types";
 
-export function RestaurantHero() {
+export function RestaurantHero({ info }: { info: ShopInfo }) {
   return (
     <section className="relative flex h-screen min-h-[680px] items-center overflow-hidden bg-[#0F0F0F] text-[#EFE9DD]">
       {/* Background image */}
       <Image
-        src="/images/restaurant/01-hero-noren-night.webp"
+        src={info.heroImage}
         alt=""
         fill
         priority
@@ -104,7 +105,7 @@ export function RestaurantHero() {
             Tonight&apos;s counter
           </p>
           <p className="mt-2 font-[family-name:var(--font-noto-serif-jp)] text-sm text-[#EFE9DD]/76">
-            18:00 / 20:30 の二部制。八席のみ、季節のおまかせ。
+            {info.hours}。{info.seats}、季節のおまかせ。
           </p>
         </div>
         <div className="flex items-center gap-3 border-[#EFE9DD]/10 text-xs text-[#EFE9DD]/72 md:border-l md:px-6">
