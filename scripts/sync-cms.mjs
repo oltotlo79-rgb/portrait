@@ -1,0 +1,79 @@
+// microCMS のコンテンツ画像をビルド時に取得し public/ へ保存、url→ローカルパス対応表を出力する。
+// env 未設定なら何もしない（シードデータで動作）。
+import { createClient } from "microcms-js-sdk";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+
+const DOMAIN = process.env.MICROCMS_SERVICE_DOMAIN;
+const KEY = process.env.MICROCMS_API_KEY;
+
+const IMG_DIR = path.join(
+  process.cwd(),
+  "public",
+  "images",
+  "restaurant",
+  "cms",
+);
+const MAP_FILE = path.join(
+  process.cwd(),
+  "src",
+  "app",
+  "restaurant",
+  "_data",
+  "cms-image-map.json",
+);
+
+function localName(url) {
+  const clean = url.split("?")[0];
+  const parts = clean.split("/").filter(Boolean);
+  return parts
+    .slice(-2)
+    .join("-")
+    .replace(/[^a-zA-Z0-9._-]/g, "_");
+}
+
+async function main() {
+  if (!DOMAIN || !KEY) {
+    console.log("[sync-cms] microCMS env 未設定のためスキップ（シードデータを使用）");
+    return;
+  }
+
+  const client = createClient({ serviceDomain: DOMAIN, apiKey: KEY });
+
+  const [courses, info] = await Promise.all([
+    client
+      .getList({ endpoint: "courses", queries: { limit: 100 } })
+      .then((r) => r.contents)
+      .catch(() => []),
+    client.getObject({ endpoint: "info" }).catch(() => ({})),
+  ]);
+
+  const imageUrls = [];
+  for (const c of courses) if (c.image?.url) imageUrls.push(c.image.url);
+  if (info?.heroImage?.url) imageUrls.push(info.heroImage.url);
+  if (info?.logo?.url) imageUrls.push(info.logo.url);
+
+  await mkdir(IMG_DIR, { recursive: true });
+  const map = {};
+  for (const url of imageUrls) {
+    if (map[url]) continue;
+    const name = localName(url);
+    const res = await fetch(url);
+    if (!res.ok) {
+      console.warn(`[sync-cms] 取得失敗 ${url}: ${res.status}`);
+      continue;
+    }
+    const buf = Buffer.from(await res.arrayBuffer());
+    await writeFile(path.join(IMG_DIR, name), buf);
+    map[url] = `/images/restaurant/cms/${name}`;
+  }
+
+  await mkdir(path.dirname(MAP_FILE), { recursive: true });
+  await writeFile(MAP_FILE, JSON.stringify(map, null, 2));
+  console.log(`[sync-cms] ${Object.keys(map).length} 枚の画像をローカル化しました`);
+}
+
+main().catch((e) => {
+  console.error("[sync-cms] エラー:", e);
+  process.exit(1);
+});

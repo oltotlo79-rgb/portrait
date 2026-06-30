@@ -1,5 +1,6 @@
 import { getClient, hasMicroCMS } from "@/lib/microcms";
 import { normalizeImage } from "./normalize";
+import { loadImageMap, toLocalImage } from "./images";
 import { seedCourses, seedNews, seedInfo } from "./seed";
 import type {
   Course,
@@ -12,16 +13,21 @@ import type {
 
 export async function getCourses(): Promise<Course[]> {
   if (!hasMicroCMS()) return seedCourses;
+  const map = loadImageMap();
   const res = await getClient().getList<RawCourse>({
     endpoint: "courses",
     queries: { limit: 100, orders: "order" },
   });
-  return res.contents.map((c) => ({
+  return res.contents.map((c, i) => ({
     no: c.no,
     en: c.en,
     ja: c.ja,
     body: c.body,
-    image: normalizeImage(c.image),
+    image: toLocalImage(
+      normalizeImage(c.image),
+      map,
+      seedCourses[i]?.image ?? seedInfo.heroImage,
+    ),
   }));
 }
 
@@ -42,6 +48,7 @@ export async function getNews(): Promise<NewsItem[]> {
 
 export async function getInfo(): Promise<ShopInfo> {
   if (!hasMicroCMS()) return seedInfo;
+  const map = loadImageMap();
   const i = await getClient().getObject<RawInfo>({ endpoint: "info" });
   return {
     shopName: i.shopName,
@@ -53,7 +60,15 @@ export async function getInfo(): Promise<ShopInfo> {
     email: i.email,
     address: i.address,
     access: i.access,
-    heroImage: normalizeImage(i.heroImage, seedInfo.heroImage),
-    logo: normalizeImage(i.logo, seedInfo.logo),
+    heroImage: toLocalImage(
+      normalizeImage(i.heroImage, seedInfo.heroImage),
+      map,
+      seedInfo.heroImage,
+    ),
+    logo: toLocalImage(
+      normalizeImage(i.logo, seedInfo.logo),
+      map,
+      seedInfo.logo,
+    ),
   };
 }
