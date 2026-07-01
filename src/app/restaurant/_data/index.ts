@@ -17,6 +17,7 @@ export async function getCourses(): Promise<Course[]> {
   const res = await getClient().getList<RawCourse>({
     endpoint: "courses",
     queries: { limit: 100, orders: "order" },
+    customRequestInit: { cache: "no-store" },
   });
   return res.contents.map((c, i) => ({
     no: c.no,
@@ -37,6 +38,7 @@ export async function getNews(): Promise<NewsItem[]> {
   const res = await getClient().getList<RawNews>({
     endpoint: "news",
     queries: { limit: 20, orders: "-publishedAt" },
+    customRequestInit: { cache: "no-store" },
   });
   return res.contents.map((n) => ({
     id: n.id,
@@ -50,7 +52,10 @@ export async function getNews(): Promise<NewsItem[]> {
 export async function getInfo(): Promise<ShopInfo> {
   if (!hasMicroCMS()) return seedInfo;
   const map = loadImageMap();
-  const i = await getClient().getObject<RawInfo>({ endpoint: "info" });
+  const i = await getClient().getObject<RawInfo>({
+    endpoint: "info",
+    customRequestInit: { cache: "no-store" },
+  });
   return {
     shopName: i.shopName,
     tagline: i.tagline,
