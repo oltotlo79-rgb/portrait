@@ -52,3 +52,4 @@ next-env.d.ts
 # microCMS ビルド時生成物
 /public/images/restaurant/cms/
 /src/app/restaurant/_data/cms-image-map.json
+/src/app/restaurant/_data/cms-content.json

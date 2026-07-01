@@ -22,6 +22,14 @@ const MAP_FILE = path.join(
   "_data",
   "cms-image-map.json",
 );
+const CONTENT_FILE = path.join(
+  process.cwd(),
+  "src",
+  "app",
+  "restaurant",
+  "_data",
+  "cms-content.json",
+);
 
 const CDN_URL_RE = /https:\/\/images\.microcms-assets\.io\/[^\s"')]+/g;
 
@@ -44,12 +52,15 @@ async function main() {
 
   const [courses, info, news] = await Promise.all([
     client
-      .getList({ endpoint: "courses", queries: { limit: 100 } })
+      .getList({ endpoint: "courses", queries: { limit: 100, orders: "order" } })
       .then((r) => r.contents)
       .catch(() => []),
     client.getObject({ endpoint: "info" }).catch(() => ({})),
     client
-      .getList({ endpoint: "news", queries: { limit: 100 } })
+      .getList({
+        endpoint: "news",
+        queries: { limit: 100, orders: "-publishedAt" },
+      })
       .then((r) => r.contents)
       .catch(() => []),
   ]);
@@ -82,7 +93,16 @@ async function main() {
 
   await mkdir(path.dirname(MAP_FILE), { recursive: true });
   await writeFile(MAP_FILE, JSON.stringify(map, null, 2));
-  console.log(`[sync-cms] ${Object.keys(map).length} 枚の画像をローカル化しました`);
+
+  // コンテンツ本体をJSONに書き出す（サイトはこのファイルを読む＝ビルド毎に最新）
+  await writeFile(
+    CONTENT_FILE,
+    JSON.stringify({ courses, news, info }, null, 2),
+  );
+
+  console.log(
+    `[sync-cms] 画像 ${Object.keys(map).length} 枚 / コンテンツ courses:${courses.length} news:${news.length} を同期しました`,
+  );
 }
 
 main().catch((e) => {

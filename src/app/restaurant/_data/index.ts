@@ -1,4 +1,5 @@
-import { getClient, hasMicroCMS } from "@/lib/microcms";
+import fs from "node:fs";
+import path from "node:path";
 import { normalizeImage } from "./normalize";
 import { loadImageMap, toLocalImage, localizeHtml } from "./images";
 import { seedCourses, seedNews, seedInfo } from "./seed";
@@ -11,15 +12,35 @@ import type {
   RawInfo,
 } from "./types";
 
+const CONTENT_PATH = path.join(
+  process.cwd(),
+  "src/app/restaurant/_data/cms-content.json",
+);
+
+type CmsContent = {
+  courses?: RawCourse[];
+  news?: RawNews[];
+  info?: RawInfo;
+};
+
+/**
+ * prebuild スクリプト（scripts/sync-cms.mjs）が書き出した microCMS コンテンツを読む。
+ * スクリプトはビルド毎にまっさら実行されるため、Next のビルドキャッシュに凍結されない。
+ * ファイルが無い（env未設定など）場合は null → 各取得関数はシードにフォールバック。
+ */
+function loadContent(): CmsContent | null {
+  try {
+    return JSON.parse(fs.readFileSync(CONTENT_PATH, "utf-8")) as CmsContent;
+  } catch {
+    return null;
+  }
+}
+
 export async function getCourses(): Promise<Course[]> {
-  if (!hasMicroCMS()) return seedCourses;
+  const content = loadContent();
+  if (!content?.courses?.length) return seedCourses;
   const map = loadImageMap();
-  const res = await getClient().getList<RawCourse>({
-    endpoint: "courses",
-    queries: { limit: 100, orders: "order" },
-    customRequestInit: { cache: "no-store" },
-  });
-  return res.contents.map((c, i) => ({
+  return content.courses.map((c, i) => ({
     no: c.no,
     en: c.en,
     ja: c.ja,
@@ -33,14 +54,10 @@ export async function getCourses(): Promise<Course[]> {
 }
 
 export async function getNews(): Promise<NewsItem[]> {
-  if (!hasMicroCMS()) return seedNews;
+  const content = loadContent();
+  if (!content?.news?.length) return seedNews;
   const map = loadImageMap();
-  const res = await getClient().getList<RawNews>({
-    endpoint: "news",
-    queries: { limit: 20, orders: "-publishedAt" },
-    customRequestInit: { cache: "no-store" },
-  });
-  return res.contents.map((n) => ({
+  return content.news.map((n) => ({
     id: n.id,
     title: n.title,
     publishedAt: n.publishedAt,
@@ -50,12 +67,10 @@ export async function getNews(): Promise<NewsItem[]> {
 }
 
 export async function getInfo(): Promise<ShopInfo> {
-  if (!hasMicroCMS()) return seedInfo;
+  const content = loadContent();
+  if (!content?.info?.shopName) return seedInfo;
   const map = loadImageMap();
-  const i = await getClient().getObject<RawInfo>({
-    endpoint: "info",
-    customRequestInit: { cache: "no-store" },
-  });
+  const i = content.info;
   return {
     shopName: i.shopName,
     tagline: i.tagline,
