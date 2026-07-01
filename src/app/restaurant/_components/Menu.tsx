@@ -39,8 +39,8 @@ export function RestaurantMenu({ courses }: { courses: Course[] }) {
       className="relative bg-[#0F0F0F]"
       style={{ height: `${courses.length * 100}vh` }}
     >
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden px-6 py-16 text-[#EFE9DD] sm:px-12 lg:px-20">
-        <div className="mx-auto flex w-full max-w-6xl flex-col">
+      <div className="sticky top-0 flex h-screen flex-col overflow-hidden px-6 py-8 text-[#EFE9DD] sm:px-12 sm:py-10 lg:px-20 lg:py-12">
+        <div className="mx-auto flex h-full w-full max-w-6xl flex-col justify-center">
           <SectionLabel number="二" className="text-[#B59154]">
             お品書き
           </SectionLabel>
@@ -48,9 +48,9 @@ export function RestaurantMenu({ courses }: { courses: Course[] }) {
             月替わりのおまかせ
           </h2>
 
-          <div className="mt-10 grid flex-1 items-center gap-10 lg:grid-cols-2 lg:gap-20">
+          <div className="mt-5 grid min-h-0 flex-1 grid-rows-[1fr_auto] gap-5 sm:mt-6 lg:grid-cols-2 lg:grid-rows-1 lg:items-stretch lg:gap-16">
             {/* Image stack — crossfade */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md">
+            <div className="relative min-h-0 w-full overflow-hidden rounded-md">
               {courses.map((dish, i) => (
                 <motion.div
                   key={dish.no}
@@ -82,7 +82,7 @@ export function RestaurantMenu({ courses }: { courses: Course[] }) {
             </div>
 
             {/* Text stack — crossfade with slight y */}
-            <div className="relative min-h-[320px]">
+            <div className="relative min-h-[150px] sm:min-h-[190px] lg:min-h-0">
               {courses.map((dish, i) => (
                 <motion.div
                   key={dish.no}
@@ -112,7 +112,7 @@ export function RestaurantMenu({ courses }: { courses: Course[] }) {
           </div>
 
           {/* Progress bars */}
-          <div className="mt-10 flex gap-3">
+          <div className="mt-6 flex gap-3">
             {courses.map((dish, i) => (
               <div key={dish.no} className="flex-1">
                 <div className="relative h-px bg-[#EFE9DD]/15">

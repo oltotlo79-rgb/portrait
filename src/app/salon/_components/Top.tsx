@@ -520,7 +520,7 @@ function LookSlide({
     <div className="flex h-full w-screen shrink-0 items-center px-6 sm:px-12 lg:px-20">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
         <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-          <div className="relative aspect-[4/5] overflow-hidden">
+          <div className="relative mx-auto aspect-[4/5] max-h-[90vh] w-full overflow-hidden">
             <Image
               src={look.src}
               alt={look.title}

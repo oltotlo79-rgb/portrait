@@ -50,7 +50,7 @@ export function TravelDestinations() {
                 key={d.en}
                 className="relative w-[78vw] max-w-[560px] shrink-0 overflow-hidden rounded-2xl sm:w-[60vw] lg:w-[44vw]"
               >
-                <div className="relative aspect-[4/5]">
+                <div className="relative aspect-[4/5] max-h-[90vh]">
                   <Image
                     src={d.image}
                     alt={`${d.ja}の風景`}
